@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node,react,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,react,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode
 
 ### Node ###
 # Logs
@@ -141,19 +141,6 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
-### react ###
-.DS_*
-**/*.backup.*
-**/*.back.*
-
-node_modules
-
-*.sublime*
-
-psd
-thumb
-sketch
-
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -179,4 +166,4 @@ sketch
 # Ignore code-workspaces
 *.code-workspace
 
-# End of https://www.toptal.com/developers/gitignore/api/node,react,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
