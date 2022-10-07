@@ -1,11 +1,29 @@
 import { Col, Container, Row, Ratio } from 'react-bootstrap';
+import api from '../Api/Api';
 import LoginForm from '../Components/Login/LoginForm';
 import { WEBSITE_TITLE } from '../Helpers/Constants';
 
+const getUsers = async () => {
+  const users = await api.getAllUsers();
+
+  return users;
+};
+
+const getUser = async (email, password) => {
+  try {
+    const user = await api.getUserByEmailAndPassword(email, password);
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const LoginPage = () => {
-  const verifyUser = (username, password) => {
-    console.log(username);
-    console.log(password);
+  const verifyUser = async (email, password) => {
+    const user = await getUser(email, password);
+
+    console.dir(user);
   };
 
   return (

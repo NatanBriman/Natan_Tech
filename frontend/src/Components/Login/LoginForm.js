@@ -2,13 +2,13 @@ import { useRef } from 'react';
 import { Button, Form, Card } from 'react-bootstrap';
 
 const LoginForm = ({ verifyUser }) => {
-  const username = useRef();
+  const email = useRef();
   const password = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const currentUsername = username.current.value;
+    const currentUsername = email.current.value;
     const currentPassword = password.current.value;
 
     verifyUser(currentUsername, currentPassword);
@@ -27,11 +27,11 @@ const LoginForm = ({ verifyUser }) => {
       <Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3'>
-            <Form.Label>שם משתמש</Form.Label>
+            <Form.Label>אימייל</Form.Label>
             <Form.Control
               autoFocus
               required
-              ref={username}
+              ref={email}
               type='email'
               placeholder='natan@gmail.com'
             />
