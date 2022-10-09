@@ -1,17 +1,53 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Form, Card } from 'react-bootstrap';
+import isEmail from 'validator/lib/isEmail';
+import { userActions } from '../../Redux/Store';
+import {
+  isEmpty,
+  isPasswordValid,
+  isThereEmptyField,
+} from '../../Helpers/Helpers';
+import {
+  EMAIL_INPUT_PROPS,
+  PASSWORD_INPUT_PROPS,
+} from '../../Helpers/Constants';
+import InputField from '../Form/InputField';
+import api from '../../Api/Api';
 
-const LoginForm = ({ verifyUser }) => {
-  const email = useRef();
+const getUser = async (email, password) => {
+  const user = await api.users.getUserByEmailAndPassword(email, password);
+
+  return user;
+};
+
+const LoginForm = () => {
+  const dispatch = useDispatch();
+
   const password = useRef();
+  const email = useRef();
+  const [error, setError] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const currentUsername = email.current.value;
+    const { setUser } = userActions;
+    const currentEmail = email.current.value;
     const currentPassword = password.current.value;
 
-    verifyUser(currentUsername, currentPassword);
+    if (isThereEmptyField(currentEmail, currentPassword)) {
+      setError('כל השדות חייבים להיות מלאים');
+
+      return;
+    }
+
+    try {
+      const user = await getUser(currentEmail, currentPassword);
+
+      dispatch(setUser(user));
+    } catch (error) {
+      setError(error.response.data);
+    }
   };
 
   return (
@@ -25,33 +61,42 @@ const LoginForm = ({ verifyUser }) => {
       </Card.Header>
 
       <Card.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className='mb-3'>
-            <Form.Label>אימייל</Form.Label>
-            <Form.Control
-              autoFocus
-              required
-              ref={email}
-              type='email'
-              placeholder='natan@gmail.com'
-            />
+        <Form onSubmit={handleSubmit} noValidate>
+          <InputField
+            inputValue={email}
+            invalidFeedback='מייל לא תקין'
+            label='אימייל'
+            inputProps={EMAIL_INPUT_PROPS}
+            validation={isEmail}
+          />
 
-            <Form.Text>!בחיים לא נשתף את זה עם אף אחד</Form.Text>
-          </Form.Group>
+          <InputField
+            inputValue={password}
+            invalidFeedback='סיסמה לא תקינה'
+            label='סיסמה'
+            inputProps={PASSWORD_INPUT_PROPS}
+            validation={isPasswordValid}
+          />
 
-          <Form.Group className='mb-3'>
-            <Form.Label>סיסמה</Form.Label>
-            <Form.Control
-              required
-              ref={password}
-              type='password'
-              placeholder='natan1234'
-            />
-          </Form.Group>
+          {!isEmpty(error) && (
+            <Form.Group className='mb-3'>
+              <Form.Text>
+                <h5>
+                  <strong>{error}</strong>
+                </h5>
+              </Form.Text>
+            </Form.Group>
+          )}
 
           <Button variant='success' type='submit'>
             היידה
           </Button>
+
+          <Form.Group className='mt-3'>
+            <Form.Text>
+              <h5>!לא נשתף את הפרטים האלה עם אף אחד</h5>
+            </Form.Text>
+          </Form.Group>
         </Form>
       </Card.Body>
 

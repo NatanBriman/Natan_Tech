@@ -9,10 +9,10 @@ usersController.get('/:email/:password', async (req, res, next) => {
   try {
     const user = await usersService.getUserByEmailAndPassword(email, password);
 
-    if (user !== null) res.send(user);
-    else throw new Error(`User not found`);
+    if (user !== null) res.status(200).send(user);
+    else throw new Error('😕 אימייל או סיסמה לא נכונים');
   } catch (error) {
-    res.status(404).send();
+    res.status(404).send(error.message);
   }
 });
 
@@ -22,9 +22,9 @@ usersController.get('/save/:email/:password', async (req, res, next) => {
   try {
     const user = await usersService.saveUser(email, password);
 
-    res.send(user);
+    res.status(200).send('User saved successfully');
   } catch (error) {
-    res.status(404).send();
+    res.status(404).send(`Something went wrong with saving the user ${email}`);
   }
 });
 
