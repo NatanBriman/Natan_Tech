@@ -1,13 +1,8 @@
 import { Col, Container, Row, Ratio } from 'react-bootstrap';
+import { WEBSITE_TITLE, WEBSITE_SUBTITLE } from '../Helpers/Constants';
 import LoginForm from '../Components/Login/LoginForm';
-import { WEBSITE_TITLE } from '../Helpers/Constants';
 
 const LoginPage = () => {
-  const verifyUser = (username, password) => {
-    console.log(username);
-    console.log(password);
-  };
-
   return (
     <Container
       fluid
@@ -19,7 +14,7 @@ const LoginPage = () => {
         style={{ width: '100%' }}
       >
         <Col sm={4}>
-          <LoginForm verifyUser={verifyUser} />
+          <LoginForm />
         </Col>
 
         <Col
@@ -32,7 +27,7 @@ const LoginPage = () => {
                 <strong>{WEBSITE_TITLE}</strong>
               </h1>
 
-              <h3>המקום היחיד לכל פתרונות הטכנולוגיה</h3>
+              <h3>{WEBSITE_SUBTITLE}</h3>
             </div>
 
             <Ratio aspectRatio={3 / 4}>
