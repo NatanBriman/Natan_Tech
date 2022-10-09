@@ -30,3 +30,17 @@ export const isThereEmptyField = (...fields) => {
 
   return !isEmpty(emptyFields);
 };
+
+export const handleGettingUser = async (
+  getUser,
+  handleSuccess,
+  handleError
+) => {
+  try {
+    const user = await getUser();
+
+    handleSuccess(user);
+  } catch (error) {
+    handleError(error);
+  }
+};

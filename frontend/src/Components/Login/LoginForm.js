@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, Card } from 'react-bootstrap';
 import isEmail from 'validator/lib/isEmail';
 import { userActions } from '../../Redux/Store';
@@ -7,15 +8,17 @@ import {
   isEmpty,
   isPasswordValid,
   isThereEmptyField,
+  handleGettingUser,
 } from '../../Helpers/Helpers';
 import {
   EMAIL_INPUT_PROPS,
   PASSWORD_INPUT_PROPS,
+  STORE_ROUTE,
 } from '../../Helpers/Constants';
 import InputField from '../Form/InputField';
 import api from '../../Api/Api';
 
-const getUser = async (email, password) => {
+const getUserByEmailAndPassword = async (email, password) => {
   const user = await api.users.getUserByEmailAndPassword(email, password);
 
   return user;
@@ -23,15 +26,24 @@ const getUser = async (email, password) => {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const password = useRef();
   const email = useRef();
   const [error, setError] = useState('');
 
+  const handleUser = (user) => {
+    const { setUser } = userActions;
+
+    dispatch(setUser(user));
+    navigate(STORE_ROUTE);
+  };
+
+  const handleError = (error) => setError(error.response.data);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { setUser } = userActions;
     const currentEmail = email.current.value;
     const currentPassword = password.current.value;
 
@@ -41,13 +53,10 @@ const LoginForm = () => {
       return;
     }
 
-    try {
-      const user = await getUser(currentEmail, currentPassword);
+    const getUserByCurrentValues = () =>
+      getUserByEmailAndPassword(currentEmail, currentPassword);
 
-      dispatch(setUser(user));
-    } catch (error) {
-      setError(error.response.data);
-    }
+    handleGettingUser(getUserByCurrentValues, handleUser, handleError);
   };
 
   return (
@@ -89,7 +98,7 @@ const LoginForm = () => {
           )}
 
           <Button variant='success' type='submit'>
-            היידה
+            כניסה
           </Button>
 
           <Form.Group className='mt-3'>
