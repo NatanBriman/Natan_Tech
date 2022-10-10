@@ -7,7 +7,12 @@
   transform: scale(1.01);
   box-shadow: 0 0 5px #888888;
 }
-/* 
-.modal-dialog .modal-content {
-  background-color: #992be3;
-} */
+
+.store .slider {
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+}
+
+.store .slider::-webkit-scrollbar {
+  display: none;
+}

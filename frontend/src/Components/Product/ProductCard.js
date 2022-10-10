@@ -10,6 +10,7 @@ const ProductCard = ({ product }) => {
 
   const showModal = () => setIsShowMoreDetails(true);
 
+  // TODO: REMOVE -2
   const isLeftLittleInStock = product.unitsInStock - 2 <= LITTLE_IN_STOCK;
   const moreDetails = getProductMoreDetails(product);
 

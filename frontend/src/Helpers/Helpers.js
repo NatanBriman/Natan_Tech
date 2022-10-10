@@ -1,3 +1,5 @@
+import { groupBy, get } from 'lodash';
+
 export const isEmpty = (data) => {
   if (data === undefined) return true;
 
@@ -61,3 +63,8 @@ export const getProductMoreDetails = (product) => [
     text: 'קטגוריה',
   },
 ];
+
+export const getProperty = (object, property) => get(object, property);
+
+export const splitArrayByProperty = (arr, property) =>
+  groupBy(arr, (object) => getProperty(object, property));

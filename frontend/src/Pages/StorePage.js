@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import api from '../Api/Api';
-import ProductCard from '../Components/Product/ProductCard';
-import ReviewsCard from '../Components/Review/ReviewsCard';
+import { isEmpty, splitArrayByProperty } from '../Helpers/Helpers';
+import { STORE_BACKGROUND_COLOR } from '../Helpers/Constants';
+import CategoryProducts from '../Components/Product/CategoryProducts';
 
 const getAllProducts = async () => {
-  const user = await api.products.getAllProducts();
+  const products = await api.products.getAllProducts();
 
-  return user;
+  return products;
 };
 
 const StorePage = () => {
-  const user = useSelector((state) => state.user);
-
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const initializeProducts = async () => {
     const products = await getAllProducts();
@@ -22,27 +21,33 @@ const StorePage = () => {
     setProducts(products);
   };
 
+  const initializeCategories = () => {
+    const categories = splitArrayByProperty(products, 'category.name');
+
+    setCategories(categories);
+  };
+
   useEffect(() => {
     initializeProducts();
   }, []);
 
+  useEffect(() => {
+    if (!isEmpty(products)) initializeCategories();
+  }, [products]);
+
   return (
-    <Container fluid style={{ width: '100%', height: '100%' }}>
-      {/* <ReviewsList /> */}
-      <Row className='mt-3 d-flex justify-content-center'>
-        {products[2] && <ProductCard product={products[2]} />}
-        {products[2] && <ProductCard product={products[1]} />}
-        {products[2] && <ProductCard product={products[2]} />}
-        {products[2] && <ProductCard product={products[0]} />}
-        {products[2] && <ProductCard product={products[1]} />}
-      </Row>
-      <Row className='mt-3 d-flex justify-content-center'>
-        {products[2] && <ProductCard product={products[2]} />}
-        {products[2] && <ProductCard product={products[1]} />}
-        {products[2] && <ProductCard product={products[2]} />}
-        {products[2] && <ProductCard product={products[0]} />}
-        {products[2] && <ProductCard product={products[1]} />}
-      </Row>
+    <Container
+      className='store'
+      fluid
+      style={{ backgroundColor: STORE_BACKGROUND_COLOR }}
+    >
+      {Object.keys(categories).map((categoryName) => (
+        <CategoryProducts
+          key={categoryName}
+          categoryName={categoryName}
+          products={categories[categoryName]}
+        />
+      ))}
     </Container>
   );
 };
