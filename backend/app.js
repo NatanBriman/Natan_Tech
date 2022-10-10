@@ -1,39 +1,46 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
+import createError from 'http-errors';
+import express, { json, urlencoded } from 'express';
+import { join } from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const usersController = require('./Controllers/UsersController');
+import usersController from './Controllers/UsersController.js';
+import productsController from './Controllers/ProductsController.js';
 
 const app = express();
 
 // view engine setup
 app.use(cors());
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(json());
+app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+app.use(express.static(join(__dirname, 'public')));
 
 // Import the mongoose module
-const mongoose = require('mongoose');
-
+import pkg from 'mongoose';
+const { connect, connection } = pkg;
 // Set up default mongoose connection
 const DB_NAME = 'Natan_Tech';
 const DB_URL = 'mongodb://127.0.0.1';
 
 const mongoDB = `${DB_URL}/${DB_NAME}`;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
-const db = mongoose.connection;
+const db = connection;
 
 // Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use('/users', usersController);
+app.use('/products', productsController);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -51,4 +58,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

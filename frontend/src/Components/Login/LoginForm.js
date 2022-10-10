@@ -97,7 +97,7 @@ const LoginForm = () => {
             </Form.Group>
           )}
 
-          <Button variant='success' type='submit'>
+          <Button className='shadow' variant='success' type='submit'>
             כניסה
           </Button>
 
@@ -110,8 +110,12 @@ const LoginForm = () => {
       </Card.Body>
 
       <Card.Footer className='d-flex justify-content-between'>
-        <Button variant='danger'>?שכחתי סיסמה</Button>
-        <Button variant='primary'>?לא נרשמתי</Button>
+        <Button className='shadow' variant='danger'>
+          ?שכחתי סיסמה
+        </Button>
+        <Button className='shadow' variant='primary'>
+          ?לא נרשמתי
+        </Button>
       </Card.Footer>
     </Card>
   );
