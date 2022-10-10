@@ -4,7 +4,7 @@ import productsService from '../Services/ProductsService.js';
 
 const productsController = express();
 
-productsController.get('/name', async (req, res, next) => {
+productsController.post('/name', async (req, res, next) => {
   const { name } = req.body;
 
   try {

@@ -44,3 +44,20 @@ export const handleGettingUser = async (
     handleError(error);
   }
 };
+
+export const getDateString = (date) => date.toLocaleDateString();
+
+export const getProductMoreDetails = (product) => [
+  {
+    detail: getDateString(new Date(product.addDate)),
+    text: 'תאריך הוספה לאתר',
+  },
+  {
+    detail: getDateString(new Date(product.productionDate)),
+    text: 'תאריך ייצור',
+  },
+  {
+    detail: product.category.name,
+    text: 'קטגוריה',
+  },
+];

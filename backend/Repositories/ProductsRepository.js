@@ -1,15 +1,15 @@
 import Product from '../Models/Product.js';
 
-const usersRepository = {
+const productsRepository = {
   findAll() {
-    return Product.find({});
+    return Product.find({}).populate('manufacturer category');
   },
   findByName(name) {
-    return Product.find({ name });
+    return Product.find({ name }).populate('manufacturer category');
   },
   save(product) {
     return product.save();
   },
 };
 
-export default usersRepository;
+export default productsRepository;

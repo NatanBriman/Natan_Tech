@@ -1,36 +1,43 @@
 import { Schema, model, mongoose } from 'mongoose';
+import { DEFAULT_PRODUCT_IMAGE_URL } from '../Helpers/Constants.js';
+import Manufacturer from './Manufacturer.js';
+import Category from './Category.js';
 
 const productSchema = new Schema({
   name: {
-    type: [String, 'name is a String field'],
+    type: String,
     required: [true, 'name is a required field'],
     index: true,
   },
   manufacturer: {
-    type: [mongoose.Types.ObjectId, 'manufacturer is an ObjectId field'],
+    type: mongoose.Types.ObjectId,
     ref: 'Manufacturer',
     required: [true, 'manufacturer is a required field'],
   },
+  image: {
+    type: String,
+    default: DEFAULT_PRODUCT_IMAGE_URL,
+  },
   productionDate: {
-    type: [Date, 'productionDate is a Date field'],
+    type: Date,
     required: [true, 'productionDate is a required field'],
   },
   addDate: {
-    type: [Date, 'addDate is a Date field'],
-    default: new Date(),
+    type: Date,
+    default: Date.now(),
   },
   price: {
-    type: [Number, 'price is a Number field'],
+    type: Number,
     required: [true, 'price is a required field'],
     min: [0, 'price must be at least 0'],
   },
   category: {
-    type: [mongoose.Types.ObjectId, 'category is an ObjectId field'],
+    type: mongoose.Types.ObjectId,
     ref: 'Category',
     required: [true, 'category is a required field'],
   },
   unitsInStock: {
-    type: [Number, 'unitsInStock is a Number field'],
+    type: Number,
     required: [true, 'unitsInStock is a required field'],
     min: [1, 'unitsInStock must be at least 1'],
   },

@@ -22,3 +22,7 @@ export const PROFILE_ROUTE = '/profile';
 export const CART_ROUTE = '/cart';
 export const REVIEWS_ROUTE = '/reviews';
 export const MANAGER_ROUTE = '/manager';
+
+export const LITTLE_IN_STOCK = 3;
+
+export const MAX_RATING = 5;
