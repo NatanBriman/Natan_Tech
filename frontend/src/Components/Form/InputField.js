@@ -33,7 +33,7 @@ const InputField = ({
   return (
     <Form.Group className='mb-3'>
       <Form.Label>
-        <strong>{label}</strong>
+        <b>{label}</b>
       </Form.Label>
 
       <InputGroup hasValidation>

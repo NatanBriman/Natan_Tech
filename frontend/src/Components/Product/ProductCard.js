@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
       <Card.Body onClick={showModal}>
         <Card.Title>
           <h3>
-            <strong>{product.name}</strong>
+            <b>{product.name}</b>
           </h3>
         </Card.Title>
 

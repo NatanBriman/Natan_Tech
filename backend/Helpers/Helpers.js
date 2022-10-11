@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const isEmpty = (data) => {
   if (data === undefined) return true;
 
@@ -15,3 +17,8 @@ export const isEmpty = (data) => {
       return true;
   }
 };
+
+export const getProperty = (object, property) => _.get(object, property);
+
+export const splitArrayByProperty = (arr, property) =>
+  _.groupBy(arr, (object) => getProperty(object, property));

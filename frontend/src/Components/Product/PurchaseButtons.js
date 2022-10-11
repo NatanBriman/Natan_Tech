@@ -49,7 +49,7 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
         </Col>
 
         <Col sm={2}>
-          <strong>{currentAmount}</strong>
+          <b>{currentAmount}</b>
         </Col>
 
         <Col sm={5}>
@@ -73,7 +73,7 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
             style={{ width: '100%' }}
             className='shadow d-flex justify-content-between align-items-center'
           >
-            <strong>{currentPrice}$</strong>
+            <b>{currentPrice}$</b>
             <BsFillCartPlusFill />
           </Button>
         </Col>

@@ -83,7 +83,7 @@ const ReviewsCard = ({ reviews }) => {
       <Card.Header className='text-center'>
         <Card.Title>
           <h1>
-            <strong>ביקורות</strong>
+            <b>ביקורות</b>
           </h1>
         </Card.Title>
       </Card.Header>

@@ -10,7 +10,7 @@ const DetailRow = ({ detail, text, color = '' }) => {
           </Col>
           <Col>
             <Card.Body>
-              <strong>{text}</strong>
+              <b>{text}</b>
             </Card.Body>
           </Col>
         </Row>

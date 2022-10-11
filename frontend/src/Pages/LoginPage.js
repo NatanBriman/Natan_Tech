@@ -28,7 +28,7 @@ const LoginPage = () => {
           <div className='justify-content-center align-items-center text-center'>
             <div className='mb-4'>
               <h1>
-                <strong>{WEBSITE_TITLE}</strong>
+                <b>{WEBSITE_TITLE}</b>
               </h1>
 
               <h3>{WEBSITE_SUBTITLE}</h3>

@@ -41,4 +41,14 @@ productsController.get('/', async (req, res, next) => {
   }
 });
 
+productsController.get('/categories', async (req, res, next) => {
+  try {
+    const productsInCategories = await productsService.getAllInCategories();
+
+    res.send(productsInCategories);
+  } catch (error) {
+    res.status(404).send();
+  }
+});
+
 export default productsController;

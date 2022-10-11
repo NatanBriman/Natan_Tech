@@ -64,7 +64,7 @@ const LoginForm = () => {
       <Card.Header>
         <Card.Title>
           <h1>
-            <strong>התחברות</strong>
+            <b>התחברות</b>
           </h1>
         </Card.Title>
       </Card.Header>
@@ -91,7 +91,7 @@ const LoginForm = () => {
             <Form.Group className='mb-3'>
               <Form.Text>
                 <h5>
-                  <strong>{error}</strong>
+                  <b>{error}</b>
                 </h5>
               </Form.Text>
             </Form.Group>

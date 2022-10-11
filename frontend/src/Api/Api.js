@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000';
-const axiosInstance = axios.create({ baseURL: API_BASE_URL });
+const SERVER_URL = 'http://localhost:5000';
+const axiosInstance = axios.create({ baseURL: SERVER_URL });
 
 const api = {
   users: {
@@ -19,6 +19,11 @@ const api = {
   products: {
     async getAllProducts() {
       const { data } = await axiosInstance.get('/products');
+
+      return data;
+    },
+    async getProductsByCategories() {
+      const { data } = await axiosInstance.get('/products/categories');
 
       return data;
     },

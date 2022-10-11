@@ -10,10 +10,8 @@ const productsRepository = {
   save(product) {
     return product.save();
   },
-  findByCategory(categoryName) {
-    return Product.find({ category: { name: categoryName } }).populate(
-      'manufacturer category'
-    );
+  findByCategory(category) {
+    return Product.find({ category }).populate('manufacturer category');
   },
 };
 

@@ -8,7 +8,7 @@ const MoreDetailsCard = ({ product, details }) => {
       <Card.Header className='text-center'>
         <Card.Title>
           <h1>
-            <strong>{product.name}</strong>
+            <b>{product.name}</b>
           </h1>
         </Card.Title>
 
