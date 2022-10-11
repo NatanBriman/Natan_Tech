@@ -2,7 +2,7 @@ import { Container, Row, Card } from 'react-bootstrap';
 import { isEmpty } from '../../Helpers/Helpers';
 import Review from './Review';
 
-const ReviewsCard = ({ reviews }) => {
+const ReviewsList = ({ reviews }) => {
   const EXAMPLE = [
     {
       user: {
@@ -107,4 +107,4 @@ const ReviewsCard = ({ reviews }) => {
   );
 };
 
-export default ReviewsCard;
+export default ReviewsList;

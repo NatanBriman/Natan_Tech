@@ -1,6 +1,4 @@
 import { Card, Image, Ratio } from 'react-bootstrap';
-import { BsStarFill } from 'react-icons/bs';
-import { MAX_RATING } from '../../Helpers/Constants';
 import { getDateString } from '../../Helpers/Helpers';
 import Rating from './Rating';
 

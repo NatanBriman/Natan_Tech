@@ -49,14 +49,14 @@ export const handleGettingUser = async (
 
 export const getDateString = (date) => date.toLocaleDateString();
 
-export const getProductMoreDetails = (product) => [
+export const getProductDetails = (product) => [
   {
     detail: getDateString(new Date(product.addDate)),
-    text: 'תאריך הוספה לאתר',
+    text: 'הוספה לאתר',
   },
   {
     detail: getDateString(new Date(product.productionDate)),
-    text: 'תאריך ייצור',
+    text: 'ייצור',
   },
   {
     detail: product.category.name,

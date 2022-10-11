@@ -1,10 +1,8 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import api from '../../Api/Api';
 import { isEmpty, splitArrayByProperty } from '../../Helpers/Helpers';
 import { STORE_BACKGROUND_COLOR } from '../../Helpers/Constants';
-import ItemsCarousel from '../../Components/Information/ItemsCarousel';
-import ProductCard from '../../Components/Product/ProductCard';
 import Section from './Section';
 
 const getAllProducts = async () => {

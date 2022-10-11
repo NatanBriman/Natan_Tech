@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import ItemsCarousel from '../../Components/Information/ItemsCarousel';
-import ProductCard from '../../Components/Product/ProductCard';
+import ProductDisplayCard from '../../Components/Product/Cards/ProductDisplayCard';
 
 const Section = ({ section }) => {
   return (
@@ -12,7 +12,7 @@ const Section = ({ section }) => {
           key={type.name}
           title={type.name}
           items={type.products}
-          component={ProductCard}
+          component={ProductDisplayCard}
         />
       ))}
     </Fragment>

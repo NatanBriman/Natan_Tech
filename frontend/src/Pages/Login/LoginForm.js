@@ -15,7 +15,7 @@ import {
   PASSWORD_INPUT_PROPS,
   STORE_ROUTE,
 } from '../../Helpers/Constants';
-import InputField from '../Form/InputField';
+import InputField from '../../Components/Form/InputField';
 import api from '../../Api/Api';
 
 const getUserByEmailAndPassword = async (email, password) => {
@@ -58,6 +58,9 @@ const LoginForm = () => {
 
     handleGettingUser(getUserByCurrentValues, handleUser, handleError);
   };
+
+  // TODO Add forgot password functionality
+  // TODO Add register user functionality
 
   return (
     <Card bg='light' className='shadow text-center'>

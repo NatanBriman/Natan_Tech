@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { LOGIN_ROUTE, STORE_ROUTE } from '../Helpers/Constants';
-import LoginPage from '../Pages/LoginPage';
+import LoginPage from '../Pages/Login/LoginPage';
 import StorePage from '../Pages/Store/StorePage';
 
 export const ROUTES = [

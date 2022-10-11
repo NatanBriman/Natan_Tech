@@ -14,6 +14,7 @@ const Rating = ({ rating, text }) => {
           />
         ))}
       </Col>
+
       <Col className='text-end'>
         <h3>
           <b>{text}</b>

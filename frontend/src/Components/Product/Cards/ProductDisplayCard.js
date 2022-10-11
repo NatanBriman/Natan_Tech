@@ -1,34 +1,34 @@
 import { useState } from 'react';
 import { Card, Image, Ratio } from 'react-bootstrap';
-import { LITTLE_IN_STOCK } from '../../Helpers/Constants';
-import { getProductMoreDetails } from '../../Helpers/Helpers';
-import MoreDetailsModal from './MoreDetailsModal';
-import PurchaseButtons from './PurchaseButtons';
+import { LITTLE_IN_STOCK } from '../../../Helpers/Constants';
+import { getProductDetails } from '../../../Helpers/Helpers';
+import ProductInfoModal from '../Modal/ProductInfoModal';
+import PurchaseButtons from '../PurchaseButtons';
 
-const ProductCard = ({ product }) => {
-  const [isShowMoreDetails, setIsShowMoreDetails] = useState(false);
+const ProductDisplayCard = ({ product }) => {
+  const [isShowModal, setIsShowProductInfo] = useState(false);
 
-  const showModal = () => setIsShowMoreDetails(true);
+  const toggleModal = () => setIsShowProductInfo(!isShowModal);
 
   // TODO: REMOVE -2
   const isLeftLittleInStock = product.unitsInStock - 2 <= LITTLE_IN_STOCK;
-  const moreDetails = getProductMoreDetails(product);
+  const productDetails = getProductDetails(product);
 
   return (
     <Card
       bg='light'
-      className='clickable text-center m-2 p-0 border border-2 border-primary'
+      className='clickable text-center p-0 m-2 border border-2 border-primary'
       style={{ width: '18%' }}
     >
-      {isShowMoreDetails && (
-        <MoreDetailsModal
-          details={moreDetails}
+      {isShowModal && (
+        <ProductInfoModal
+          details={productDetails}
           product={product}
-          closeAction={setIsShowMoreDetails}
+          closeAction={toggleModal}
         />
       )}
 
-      <Card.Header onClick={showModal}>
+      <Card.Header onClick={toggleModal}>
         <Ratio>
           <Card.Img src={product.image} alt='Product Image' />
         </Ratio>
@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
         )}
       </Card.Header>
 
-      <Card.Body onClick={showModal}>
+      <Card.Body onClick={toggleModal}>
         <Card.Title>
           <h3>
             <b>{product.name}</b>
@@ -67,4 +67,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default ProductDisplayCard;

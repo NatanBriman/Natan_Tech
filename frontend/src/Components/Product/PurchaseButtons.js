@@ -38,27 +38,29 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
       <Row className='d-flex justify-content-center text-center align-items-center'>
         <Col sm={5}>
           <Button
-            style={{ width: '100%' }}
+            style={{ width: '100%', color: 'black' }}
             disabled={isMinAmount}
             onClick={decreaseAmount}
             variant='danger'
-            className='shadow d-flex justify-content-center text-center align-items-center'
+            className='shadow border border-dark d-flex justify-content-center text-center align-items-center'
           >
             <AiOutlineMinus />
           </Button>
         </Col>
 
         <Col sm={2}>
-          <b>{currentAmount}</b>
+          <h4>
+            <b>{currentAmount}</b>
+          </h4>
         </Col>
 
         <Col sm={5}>
           <Button
-            style={{ width: '100%' }}
+            style={{ width: '100%', color: 'black' }}
             disabled={isMaxAmount}
             onClick={increaseAmount}
             variant='primary'
-            className='shadow d-flex justify-content-center text-center align-items-center'
+            className='shadow border border-dark d-flex justify-content-center text-center align-items-center'
           >
             <AiOutlinePlus />
           </Button>
@@ -70,10 +72,11 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
           <Button
             onClick={() => handlePurchase(currentAmount)}
             variant='success'
-            style={{ width: '100%' }}
-            className='shadow d-flex justify-content-between align-items-center'
+            style={{ width: '100%', color: 'black' }}
+            className='shadow border border-dark d-flex justify-content-between align-items-center'
           >
             <b>{currentPrice}$</b>
+
             <BsFillCartPlusFill />
           </Button>
         </Col>
@@ -81,7 +84,7 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
         <Col sm={4} className='ps-0'>
           <Button
             style={{ width: '100%', height: '100%' }}
-            className='shadow text-center d-flex justify-content-center align-items-center'
+            className='shadow border border-dark text-center d-flex justify-content-center align-items-center'
             variant='warning'
             onClick={handleFavorite}
           >

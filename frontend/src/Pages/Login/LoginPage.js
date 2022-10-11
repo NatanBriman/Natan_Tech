@@ -3,8 +3,8 @@ import {
   LOGIN_PAGE_BACKGROUND_COLOR,
   WEBSITE_TITLE,
   WEBSITE_SUBTITLE,
-} from '../Helpers/Constants';
-import LoginForm from '../Components/Login/LoginForm';
+} from '../../Helpers/Constants';
+import LoginForm from './LoginForm';
 
 const LoginPage = () => {
   return (
