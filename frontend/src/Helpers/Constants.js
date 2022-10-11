@@ -1,6 +1,7 @@
 export const WEBSITE_TITLE = 'נתן טכנולוגיות';
 export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות הטכנולוגיה';
-export const WEBSITE_BACKGROUND_COLOR = '#992be3';
+export const LOGIN_PAGE_BACKGROUND_COLOR = '#992be3';
+export const STORE_BACKGROUND_COLOR = '#b2bdd1';
 
 export const EMAIL_INPUT_PROPS = {
   autoFocus: true,
@@ -22,3 +23,7 @@ export const PROFILE_ROUTE = '/profile';
 export const CART_ROUTE = '/cart';
 export const REVIEWS_ROUTE = '/reviews';
 export const MANAGER_ROUTE = '/manager';
+
+export const LITTLE_IN_STOCK = 3;
+
+export const MAX_RATING = 5;

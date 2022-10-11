@@ -1,3 +1,5 @@
+import { groupBy, get } from 'lodash';
+
 export const isEmpty = (data) => {
   if (data === undefined) return true;
 
@@ -44,3 +46,25 @@ export const handleGettingUser = async (
     handleError(error);
   }
 };
+
+export const getDateString = (date) => date.toLocaleDateString();
+
+export const getProductDetails = (product) => [
+  {
+    detail: getDateString(new Date(product.addDate)),
+    text: 'הוספה לאתר',
+  },
+  {
+    detail: getDateString(new Date(product.productionDate)),
+    text: 'ייצור',
+  },
+  {
+    detail: product.category.name,
+    text: 'קטגוריה',
+  },
+];
+
+export const getProperty = (object, property) => get(object, property);
+
+export const splitArrayByProperty = (arr, property) =>
+  groupBy(arr, (object) => getProperty(object, property));

@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
-const { isEmail } = require('validator');
+import { Schema, model } from 'mongoose';
+import isEmail from 'validator/lib/isEmail.js';
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   email: {
     type: String,
     required: true,
     unique: [true, 'Email already exists'],
     validate: [isEmail, 'Invalid Email'],
+    index: true,
   },
   password: {
     type: String,
@@ -16,6 +17,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const userModel = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
-module.exports = userModel;
+export default User;
