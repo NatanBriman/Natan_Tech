@@ -8,7 +8,7 @@ const ItemsCarousel = ({ title, items, component }) => {
         {title} (<b>{items.length}</b>)
       </h1>
 
-      <Row className='slider'>
+      <Row>
         {items.map((item) => (
           <Fragment key={item.key} children={component(item)} />
         ))}

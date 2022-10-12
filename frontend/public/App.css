@@ -8,11 +8,7 @@
   box-shadow: 0 0 5px #888888;
 }
 
-.store .slider {
-  overflow-x: scroll;
-  flex-wrap: nowrap;
-}
-
-.store .slider::-webkit-scrollbar {
-  display: none;
+.menu-anchor:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px #888888;
 }
