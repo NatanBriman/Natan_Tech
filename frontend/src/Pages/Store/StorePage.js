@@ -58,11 +58,7 @@ const StorePage = () => {
   }, [products]);
 
   return (
-    <Container
-      className='store'
-      fluid
-      style={{ backgroundColor: STORE_BACKGROUND_COLOR }}
-    >
+    <Container fluid style={{ backgroundColor: STORE_BACKGROUND_COLOR }}>
       {sections.map((section) => (
         <Section key={section.name} section={section} />
       ))}

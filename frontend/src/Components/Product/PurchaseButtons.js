@@ -48,7 +48,7 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
           </Button>
         </Col>
 
-        <Col sm={2}>
+        <Col sm={2} className='d-flex justify-content-center'>
           <h4>
             <b>{currentAmount}</b>
           </h4>
@@ -73,7 +73,7 @@ const PurchaseButtons = ({ productId, price, unitsInStock }) => {
             onClick={() => handlePurchase(currentAmount)}
             variant='success'
             style={{ width: '100%', color: 'black' }}
-            className='shadow border border-dark d-flex justify-content-between align-items-center'
+            className='p-1 shadow border border-dark d-flex justify-content-between align-items-center'
           >
             <b>{currentPrice}$</b>
 
