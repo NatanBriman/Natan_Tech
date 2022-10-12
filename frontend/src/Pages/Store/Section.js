@@ -12,7 +12,9 @@ const Section = ({ section }) => {
           key={type.name}
           title={type.name}
           items={type.items}
-          component={ProductDisplayCard}
+          component={(item) => (
+            <ProductDisplayCard item={item.item} isPurchaseButton />
+          )}
         />
       ))}
     </Fragment>

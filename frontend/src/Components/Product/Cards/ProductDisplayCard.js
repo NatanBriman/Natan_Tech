@@ -1,12 +1,19 @@
 import { useState } from 'react';
-import { Card, Image, Ratio } from 'react-bootstrap';
+import { Card, Image, Ratio, Row, Col } from 'react-bootstrap';
 import { LITTLE_IN_STOCK } from '../../../Helpers/Constants';
 import { getProductDetails } from '../../../Helpers/Helpers';
 import ProductInfoModal from '../Modal/ProductInfoModal';
-import PurchaseButtons from '../PurchaseButtons';
+import QuantityButtons from '../Buttons/QuantityButtons';
+import FavoriteButton from '../Buttons/FavoriteButton';
+import PurchaseButton from '../Buttons/PurchaseButton';
 
-const ProductDisplayCard = ({ item }) => {
+const ProductDisplayCard = ({
+  item,
+  isPurchaseButton = false,
+  initialQuantity = 1,
+}) => {
   const [isShowModal, setIsShowProductInfo] = useState(false);
+  const [currentQuantity, setCurrentQuantity] = useState(initialQuantity);
 
   const toggleModal = () => setIsShowProductInfo(!isShowModal);
 
@@ -57,11 +64,29 @@ const ProductDisplayCard = ({ item }) => {
       </Card.Body>
 
       <Card.Footer>
-        <PurchaseButtons
-          price={item.price}
-          unitsInStock={item.unitsInStock}
-          productId={item._id}
-        />
+        <Row className='d-flex justify-content-center text-center align-items-center'>
+          <QuantityButtons
+            product={item}
+            currentQuantity={currentQuantity}
+            setCurrentQuantity={setCurrentQuantity}
+            isChangeCart={!isPurchaseButton}
+          />
+
+          <Row className='mt-2'>
+            <FavoriteButton product={item} />
+          </Row>
+        </Row>
+
+        {isPurchaseButton && (
+          <Row className='mt-2'>
+            <Col>
+              <PurchaseButton
+                product={item}
+                currentQuantity={currentQuantity}
+              />
+            </Col>
+          </Row>
+        )}
       </Card.Footer>
     </Card>
   );
