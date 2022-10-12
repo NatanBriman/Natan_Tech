@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import { SIDEBAR_BACKGROUND_COLOR } from '../../Helpers/Constants';
-import { ROUTES } from '../../Router/Router';
+import { SIDEBAR_BACKGROUND_COLOR, ROUTES } from '../../Helpers/Constants';
 
 const SideBar = () => {
   const { collapseSidebar } = useProSidebar();
@@ -13,7 +12,7 @@ const SideBar = () => {
       defaultCollapsed
       onMouseEnter={() => collapseSidebar()}
       onMouseLeave={() => collapseSidebar()}
-      width='170px'
+      width='220px'
       collapsedWidth='58px'
       backgroundColor={SIDEBAR_BACKGROUND_COLOR}
       className='shadow border-0 rounded'
@@ -30,7 +29,7 @@ const SideBar = () => {
             active={currentRoute === route.path}
           >
             <Link className='nav-link' to={route.path}>
-              <h1 className='me-2'>{route.text}</h1>
+              <h3 className='me-2'>{route.text}</h3>
             </Link>
           </MenuItem>
         ))}

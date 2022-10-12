@@ -1,22 +1,22 @@
-import { groupBy, get } from 'lodash';
+import { groupBy, get, isEmpty } from 'lodash';
 
-export const isEmpty = (data) => {
-  if (data === undefined) return true;
+// export const isEmpty = (data) => {
+//   if (data === undefined) return true;
 
-  switch (typeof data) {
-    case 'object':
-      return data.isArray ? data.length === 0 : Object.keys(data).length === 0;
+//   switch (typeof data) {
+//     case 'object':
+//       return data.isArray ? data.length === 0 : Object.keys(data).length === 0;
 
-    case 'number':
-      return data === 0;
+//     case 'number':
+//       return data === 0;
 
-    case 'string':
-      return data === '';
+//     case 'string':
+//       return data === '';
 
-    default:
-      return true;
-  }
-};
+//     default:
+//       return true;
+//   }
+// };
 
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
@@ -68,3 +68,25 @@ export const getProperty = (object, property) => get(object, property);
 
 export const splitArrayByProperty = (arr, property) =>
   groupBy(arr, (object) => getProperty(object, property));
+
+export const formatItemsByProperty = (items, property) => {
+  const splittedItems = splitArrayByProperty(items, property);
+
+  const itemsByProperty = Object.keys(splittedItems).map((propertyName) => {
+    return {
+      name: propertyName,
+      items: splittedItems[propertyName].map((item) => {
+        return { item, key: item._id };
+      }),
+    };
+  });
+
+  return itemsByProperty;
+};
+
+export const createSection = (name, items, productProperty) => {
+  return {
+    name,
+    section: formatItemsByProperty(items, productProperty),
+  };
+};

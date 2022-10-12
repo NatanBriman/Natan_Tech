@@ -1,16 +1,21 @@
+import { useLocation } from 'react-router-dom';
+import { LOGIN_ROUTE } from './Helpers/Constants';
 import SideBar from './Components/SideBar/SideBar';
 import RouterView from './Router/Router';
 
 const App = () => {
-  return (
-    <div className='d-flex'>
-      <div className='me-3'>
-        <RouterView />
-      </div>
+  const currentRoute = useLocation().pathname;
+  const isLogin = currentRoute === LOGIN_ROUTE;
 
-      <div dir='rtl'>
-        <SideBar />
-      </div>
+  return (
+    <div className='d-flex' style={isLogin ? { height: '100%' } : {}}>
+      <RouterView />
+
+      {!isLogin && (
+        <div dir='rtl'>
+          <SideBar />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import api from '../../Api/Api';
-import { isEmpty, splitArrayByProperty } from '../../Helpers/Helpers';
+import { isEmpty } from 'lodash';
+import { createSection } from '../../Helpers/Helpers';
 import { STORE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import Section from './Section';
 
@@ -9,23 +10,6 @@ const getAllProducts = async () => {
   const products = await api.products.getAllProducts();
 
   return products;
-};
-
-const formatProductsByProperty = (products, property) => {
-  const splittedProducts = splitArrayByProperty(products, property);
-
-  const productsByProperty = Object.keys(splittedProducts).map(
-    (propertyName) => {
-      return {
-        name: propertyName,
-        products: splittedProducts[propertyName].map((product) => {
-          return { product, key: product._id };
-        }),
-      };
-    }
-  );
-
-  return productsByProperty;
 };
 
 const StorePage = () => {
@@ -43,22 +27,29 @@ const StorePage = () => {
   }, []);
 
   useEffect(() => {
-    if (!isEmpty(products))
-      setSections((prev) => [
-        ...prev,
-        {
-          name: 'קטגוריות',
-          section: formatProductsByProperty(products, 'category.name'),
-        },
-        {
-          name: 'יצרנים',
-          section: formatProductsByProperty(products, 'manufacturer.name'),
-        },
-      ]);
+    if (!isEmpty(products)) {
+      const categorySection = createSection(
+        'קטגוריות',
+        products,
+        'category.name'
+      );
+
+      const manufacturerSection = createSection(
+        'יצרנים',
+        products,
+        'manufacturer.name'
+      );
+
+      setSections((prev) => [...prev, categorySection, manufacturerSection]);
+    }
   }, [products]);
 
   return (
-    <Container fluid style={{ backgroundColor: STORE_BACKGROUND_COLOR }}>
+    <Container
+      fluid
+      className='me-3'
+      style={{ height: '100%', backgroundColor: STORE_BACKGROUND_COLOR }}
+    >
       {sections.map((section) => (
         <Section key={section.name} section={section} />
       ))}

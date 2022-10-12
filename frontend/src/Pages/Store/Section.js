@@ -11,7 +11,7 @@ const Section = ({ section }) => {
         <ItemsCarousel
           key={type.name}
           title={type.name}
-          items={type.products}
+          items={type.items}
           component={ProductDisplayCard}
         />
       ))}

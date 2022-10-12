@@ -1,3 +1,9 @@
+import { IoStorefrontSharp } from 'react-icons/io5';
+import { BsCartFill } from 'react-icons/bs';
+import ProtectedRoute from '../Router/ProtectedRoute';
+import StorePage from '../Pages/Store/StorePage';
+import CartPage from '../Pages/Cart/CartPage';
+
 export const WEBSITE_TITLE = 'נתן טכנולוגיות';
 export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות הטכנולוגיה';
 export const LOGIN_PAGE_BACKGROUND_COLOR = '#992be3';
@@ -28,3 +34,27 @@ export const MANAGER_ROUTE = '/manager';
 export const LITTLE_IN_STOCK = 3;
 
 export const MAX_RATING = 5;
+
+// TODO: Protect routes
+export const ROUTES = [
+  {
+    path: STORE_ROUTE,
+    element: (
+      // <ProtectedRoute>
+      <StorePage />
+      // </ProtectedRoute>
+    ),
+    text: 'חנות',
+    icon: <IoStorefrontSharp style={{ height: '100%', width: '100%' }} />,
+  },
+  {
+    path: CART_ROUTE,
+    element: (
+      // <ProtectedRoute>
+      <CartPage />
+      // </ProtectedRoute>
+    ),
+    text: 'עגלת קניות',
+    icon: <BsCartFill style={{ height: '100%', width: '100%' }} />,
+  },
+];

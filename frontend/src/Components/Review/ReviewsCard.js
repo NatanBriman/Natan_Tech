@@ -1,5 +1,5 @@
 import { Container, Row, Card } from 'react-bootstrap';
-import { isEmpty } from '../../Helpers/Helpers';
+import { isEmpty } from 'lodash';
 import Review from './Review';
 
 const ReviewsList = ({ reviews }) => {

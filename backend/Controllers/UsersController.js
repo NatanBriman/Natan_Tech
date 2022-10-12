@@ -1,5 +1,5 @@
 import express from 'express';
-import { isEmpty } from '../Helpers/Helpers.js';
+import _ from 'lodash';
 import usersService from '../Services/UsersService.js';
 
 const usersController = express();
@@ -8,7 +8,7 @@ usersController.post('/', async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    if (isEmpty(email) || isEmpty(password))
+    if (_.isEmpty(email) || _.isEmpty(password))
       throw new Error('?מה יש לך לחפש פה');
 
     const user = await usersService.getUserByEmailAndPassword(email, password);
