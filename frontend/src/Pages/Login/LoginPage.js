@@ -1,16 +1,16 @@
 import { Col, Container, Row, Ratio } from 'react-bootstrap';
 import {
-  WEBSITE_BACKGROUND_COLOR,
+  LOGIN_PAGE_BACKGROUND_COLOR,
   WEBSITE_TITLE,
   WEBSITE_SUBTITLE,
-} from '../Helpers/Constants';
-import LoginForm from '../Components/Login/LoginForm';
+} from '../../Helpers/Constants';
+import LoginForm from './LoginForm';
 
 const LoginPage = () => {
   return (
     <Container
       fluid
-      style={{ height: '100%', background: WEBSITE_BACKGROUND_COLOR }}
+      style={{ height: '100%', background: LOGIN_PAGE_BACKGROUND_COLOR }}
       className='d-flex justify-content-center align-items-center'
     >
       <Row
@@ -28,7 +28,7 @@ const LoginPage = () => {
           <div className='justify-content-center align-items-center text-center'>
             <div className='mb-4'>
               <h1>
-                <strong>{WEBSITE_TITLE}</strong>
+                <b>{WEBSITE_TITLE}</b>
               </h1>
 
               <h3>{WEBSITE_SUBTITLE}</h3>
