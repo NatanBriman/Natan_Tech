@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import ItemsCarousel from '../../Components/Information/ItemsCarousel';
+import ItemsList from '../../Components/Information/ItemsList';
 import ProductDisplayCard from '../../Components/Product/Cards/ProductDisplayCard';
 
 const Section = ({ section }) => {
@@ -8,12 +8,16 @@ const Section = ({ section }) => {
       <h1 className='display-1 text-center'>{section.name}</h1>
 
       {section.section.map((type) => (
-        <ItemsCarousel
+        <ItemsList
           key={type.name}
           title={type.name}
           items={type.items}
           component={(item) => (
-            <ProductDisplayCard item={item.item} isPurchaseButton />
+            <ProductDisplayCard
+              item={item.item}
+              isPurchaseButton
+              initialQuantity={item.quantity}
+            />
           )}
         />
       ))}

@@ -1,22 +1,23 @@
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { BsFillCartPlusFill } from 'react-icons/bs';
-import { cartActions } from '../../../Redux/Slices/CartSlice';
+import { cartActions } from '../../../Redux/Features/CartSlice';
 
-const PurchaseButton = ({ product, currentQuantity }) => {
+const AddToCartButton = ({ product, currentQuantity }) => {
+  console.log(currentQuantity);
   const dispatch = useDispatch();
   const currentPrice = currentQuantity * product.price;
 
-  const handlePurchase = (quantity) => {
+  const handleAddToCart = () => {
     // TODO Show Swal Alert on the side of the screen
     const { addProduct } = cartActions;
 
-    dispatch(addProduct({ product, quantity }));
+    dispatch(addProduct({ ...product, quantity: currentQuantity }));
   };
 
   return (
     <Button
-      onClick={() => handlePurchase(currentQuantity)}
+      onClick={handleAddToCart}
       variant='success'
       style={{ width: '100%', color: 'black' }}
       className='p-1 shadow border border-dark d-flex justify-content-between align-items-center'
@@ -28,4 +29,4 @@ const PurchaseButton = ({ product, currentQuantity }) => {
   );
 };
 
-export default PurchaseButton;
+export default AddToCartButton;

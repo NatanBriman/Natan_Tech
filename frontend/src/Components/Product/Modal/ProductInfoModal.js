@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Container, Modal, Col, Row, Card } from 'react-bootstrap';
 import Rating from '../../Review/Rating';
 import ReviewsList from '../../Review/ReviewsCard';
-import PurchaseButton from '../Buttons/PurchaseButton';
+import AddToCartButton from '../Buttons/AddToCartButton';
 import ProductDetailsCard from '../Cards/ProductDetailsCard';
 
 const ProductInfoModal = ({ product, details, closeAction }) => {
@@ -36,11 +36,7 @@ const ProductInfoModal = ({ product, details, closeAction }) => {
 
           <Col className='ms-3 d-flex align-items-evenly'>
             <Row>
-              <ProductDetailsCard
-                product={product}
-                details={details}
-                purchaseButton={(props) => <PurchaseButton {...props} />}
-              />
+              <ProductDetailsCard product={product} details={details} />
 
               <Card className='justify-content-center shadow border border-2 border-danger'>
                 <Rating rating={avgRating} text='דירוג ממוצע' />

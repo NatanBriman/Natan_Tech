@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import { CART_BACKGROUND_COLOR } from '../../Helpers/Constants';
-import ItemsCarousel from '../../Components/Information/ItemsCarousel';
+import ItemsList from '../../Components/Information/ItemsList';
 import ProductDisplayCard from '../../Components/Product/Cards/ProductDisplayCard';
 
 const CartPage = () => {
@@ -21,7 +21,7 @@ const CartPage = () => {
       className='me-3 justify-content-center align-items-center' // TODO: Change height to 100%, not vh
       style={{ minHeight: '100vh', backgroundColor: CART_BACKGROUND_COLOR }}
     >
-      <ItemsCarousel
+      <ItemsList
         style={{ height: '100%' }}
         title='עגלת הקניות'
         items={products}

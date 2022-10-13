@@ -5,13 +5,14 @@ import { getProductDetails } from '../../../Helpers/Helpers';
 import ProductInfoModal from '../Modal/ProductInfoModal';
 import QuantityButtons from '../Buttons/QuantityButtons';
 import FavoriteButton from '../Buttons/FavoriteButton';
-import PurchaseButton from '../Buttons/PurchaseButton';
+import AddToCartButton from '../Buttons/AddToCartButton';
 
 const ProductDisplayCard = ({
   item,
   isPurchaseButton = false,
-  initialQuantity = 1,
+  initialQuantity,
 }) => {
+  console.log(initialQuantity);
   const [isShowModal, setIsShowProductInfo] = useState(false);
   const [currentQuantity, setCurrentQuantity] = useState(initialQuantity);
 
@@ -80,7 +81,7 @@ const ProductDisplayCard = ({
         {isPurchaseButton && (
           <Row className='mt-2'>
             <Col>
-              <PurchaseButton
+              <AddToCartButton
                 product={item}
                 currentQuantity={currentQuantity}
               />

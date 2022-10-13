@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import Row from 'react-bootstrap/Row';
 
-const ItemsCarousel = ({ title, items, component }) => {
+const ItemsList = ({ title, items, component }) => {
   return (
-    <div className='mb-4'>
+    <div className='mb-4' dir='auto'>
       <h1>
         {title} (<b>{items.length}</b>)
       </h1>
@@ -17,4 +17,4 @@ const ItemsCarousel = ({ title, items, component }) => {
   );
 };
 
-export default ItemsCarousel;
+export default ItemsList;

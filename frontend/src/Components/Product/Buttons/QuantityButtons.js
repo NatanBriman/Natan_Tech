@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Button, Col } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-import { cartActions } from '../../../Redux/Slices/CartSlice';
+import { cartActions } from '../../../Redux/Features/CartSlice';
 
 const QuantityButtons = ({
   product,
@@ -17,7 +17,7 @@ const QuantityButtons = ({
     if (isChangeCart) {
       const { changeQuantity } = cartActions;
 
-      dispatch(changeQuantity({ product, quantity }));
+      dispatch(changeQuantity({ ...product, quantity: currentQuantity }));
     }
   };
 

@@ -1,13 +1,10 @@
 import { Card, Col, Container, Image, Ratio, Row } from 'react-bootstrap';
 import DetailRow from '../../Information/DetailRow';
+import AddToCartButton from '../Buttons/AddToCartButton';
 import FavoriteButton from '../Buttons/FavoriteButton';
 import QuantityButtons from '../Buttons/QuantityButtons';
 
-const ProductDetailsCard = ({
-  product,
-  details,
-  purchaseButton = () => {},
-}) => {
+const ProductDetailsCard = ({ product, details }) => {
   return (
     <Card bg='light' className='p-0 shadow mb-2 border border-2 border-primary'>
       <Card.Header>
@@ -48,7 +45,8 @@ const ProductDetailsCard = ({
         <Container>
           <QuantityButtons
             product={product}
-            purchaseButton={(props) => purchaseButton(props)}
+            currentQuantity={product.quantity}
+            // Handle!!!!
             favoriteButton={<FavoriteButton product={product} />}
           />
         </Container>

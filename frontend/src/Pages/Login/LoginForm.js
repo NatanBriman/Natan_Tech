@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Card } from 'react-bootstrap';
 import isEmail from 'validator/lib/isEmail';
-import { userActions } from '../../Redux/Slices/UserSlice';
+import { userActions } from '../../Redux/Features/UserSlice';
 import { isEmpty } from 'lodash';
 import {
   isPasswordValid,

@@ -41,6 +41,11 @@ const productSchema = new Schema({
     required: [true, 'unitsInStock is a required field'],
     min: [1, 'unitsInStock must be at least 1'],
   },
+  quantity: {
+    type: Number,
+    default: 1,
+    min: [1, 'quantity must be at least 1'],
+  },
 });
 
 const Product = model('Product', productSchema);
