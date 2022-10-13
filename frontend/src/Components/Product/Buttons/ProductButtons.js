@@ -12,6 +12,7 @@ const ProductButtons = ({ product, isPurchaseButton }) => {
         product={product}
         currentQuantity={currentQuantity}
         setCurrentQuantity={setCurrentQuantity}
+        isChangeCart={!isPurchaseButton}
       />
 
       {isPurchaseButton && (

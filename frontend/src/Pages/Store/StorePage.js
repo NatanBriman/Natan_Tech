@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import api from '../../Api/Api';
 import { isEmpty } from 'lodash';
 import { createSection } from '../../Helpers/Helpers';
-import { STORE_BACKGROUND_COLOR } from '../../Helpers/Constants';
+import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import Section from './Section';
 
 const getAllProducts = async () => {
@@ -48,7 +48,7 @@ const StorePage = () => {
     <Container
       fluid
       className='me-3'
-      style={{ height: '100%', backgroundColor: STORE_BACKGROUND_COLOR }}
+      style={{ height: '100%', backgroundColor: WEBSITE_BACKGROUND_COLOR }}
     >
       {sections.map((section) => (
         <Section key={section.name} section={section} />

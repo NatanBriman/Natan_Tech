@@ -11,10 +11,53 @@ const findProductInCart = (cart, productToFind) => {
 const isQuantityChangePossible = (product, quantity) =>
   quantity <= product.unitsInStock;
 
+const EXAMPLE = [
+  {
+    quantity: 4,
+    _id: '6342db61283f500161c1ad47',
+    name: 'Galaxy S22',
+    manufacturer: {
+      _id: '6342da9ef28d82874a97e02e',
+      name: 'Samsung',
+    },
+    image:
+      'https://toppng.com/uploads/preview/advanced-technology-technology-icon-11550123584mn67laic5o.png',
+    productionDate: '2022-10-09T12:03:48.000Z',
+    addDate: '2022-10-09T12:03:48.000Z',
+    price: 100,
+    category: {
+      _id: '6342cf9dd8b763247d922cc9',
+      name: 'Smartphones',
+    },
+    unitsInStock: 100,
+    __v: 0,
+  },
+  {
+    quantity: 3,
+    _id: '6342db4a283f500161c1ad42',
+    name: 'Iphone',
+    manufacturer: {
+      _id: '6342cf00d8b763247d922cc4',
+      name: 'Apple',
+    },
+    image:
+      'https://toppng.com/uploads/preview/advanced-technology-technology-icon-11550123584mn67laic5o.png',
+    productionDate: '2022-10-09T12:03:48.000Z',
+    addDate: '2022-10-09T12:03:48.000Z',
+    price: 100,
+    category: {
+      _id: '6342cf9dd8b763247d922cc9',
+      name: 'Smartphones',
+    },
+    unitsInStock: 100,
+    __v: 0,
+  },
+];
+
 const cartSlice = createSlice({
   name: 'CartSlice',
   initialState: {
-    products: [], // [ {product: {quantity}}, {product: {quantity}} ]
+    products: [...EXAMPLE],
     confirmationCode: '',
   },
   reducers: {

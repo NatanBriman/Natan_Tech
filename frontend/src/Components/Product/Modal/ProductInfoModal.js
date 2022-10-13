@@ -5,7 +5,7 @@ import Rating from '../../Review/Rating';
 import ReviewsList from '../../Review/ReviewsCard';
 import ProductDetailsCard from '../Cards/ProductDetailsCard';
 
-const ProductInfoModal = ({ closeAction, product }) => {
+const ProductInfoModal = ({ closeAction, product, isPurchaseButton }) => {
   const [isShow, setIsShow] = useState(true);
 
   const handleClose = () => {
@@ -40,7 +40,7 @@ const ProductInfoModal = ({ closeAction, product }) => {
               <ProductDetailsCard
                 product={product}
                 details={productDetails}
-                isPurchaseButton
+                isPurchaseButton={isPurchaseButton}
               />
 
               <Card className='justify-content-center shadow border border-2 border-danger'>

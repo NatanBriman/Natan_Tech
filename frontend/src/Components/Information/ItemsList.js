@@ -1,14 +1,14 @@
 import { Fragment } from 'react';
 import Row from 'react-bootstrap/Row';
 
-const ItemsList = ({ title, items, component }) => {
+const ItemsList = ({ title, items, component, isShowAmount = false }) => {
   return (
-    <div className='mb-4 me-5'>
+    <div className='mb-4 text-center'>
       <h1 dir='auto'>
-        {title} (<b>{items.length}</b>)
+        {title} {isShowAmount && <b>({items.length})</b>}
       </h1>
 
-      <Row>
+      <Row className='mt-2'>
         {items.map((item) => (
           <Fragment key={item.key} children={component(item)} />
         ))}

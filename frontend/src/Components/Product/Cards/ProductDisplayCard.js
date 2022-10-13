@@ -25,7 +25,11 @@ const ProductDisplayCard = ({
         style={{ width: '18%' }}
       >
         {isShowModal && (
-          <ProductInfoModal closeAction={toggleModal} product={item} />
+          <ProductInfoModal
+            closeAction={toggleModal}
+            product={item}
+            isPurchaseButton={isPurchaseButton}
+          />
         )}
 
         <Card.Header onClick={toggleModal}>
