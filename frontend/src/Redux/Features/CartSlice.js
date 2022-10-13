@@ -8,8 +8,8 @@ const findProductInCart = (cart, productToFind) => {
   return productInCart;
 };
 
-const isQuantityChangePossible = (product, quantityToAdd) =>
-  product.quantity + quantityToAdd <= product.unitsInStock;
+const isQuantityChangePossible = (product, quantity) =>
+  quantity <= product.unitsInStock;
 
 const cartSlice = createSlice({
   name: 'CartSlice',
@@ -24,12 +24,21 @@ const cartSlice = createSlice({
       const productInCart = findProductInCart(state.products, productToAdd);
 
       if (productInCart) {
-        if (isQuantityChangePossible(productInCart, productToAdd.quantity))
+        if (
+          isQuantityChangePossible(
+            productInCart,
+            productInCart.quantity + productToAdd.quantity
+          )
+        ) {
           productInCart.quantity += productToAdd.quantity;
+
+          console.log(
+            `${productInCart._id} changed quantity to ${productInCart.quantity}`
+          );
+        }
+
         // TODO Alert the user that the quantity change is not possible
-        console.log(
-          `${productInCart._id} changed quantity to ${productInCart.quantity}`
-        );
+        else console.log(`${productInCart._id} can't change quantity`);
       } else {
         state.products.push(productToAdd);
 
@@ -44,12 +53,12 @@ const cartSlice = createSlice({
       console.log(`${productToRemove._id} was removed from the cart`);
     },
     changeQuantity: (state, action) => {
-      const product = action.payload;
+      const changedProduct = action.payload;
 
-      const productInCart = findProductInCart(state.products, product);
+      const productInCart = findProductInCart(state.products, changedProduct);
 
-      if (isQuantityChangePossible(productInCart, product.quantity))
-        productInCart.quantity += product.quantity;
+      if (isQuantityChangePossible(productInCart, changedProduct.quantity))
+        productInCart.quantity = changedProduct.quantity;
 
       console.log(
         `${productInCart._id} changed quantity to ${productInCart.quantity}`

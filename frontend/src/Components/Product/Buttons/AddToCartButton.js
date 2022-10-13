@@ -4,7 +4,6 @@ import { BsFillCartPlusFill } from 'react-icons/bs';
 import { cartActions } from '../../../Redux/Features/CartSlice';
 
 const AddToCartButton = ({ product, currentQuantity }) => {
-  console.log(currentQuantity);
   const dispatch = useDispatch();
   const currentPrice = currentQuantity * product.price;
 

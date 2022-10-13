@@ -1,95 +1,66 @@
 import { useState } from 'react';
-import { Card, Image, Ratio, Row, Col } from 'react-bootstrap';
+import { StoreProvider } from '../../../Pages/Store/StoreContext';
+import { Card, Image, Ratio } from 'react-bootstrap';
 import { LITTLE_IN_STOCK } from '../../../Helpers/Constants';
-import { getProductDetails } from '../../../Helpers/Helpers';
 import ProductInfoModal from '../Modal/ProductInfoModal';
-import QuantityButtons from '../Buttons/QuantityButtons';
-import FavoriteButton from '../Buttons/FavoriteButton';
-import AddToCartButton from '../Buttons/AddToCartButton';
+import ProductButtons from '../Buttons/ProductButtons';
 
 const ProductDisplayCard = ({
   item,
   isPurchaseButton = false,
   initialQuantity,
 }) => {
-  console.log(initialQuantity);
   const [isShowModal, setIsShowProductInfo] = useState(false);
   const [currentQuantity, setCurrentQuantity] = useState(initialQuantity);
 
   const toggleModal = () => setIsShowProductInfo(!isShowModal);
 
-  // TODO: REMOVE -2
-  const isLeftLittleInStock = item.unitsInStock - 2 <= LITTLE_IN_STOCK;
-  const productDetails = getProductDetails(item);
+  const isLeftLittleInStock = item.unitsInStock <= LITTLE_IN_STOCK;
 
   return (
-    <Card
-      bg='light'
-      className='clickable text-center p-0 m-2 border border-2 border-primary'
-      style={{ width: '18%' }}
-    >
-      {isShowModal && (
-        <ProductInfoModal
-          details={productDetails}
-          product={item}
-          closeAction={toggleModal}
-        />
-      )}
-
-      <Card.Header onClick={toggleModal}>
-        <Ratio>
-          <Card.Img src={item.image} alt='Product Image' />
-        </Ratio>
-
-        {isLeftLittleInStock && (
-          <Card.ImgOverlay className='p-0' style={{ height: '50%' }}>
-            <Ratio>
-              <Image
-                rounded
-                src='Assets/Limited Stock.png'
-                alt='Limited Stock'
-              />
-            </Ratio>
-          </Card.ImgOverlay>
+    <StoreProvider value={[currentQuantity, setCurrentQuantity]}>
+      <Card
+        bg='light'
+        className='clickable m-2 text-center p-0 border border-2 border-primary'
+        style={{ width: '18%' }}
+      >
+        {isShowModal && (
+          <ProductInfoModal closeAction={toggleModal} product={item} />
         )}
-      </Card.Header>
 
-      <Card.Body onClick={toggleModal}>
-        <Card.Title>
-          <h3>
-            <b>{item.name}</b>
-          </h3>
-        </Card.Title>
+        <Card.Header onClick={toggleModal}>
+          <Ratio>
+            <Card.Img src={item.image} alt='Product Image' />
+          </Ratio>
 
-        <Card.Subtitle>{item.manufacturer.name}</Card.Subtitle>
-      </Card.Body>
+          {isLeftLittleInStock && (
+            <Card.ImgOverlay className='p-0' style={{ height: '50%' }}>
+              <Ratio>
+                <Image
+                  rounded
+                  src='Assets/Limited Stock.png'
+                  alt='Limited Stock'
+                />
+              </Ratio>
+            </Card.ImgOverlay>
+          )}
+        </Card.Header>
 
-      <Card.Footer>
-        <Row className='d-flex justify-content-center text-center align-items-center'>
-          <QuantityButtons
-            product={item}
-            currentQuantity={currentQuantity}
-            setCurrentQuantity={setCurrentQuantity}
-            isChangeCart={!isPurchaseButton}
-          />
+        <Card.Body onClick={toggleModal}>
+          <Card.Title>
+            <h3>
+              <b>{item.name}</b>
+            </h3>
+          </Card.Title>
 
-          <Row className='mt-2'>
-            <FavoriteButton product={item} />
-          </Row>
-        </Row>
+          <Card.Subtitle>{item.manufacturer.name}</Card.Subtitle>
+        </Card.Body>
 
-        {isPurchaseButton && (
-          <Row className='mt-2'>
-            <Col>
-              <AddToCartButton
-                product={item}
-                currentQuantity={currentQuantity}
-              />
-            </Col>
-          </Row>
-        )}
-      </Card.Footer>
-    </Card>
+        <Card.Footer>
+          <ProductButtons product={item} isPurchaseButton={isPurchaseButton} />
+        </Card.Footer>
+      </Card>
+    </StoreProvider>
   );
 };
 

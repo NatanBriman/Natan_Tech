@@ -16,7 +16,7 @@ const Section = ({ section }) => {
             <ProductDisplayCard
               item={item.item}
               isPurchaseButton
-              initialQuantity={item.quantity}
+              initialQuantity={item.item.quantity}
             />
           )}
         />

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Container, Modal, Col, Row, Card } from 'react-bootstrap';
+import { getProductDetails } from '../../../Helpers/Helpers';
 import Rating from '../../Review/Rating';
 import ReviewsList from '../../Review/ReviewsCard';
-import AddToCartButton from '../Buttons/AddToCartButton';
 import ProductDetailsCard from '../Cards/ProductDetailsCard';
 
-const ProductInfoModal = ({ product, details, closeAction }) => {
+const ProductInfoModal = ({ closeAction, product }) => {
   const [isShow, setIsShow] = useState(true);
 
   const handleClose = () => {
@@ -15,6 +15,7 @@ const ProductInfoModal = ({ product, details, closeAction }) => {
   };
 
   const avgRating = 3; // TODO: Get from store
+  const productDetails = getProductDetails(product);
 
   return (
     <Modal
@@ -36,7 +37,11 @@ const ProductInfoModal = ({ product, details, closeAction }) => {
 
           <Col className='ms-3 d-flex align-items-evenly'>
             <Row>
-              <ProductDetailsCard product={product} details={details} />
+              <ProductDetailsCard
+                product={product}
+                details={productDetails}
+                isPurchaseButton
+              />
 
               <Card className='justify-content-center shadow border border-2 border-danger'>
                 <Rating rating={avgRating} text='דירוג ממוצע' />

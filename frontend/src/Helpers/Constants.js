@@ -32,7 +32,7 @@ export const CART_ROUTE = '/cart';
 export const REVIEWS_ROUTE = '/reviews';
 export const MANAGER_ROUTE = '/manager';
 
-export const LITTLE_IN_STOCK = 3;
+export const LITTLE_IN_STOCK = 5;
 
 export const MAX_RATING = 5;
 

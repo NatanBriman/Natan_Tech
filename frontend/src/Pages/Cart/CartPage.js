@@ -5,14 +5,10 @@ import ItemsList from '../../Components/Information/ItemsList';
 import ProductDisplayCard from '../../Components/Product/Cards/ProductDisplayCard';
 
 const CartPage = () => {
-  const cart = useSelector((state) => state.cart.products);
+  const products = useSelector((state) => state.cart.products);
 
-  const products = cart.map((cartItem) => {
-    return {
-      item: cartItem.product,
-      key: cartItem.product._id,
-      initialQuantity: cartItem.quantity,
-    };
+  const itemsWithKeys = products.map((product) => {
+    return { item: product, key: product._id };
   });
 
   return (
@@ -24,11 +20,11 @@ const CartPage = () => {
       <ItemsList
         style={{ height: '100%' }}
         title='עגלת הקניות'
-        items={products}
+        items={itemsWithKeys}
         component={(item) => (
           <ProductDisplayCard
             item={item.item}
-            initialQuantity={item.initialQuantity}
+            initialQuantity={item.item.quantity}
           />
         )}
       />

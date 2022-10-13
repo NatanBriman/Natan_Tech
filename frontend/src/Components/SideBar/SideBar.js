@@ -20,18 +20,17 @@ const SideBar = () => {
     >
       <Menu className='text-center'>
         {ROUTES.map((route) => (
-          <MenuItem
-            key={route.path}
-            style={{ paddingRight: 0 }}
-            icon={route.icon}
-            className='mb-3 shadow'
-            as={'div'}
-            active={currentRoute === route.path}
-          >
-            <Link className='nav-link' to={route.path}>
+          <Link key={route.path} className='nav-link' to={route.path}>
+            <MenuItem
+              style={{ paddingRight: 0 }}
+              icon={route.icon}
+              className='mb-3 shadow'
+              as={'div'}
+              active={currentRoute === route.path}
+            >
               <h3 className='me-2'>{route.text}</h3>
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
         ))}
       </Menu>
     </Sidebar>

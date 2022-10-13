@@ -12,12 +12,14 @@ const QuantityButtons = ({
   const dispatch = useDispatch();
 
   const handleQuantityChange = (quantity) => {
-    setCurrentQuantity((currentQuantity) => currentQuantity + quantity);
+    const changedQuantity = currentQuantity + quantity;
+
+    setCurrentQuantity(changedQuantity);
 
     if (isChangeCart) {
       const { changeQuantity } = cartActions;
 
-      dispatch(changeQuantity({ ...product, quantity: currentQuantity }));
+      dispatch(changeQuantity({ ...product, quantity: changedQuantity }));
     }
   };
 
