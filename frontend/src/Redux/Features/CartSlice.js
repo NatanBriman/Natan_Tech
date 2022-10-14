@@ -32,26 +32,26 @@ const EXAMPLE = [
     unitsInStock: 100,
     __v: 0,
   },
-  // {
-  //   quantity: 3,
-  //   _id: '6342db4a283f500161c1ad42',
-  //   name: 'Iphone',
-  //   manufacturer: {
-  //     _id: '6342cf00d8b763247d922cc4',
-  //     name: 'Apple',
-  //   },
-  //   image:
-  //     'https://toppng.com/uploads/preview/advanced-technology-technology-icon-11550123584mn67laic5o.png',
-  //   productionDate: '2022-10-09T12:03:48.000Z',
-  //   addDate: '2022-10-09T12:03:48.000Z',
-  //   price: 100,
-  //   category: {
-  //     _id: '6342cf9dd8b763247d922cc9',
-  //     name: 'Smartphones',
-  //   },
-  //   unitsInStock: 100,
-  //   __v: 0,
-  // },
+  {
+    quantity: 3,
+    _id: '6342db4a283f500161c1ad42',
+    name: 'Iphone',
+    manufacturer: {
+      _id: '6342cf00d8b763247d922cc4',
+      name: 'Apple',
+    },
+    image:
+      'https://toppng.com/uploads/preview/advanced-technology-technology-icon-11550123584mn67laic5o.png',
+    productionDate: '2022-10-09T12:03:48.000Z',
+    addDate: '2022-10-09T12:03:48.000Z',
+    price: 100,
+    category: {
+      _id: '6342cf9dd8b763247d922cc9',
+      name: 'Smartphones',
+    },
+    unitsInStock: 100,
+    __v: 0,
+  },
 ];
 
 const cartSlice = createSlice({
@@ -62,7 +62,7 @@ const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      const productToAdd = action.payload; // {product: {quantity}}
+      const productToAdd = action.payload;
 
       const productInCart = findProductInCart(state.products, productToAdd);
 
@@ -89,11 +89,13 @@ const cartSlice = createSlice({
       }
     },
     removeProduct: (state, action) => {
-      const productToRemove = action.payload;
+      const productIdToRemove = action.payload;
 
-      state.products.filter((product) => product._id !== productToRemove._id);
+      state.products = state.products.filter(
+        (product) => product._id !== productIdToRemove
+      );
 
-      console.log(`${productToRemove._id} was removed from the cart`);
+      console.log(`${productIdToRemove} was removed from the cart`);
     },
     changeQuantity: (state, action) => {
       const changedProduct = action.payload;

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import QuantityContext from '../../../Pages/QuantityContext';
 import Row from 'react-bootstrap/Row';
-import { AddToCartButton, FavoriteButton, QuantityButtons } from './index';
+import { AddToCartButton, FavoriteButton, QuantityButtons } from './';
 
 const ProductButtons = ({ product, isPurchaseButton }) => {
   const [currentQuantity, setCurrentQuantity] = useContext(QuantityContext);

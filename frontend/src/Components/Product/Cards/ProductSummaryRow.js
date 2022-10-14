@@ -1,11 +1,20 @@
 import { useState } from 'react';
 import { Card, Row, Ratio, Image, Col } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { QuantityProvider } from '../../../Pages/QuantityContext';
-import DeleteButton from '../../Buttons/DeleteButton';
+import { cartActions } from '../../../Redux/Features/CartSlice';
+import DeleteButton from '../../Delete/DeleteButton';
 import ProductButtons from '../Buttons/ProductButtons';
 
-const ProductSummaryRow = ({ product, onDelete }) => {
+const ProductSummaryRow = ({ product }) => {
+  const dispatch = useDispatch();
   const [currentQuantity, setCurrentQuantity] = useState(product.quantity);
+
+  const deleteProduct = () => {
+    const { removeProduct } = cartActions;
+
+    dispatch(removeProduct(product._id));
+  };
 
   const currentPrice = (currentQuantity * product.price).toLocaleString();
 
@@ -73,7 +82,11 @@ const ProductSummaryRow = ({ product, onDelete }) => {
           sm={1}
           className='p-0 d-flex align-items-center justify-content-center'
         >
-          <DeleteButton onDelete={onDelete} productId={product._id} />
+          <DeleteButton
+            withModal
+            onDelete={deleteProduct}
+            text='?להוריד מהעגלה'
+          />
         </Col>
       </Row>
     </QuantityProvider>
