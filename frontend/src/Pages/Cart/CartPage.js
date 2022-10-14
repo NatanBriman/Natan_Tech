@@ -3,11 +3,26 @@ import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import ProductSummaryRow from '../../Components/Product/Cards/ProductSummaryRow';
 import { BsCartCheck } from 'react-icons/bs';
+import api from '../../Api/Api';
+
+const addOrder = async (products, userId) => {
+  const confirmationCode = await api.orders.addOrder(products, userId);
+
+  return confirmationCode;
+};
 
 // TODO Create cart total price
 // TODO Create empty cart button
 const CartPage = () => {
   const products = useSelector((state) => state.cart.products);
+  const { _id } = useSelector((state) => state.user.user);
+
+  const handlePurchase = async () => {
+    const confirmationCode = await addOrder(products, _id);
+
+    console.log(confirmationCode);
+  };
+
   const isNoProducts = products.length === 0;
 
   return (
@@ -54,10 +69,11 @@ const CartPage = () => {
           <Row>
             <Col className='d-flex justify-content-center align-items-center'>
               <Button
+                onClick={handlePurchase}
                 style={{ color: 'black' }}
                 className='mt-5 d-flex align-items-center border border-dark border-3 shadow'
               >
-                <h1 className='display-5'> מעבר לתשלום</h1>
+                <h1 className='display-5'>מעבר לתשלום</h1>
                 <h1 className='ms-2 display-5'>
                   <BsCartCheck />
                 </h1>

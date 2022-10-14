@@ -28,6 +28,15 @@ const api = {
       return data;
     },
   },
+  orders: {
+    async addOrder(products, userId) {
+      const { data } = await axiosInstance.post('/orders/add', {
+        order: { products, user: userId },
+      });
+
+      return data;
+    },
+  },
 };
 
 export default api;

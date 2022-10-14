@@ -1,6 +1,7 @@
 import express from 'express';
 import _ from 'lodash';
 import ordersService from '../Services/OrdersService.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const ordersController = express();
 
@@ -21,14 +22,16 @@ ordersController.post('/add', async (req, res, next) => {
   const { order } = req.body;
 
   try {
-    await ordersService.addOrder(order);
+    const confirmationCode = uuidv4();
 
-    res.status(200).send(`Order ${order.confirmationCode} saved successfully`);
+    await ordersService.addOrder({ ...order, confirmationCode });
+
+    res.status(200).send(confirmationCode);
   } catch (error) {
     res
       .status(404)
       .send(
-        `Something went wrong with saving the order ${order.confirmationCode}`
+        `Something went wrong with saving the order by user ${order.user._id}`
       );
   }
 });
