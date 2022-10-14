@@ -1,23 +1,11 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-
-const userSlice = createSlice({
-  name: 'UserSlice',
-  initialState: {
-    user: {},
-  },
-  reducers: {
-    setUser: (state, action) => {
-      const user = action.payload;
-      console.log(user);
-      state.user = user;
-    },
-  },
-});
-
-export const userActions = userSlice.actions;
+import { configureStore } from '@reduxjs/toolkit';
+import { userSlice, cartSlice } from './Features';
 
 const store = configureStore({
-  reducer: userSlice.reducer,
+  reducer: {
+    user: userSlice.reducer,
+    cart: cartSlice.reducer,
+  },
 });
 
 export default store;

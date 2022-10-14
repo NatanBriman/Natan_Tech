@@ -1,17 +1,29 @@
 import axios from 'axios';
 
-const USERS_API_BASE_URL = 'http://localhost:5000/users';
-const usersAxios = axios.create({ baseURL: USERS_API_BASE_URL });
+const SERVER_URL = 'http://localhost:5000';
+const axiosInstance = axios.create({ baseURL: SERVER_URL });
 
 const api = {
   users: {
     async getAllUsers() {
-      const { data } = await usersAxios.get();
+      const { data } = await axiosInstance.get('/users/all');
 
       return data;
     },
     async getUserByEmailAndPassword(email, password) {
-      const { data } = await usersAxios.get(`${email}/${password}`);
+      const { data } = await axiosInstance.post('/users', { email, password });
+
+      return data;
+    },
+  },
+  products: {
+    async getAllProducts() {
+      const { data } = await axiosInstance.get('/products');
+
+      return data;
+    },
+    async getProductsByCategories() {
+      const { data } = await axiosInstance.get('/products/categories');
 
       return data;
     },

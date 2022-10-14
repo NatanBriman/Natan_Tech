@@ -1,12 +1,15 @@
-const User = require('../Models/User');
+import User from '../Models/User.js';
 
-const findAll = () => User.find({});
+const usersRepository = {
+  findAll() {
+    return User.find({});
+  },
+  findByEmailAndPassword(email, password) {
+    return User.findOne({ email, password });
+  },
+  save(user) {
+    return user.save();
+  },
+};
 
-const findByEmailAndPassword = (email, password) =>
-  User.findOne({ email, password });
-
-const save = (user) => user.save();
-
-const usersRepository = { findByEmailAndPassword, save, findAll };
-
-module.exports = usersRepository;
+export default usersRepository;

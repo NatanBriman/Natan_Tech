@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Card } from 'react-bootstrap';
 import isEmail from 'validator/lib/isEmail';
-import { userActions } from '../../Redux/Store';
+import { userActions } from '../../Redux/Features/UserSlice';
+import { isEmpty } from 'lodash';
 import {
-  isEmpty,
   isPasswordValid,
   isThereEmptyField,
   handleGettingUser,
@@ -15,7 +15,7 @@ import {
   PASSWORD_INPUT_PROPS,
   STORE_ROUTE,
 } from '../../Helpers/Constants';
-import InputField from '../Form/InputField';
+import InputField from '../../Components/Form/InputField';
 import api from '../../Api/Api';
 
 const getUserByEmailAndPassword = async (email, password) => {
@@ -59,12 +59,15 @@ const LoginForm = () => {
     handleGettingUser(getUserByCurrentValues, handleUser, handleError);
   };
 
+  // TODO Add forgot password functionality
+  // TODO Add register user functionality
+
   return (
     <Card bg='light' className='shadow text-center'>
       <Card.Header>
         <Card.Title>
           <h1>
-            <strong>התחברות</strong>
+            <b>התחברות</b>
           </h1>
         </Card.Title>
       </Card.Header>
@@ -91,13 +94,13 @@ const LoginForm = () => {
             <Form.Group className='mb-3'>
               <Form.Text>
                 <h5>
-                  <strong>{error}</strong>
+                  <b>{error}</b>
                 </h5>
               </Form.Text>
             </Form.Group>
           )}
 
-          <Button variant='success' type='submit'>
+          <Button className='shadow' variant='success' type='submit'>
             כניסה
           </Button>
 
@@ -110,8 +113,12 @@ const LoginForm = () => {
       </Card.Body>
 
       <Card.Footer className='d-flex justify-content-between'>
-        <Button variant='danger'>?שכחתי סיסמה</Button>
-        <Button variant='primary'>?לא נרשמתי</Button>
+        <Button className='shadow' variant='danger'>
+          ?שכחתי סיסמה
+        </Button>
+        <Button className='shadow' variant='primary'>
+          ?לא נרשמתי
+        </Button>
       </Card.Footer>
     </Card>
   );

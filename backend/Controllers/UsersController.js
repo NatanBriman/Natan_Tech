@@ -1,12 +1,16 @@
-const express = require('express');
-const usersService = require('../Services/UsersService');
+import express from 'express';
+import _ from 'lodash';
+import usersService from '../Services/UsersService.js';
 
 const usersController = express();
 
-usersController.get('/:email/:password', async (req, res, next) => {
-  const { email, password } = req.params;
+usersController.post('/', async (req, res, next) => {
+  const { email, password } = req.body;
 
   try {
+    if (_.isEmpty(email) || _.isEmpty(password))
+      throw new Error('?מה יש לך לחפש פה');
+
     const user = await usersService.getUserByEmailAndPassword(email, password);
 
     if (user !== null) res.status(200).send(user);
@@ -16,15 +20,17 @@ usersController.get('/:email/:password', async (req, res, next) => {
   }
 });
 
-usersController.get('/save/:email/:password', async (req, res, next) => {
-  const { email, password } = req.params;
+usersController.post('/all', async (req, res, next) => {
+  const { user } = req.body;
 
   try {
-    const user = await usersService.saveUser(email, password);
+    await usersService.addUser(user);
 
-    res.status(200).send('User saved successfully');
+    res.status(200).send(`User ${user.email} saved successfully`);
   } catch (error) {
-    res.status(404).send(`Something went wrong with saving the user ${email}`);
+    res
+      .status(404)
+      .send(`Something went wrong with saving the user ${user.email}`);
   }
 });
 
@@ -38,4 +44,4 @@ usersController.get('/', async (req, res, next) => {
   }
 });
 
-module.exports = usersController;
+export default usersController;
