@@ -1,23 +1,5 @@
 import { groupBy, get, isEmpty } from 'lodash';
 
-// export const isEmpty = (data) => {
-//   if (data === undefined) return true;
-
-//   switch (typeof data) {
-//     case 'object':
-//       return data.isArray ? data.length === 0 : Object.keys(data).length === 0;
-
-//     case 'number':
-//       return data === 0;
-
-//     case 'string':
-//       return data === '';
-
-//     default:
-//       return true;
-//   }
-// };
-
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
 export const isPasswordValid = (password) => {
@@ -42,6 +24,20 @@ export const handleGettingUser = async (
     const user = await getUser();
 
     handleSuccess(user);
+  } catch (error) {
+    handleError(error.response.data);
+  }
+};
+
+export const handleGetOrdersByUser = async (
+  getOrdersByUser,
+  handleSuccess,
+  handleError
+) => {
+  try {
+    const orders = await getOrdersByUser();
+
+    handleSuccess(orders);
   } catch (error) {
     handleError(error);
   }

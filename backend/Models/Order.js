@@ -24,6 +24,10 @@ const orderSchema = new Schema({
       return getProductsSum(this.products);
     },
   },
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
   confirmationCode: {
     type: String,
     minLength: [1, 'confirmationCode must be at least 1'],

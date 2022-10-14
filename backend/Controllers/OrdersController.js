@@ -12,7 +12,7 @@ ordersController.post('/user', async (req, res, next) => {
     const orders = await ordersService.getOrdersByUserId(userId);
 
     if (!_.isEmpty(orders)) res.status(200).send(orders);
-    else throw new Error('😕 אין לך הזמנות עם השם הזה');
+    else throw new Error('😕 עוד לא הזמנת כלום');
   } catch (error) {
     res.status(404).send(error.message);
   }

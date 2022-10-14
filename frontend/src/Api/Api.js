@@ -36,6 +36,13 @@ const api = {
 
       return data;
     },
+    async getOrdersByUser(userId) {
+      const { data } = await axiosInstance.post('/orders/user', {
+        userId,
+      });
+
+      return data;
+    },
   },
 };
 
