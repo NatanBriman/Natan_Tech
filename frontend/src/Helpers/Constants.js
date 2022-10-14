@@ -54,7 +54,7 @@ export const ROUTES = [
       <CartPage />
       // </ProtectedRoute>
     ),
-    text: 'עגלת קניות',
+    text: 'עגלת הקניות',
     icon: <BsCartFill style={{ height: '100%', width: '100%' }} />,
   },
 ];
