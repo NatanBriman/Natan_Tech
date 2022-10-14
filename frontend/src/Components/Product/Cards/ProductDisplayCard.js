@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StoreProvider } from '../../../Pages/Store/StoreContext';
+import { QuantityProvider } from '../../../Pages/QuantityContext';
 import { Card, Image, Ratio } from 'react-bootstrap';
 import { LITTLE_IN_STOCK } from '../../../Helpers/Constants';
 import ProductInfoModal from '../Modal/ProductInfoModal';
@@ -18,7 +18,7 @@ const ProductDisplayCard = ({
   const isLeftLittleInStock = item.unitsInStock <= LITTLE_IN_STOCK;
 
   return (
-    <StoreProvider value={[currentQuantity, setCurrentQuantity]}>
+    <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
       <Card
         bg='light'
         className='clickable m-2 text-center p-0 border border-2 border-primary'
@@ -64,7 +64,7 @@ const ProductDisplayCard = ({
           <ProductButtons product={item} isPurchaseButton={isPurchaseButton} />
         </Card.Footer>
       </Card>
-    </StoreProvider>
+    </QuantityProvider>
   );
 };
 

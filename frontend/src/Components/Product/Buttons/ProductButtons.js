@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import StoreContext from '../../../Pages/Store/StoreContext';
+import QuantityContext from '../../../Pages/QuantityContext';
 import Row from 'react-bootstrap/Row';
 import { AddToCartButton, FavoriteButton, QuantityButtons } from './index';
 
 const ProductButtons = ({ product, isPurchaseButton }) => {
-  const [currentQuantity, setCurrentQuantity] = useContext(StoreContext);
+  const [currentQuantity, setCurrentQuantity] = useContext(QuantityContext);
 
   return (
     <Row className='d-flex justify-content-center text-center align-items-center'>

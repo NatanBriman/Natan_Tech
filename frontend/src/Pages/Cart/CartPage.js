@@ -12,6 +12,10 @@ const CartPage = () => {
   //   return { item: product, key: product._id };
   // });
 
+  const onDelete = (product) => {
+    console.log(`${product._id} DELETED`);
+  };
+
   return (
     <Container
       fluid
@@ -41,7 +45,11 @@ const CartPage = () => {
         <Card.Body style={{ height: '100%', width: '100%' }}>
           <Container fluid style={{ height: '100%', width: '100%' }}>
             {products.map((product) => (
-              <ProductSummaryCard key={product._id} product={product} />
+              <ProductSummaryCard
+                key={product._id}
+                product={product}
+                onDelete={onDelete}
+              />
             ))}
           </Container>
         </Card.Body>
