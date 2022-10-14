@@ -20,7 +20,7 @@ const ProductDisplayCard = ({
   return (
     <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
       <Card
-        bg='light'
+        bg='secondary'
         className='clickable m-2 text-center p-0 border border-2 border-primary'
         style={{ width: '18%' }}
       >

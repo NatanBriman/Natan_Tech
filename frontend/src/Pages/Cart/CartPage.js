@@ -3,7 +3,7 @@ import { Container, Card } from 'react-bootstrap';
 import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import ItemsList from '../../Components/Information/ItemsList';
 import ProductDisplayCard from '../../Components/Product/Cards/ProductDisplayCard';
-import ProductSummaryCard from '../../Components/Product/Cards/ProductSummaryCard';
+import ProductSummaryRow from '../../Components/Product/Cards/ProductSummaryRow';
 
 const CartPage = () => {
   const products = useSelector((state) => state.cart.products);
@@ -12,8 +12,8 @@ const CartPage = () => {
   //   return { item: product, key: product._id };
   // });
 
-  const onDelete = (product) => {
-    console.log(`${product._id} DELETED`);
+  const onDelete = (productId) => {
+    console.log(`${productId} DELETED`);
   };
 
   return (
@@ -31,21 +31,16 @@ const CartPage = () => {
         style={{ width: '100%' }}
         className='me-3 my-2 p-0 shadow border border-2 border-success justify-content-center align-items-center'
       >
-        <Card.Header
-          className='text-center'
-          style={{ height: '100%', width: '100%' }}
-        >
-          <Card.Title>
-            <h1>
-              <b>עגלת הקניות</b>
-            </h1>
+        <Card.Header className='text-center shadow' style={{ width: '100%' }}>
+          <Card.Title as='h1'>
+            <b>עגלת הקניות</b>
           </Card.Title>
         </Card.Header>
 
-        <Card.Body style={{ height: '100%', width: '100%' }}>
-          <Container fluid style={{ height: '100%', width: '100%' }}>
+        <Card.Body style={{ width: '100%' }}>
+          <Container fluid>
             {products.map((product) => (
-              <ProductSummaryCard
+              <ProductSummaryRow
                 key={product._id}
                 product={product}
                 onDelete={onDelete}
