@@ -11,7 +11,7 @@ const productSchema = new Schema({
   },
   manufacturer: {
     type: mongoose.Types.ObjectId,
-    ref: 'Manufacturer',
+    ref: Manufacturer,
     required: [true, 'manufacturer is a required field'],
   },
   image: {
@@ -33,7 +33,7 @@ const productSchema = new Schema({
   },
   category: {
     type: mongoose.Types.ObjectId,
-    ref: 'Category',
+    ref: Category,
     required: [true, 'category is a required field'],
   },
   unitsInStock: {
@@ -51,3 +51,5 @@ const productSchema = new Schema({
 const Product = model('Product', productSchema);
 
 export default Product;
+
+export { productSchema };

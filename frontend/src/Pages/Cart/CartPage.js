@@ -4,6 +4,8 @@ import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import ProductSummaryRow from '../../Components/Product/Cards/ProductSummaryRow';
 import { BsCartCheck } from 'react-icons/bs';
 
+// TODO Create cart total price
+// TODO Create empty cart button
 const CartPage = () => {
   const products = useSelector((state) => state.cart.products);
   const isNoProducts = products.length === 0;
