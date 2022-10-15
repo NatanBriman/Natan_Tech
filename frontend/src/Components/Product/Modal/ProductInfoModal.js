@@ -5,7 +5,12 @@ import Rating from '../../Review/Rating';
 import ReviewsList from '../../Review/ReviewsCard';
 import ProductDetailsCard from '../Cards/ProductDetailsCard';
 
-const ProductInfoModal = ({ closeAction, product, isPurchaseButton }) => {
+const ProductInfoModal = ({
+  closeAction,
+  product,
+  isPurchaseButton = false,
+  isDisplayOnly = false,
+}) => {
   const [isShow, setIsShow] = useState(true);
 
   const handleClose = () => {
@@ -41,9 +46,13 @@ const ProductInfoModal = ({ closeAction, product, isPurchaseButton }) => {
                 product={product}
                 details={productDetails}
                 isPurchaseButton={isPurchaseButton}
+                isDisplayOnly={isDisplayOnly}
               />
 
-              <Card className='justify-content-center shadow border border-2 border-danger'>
+              <Card
+                bg='secondary'
+                className='justify-content-center shadow border border-2 border-danger'
+              >
                 <Rating rating={avgRating} text='דירוג ממוצע' />
               </Card>
             </Row>

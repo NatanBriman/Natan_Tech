@@ -4,9 +4,13 @@ import { QuantityProvider } from '../../../Pages/QuantityContext';
 import ValueCard from '../../Utils/ValueCard';
 import { FavoriteButton } from '../Buttons';
 import ProductButtons from '../Buttons/ProductButtons';
+import ProductInfoModal from '../Modal/ProductInfoModal';
 
 const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
   const [currentQuantity, setCurrentQuantity] = useState(product.quantity);
+  const [isShowModal, setIsShowModal] = useState(false);
+
+  const toggleModal = () => setIsShowModal((isShow) => !isShow);
 
   const currentPrice = currentQuantity * product.price;
 
@@ -17,13 +21,13 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
         className='clickable shadow border border-2 border-primary'
       >
         <Row>
-          <Col sm={2}>
+          <Col sm={2} onClick={toggleModal}>
             <Ratio style={{ height: '8em', width: '8em' }} className='shadow'>
               <Image rounded src={product.image} alt='Product Image' />
             </Ratio>
           </Col>
 
-          <Col sm={6} className='px-0'>
+          <Col sm={6} className='px-0' onClick={toggleModal}>
             <Card.Body className='p-1'>
               <Card.Title as='h1'>
                 <b>{product.name}</b>
@@ -52,12 +56,12 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
                 </Col>
               )}
 
-              <Col>
+              <Col onClick={toggleModal}>
                 <ValueCard text={`${currentPrice.toLocaleString()}$`} />
               </Col>
 
               {isDisplayOnly && (
-                <Col>
+                <Col onClick={toggleModal}>
                   <FavoriteButton product={product} />
                 </Col>
               )}
@@ -65,6 +69,14 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
           </Col>
         </Row>
       </Card>
+
+      {isShowModal && (
+        <ProductInfoModal
+          closeAction={toggleModal}
+          product={product}
+          isDisplayOnly={isDisplayOnly}
+        />
+      )}
     </QuantityProvider>
   );
 };

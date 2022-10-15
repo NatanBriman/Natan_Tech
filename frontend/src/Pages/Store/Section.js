@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import ItemsList from '../../Components/Information/ItemsList';
+import ItemsList from '../../Components/Utils/ItemsList';
 import ProductDisplayCard from '../../Components/Product/Cards/ProductDisplayCard';
 
 const Section = ({ section }) => {

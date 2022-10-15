@@ -78,7 +78,7 @@ const ReviewsList = ({ reviews }) => {
     <Card
       className='p-0 shadow border border-2 border-success'
       style={{ height: '100%' }}
-      bg='light'
+      bg='secondary'
     >
       <Card.Header className='text-center'>
         <Card.Title>

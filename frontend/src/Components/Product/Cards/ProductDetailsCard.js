@@ -1,10 +1,18 @@
 import { Card, Col, Container, Image, Ratio, Row } from 'react-bootstrap';
-import DetailRow from '../../Information/DetailRow';
+import DetailRow from '../../Utils/DetailRow';
 import ProductButtons from '../Buttons/ProductButtons';
 
-const ProductDetailsCard = ({ product, details, isPurchaseButton = false }) => {
+const ProductDetailsCard = ({
+  product,
+  details,
+  isPurchaseButton = false,
+  isDisplayOnly = false,
+}) => {
   return (
-    <Card bg='light' className='p-0 shadow mb-2 border border-2 border-primary'>
+    <Card
+      bg='secondary'
+      className='p-0 shadow mb-2 border border-2 border-primary'
+    >
       <Card.Header>
         <Row>
           <Col sm={9}>
@@ -40,7 +48,11 @@ const ProductDetailsCard = ({ product, details, isPurchaseButton = false }) => {
       </Card.Body>
 
       <Card.Footer>
-        <ProductButtons product={product} isPurchaseButton={isPurchaseButton} />
+        <ProductButtons
+          product={product}
+          isPurchaseButton={isPurchaseButton}
+          isDisplayOnly={isDisplayOnly}
+        />
       </Card.Footer>
     </Card>
   );

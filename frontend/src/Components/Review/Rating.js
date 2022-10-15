@@ -10,7 +10,7 @@ const Rating = ({ rating, text }) => {
           <BsStarFill
             className='me-2'
             key={index}
-            color={index < rating ? 'yellow' : 'grey'}
+            color={index < rating ? 'yellow' : 'black'}
           />
         ))}
       </Col>
