@@ -18,6 +18,13 @@ const api = {
 
       return data;
     },
+    async registerUser(user) {
+      const { data } = await axiosInstance.post('/users/register', {
+        user,
+      });
+
+      return data;
+    },
   },
   products: {
     async getAllProducts() {

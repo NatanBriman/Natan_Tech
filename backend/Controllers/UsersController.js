@@ -20,6 +20,18 @@ usersController.post('/login', async (req, res, next) => {
   }
 });
 
+usersController.post('/register', async (req, res, next) => {
+  const { user } = req.body;
+
+  try {
+    await usersService.addUser(user);
+
+    res.status(200).send('ההרשמה התבצעה בהצלחה');
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+});
+
 usersController.post('/all', async (req, res, next) => {
   const { user } = req.body;
 
