@@ -1,7 +1,6 @@
 import express from 'express';
-import _ from 'lodash';
 import ordersService from '../Services/OrdersService.js';
-import { v4 as uuidv4 } from 'uuid';
+import _ from 'lodash';
 
 const ordersController = express();
 
@@ -12,7 +11,7 @@ ordersController.post('/user', async (req, res, next) => {
     const orders = await ordersService.getOrdersByUserId(userId);
 
     if (!_.isEmpty(orders)) res.status(200).send(orders);
-    else throw new Error('😕 אין לך הזמנות עם השם הזה');
+    else throw new Error('😕 עוד לא הזמנת כלום');
   } catch (error) {
     res.status(404).send(error.message);
   }
@@ -22,11 +21,9 @@ ordersController.post('/add', async (req, res, next) => {
   const { order } = req.body;
 
   try {
-    const confirmationCode = uuidv4();
+    await ordersService.addOrder(order);
 
-    await ordersService.addOrder({ ...order, confirmationCode });
-
-    res.status(200).send(confirmationCode);
+    res.status(200).send('😄 ההזמנה בוצעה בהצלחה');
   } catch (error) {
     res
       .status(404)

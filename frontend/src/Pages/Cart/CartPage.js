@@ -10,9 +10,12 @@ import ActionButton from '../../Components/Utils/ActionButton';
 import ShoppingCart from './ShoppingCart';
 
 const addOrder = async (products, userId) => {
-  const confirmationCode = await api.orders.addOrder(products, userId);
-
-  return confirmationCode;
+  try {
+    await api.orders.addOrder(products, userId);
+  } catch (error) {
+    // TODO Make swal alert that something went wrong
+    alert(error);
+  }
 };
 
 const CartPage = () => {
@@ -22,14 +25,8 @@ const CartPage = () => {
 
   const toggleModal = () => setIsShowPurchaseModal((isShow) => !isShow);
 
-  const sendPurchase = async () => {
-    const confirmationCode = await addOrder(products, _id);
-
-    console.log(confirmationCode);
-  };
-
-  const handlePurchase = async () => {
-    await sendPurchase();
+  const handlePurchase = () => {
+    addOrder(products, _id);
 
     toggleModal();
   };

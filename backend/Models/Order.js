@@ -24,11 +24,9 @@ const orderSchema = new Schema({
       return getProductsSum(this.products);
     },
   },
-  confirmationCode: {
-    type: String,
-    minLength: [1, 'confirmationCode must be at least 1'],
-    required: true,
-    unique: true,
+  date: {
+    type: Date,
+    default: Date.now(),
   },
 });
 

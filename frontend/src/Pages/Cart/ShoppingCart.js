@@ -5,6 +5,7 @@ import { cartActions } from '../../Redux/Features/CartSlice';
 import DeleteButton from '../../Components/Delete/DeleteButton';
 import ProductSummaryRow from '../../Components/Product/Cards/ProductSummaryRow';
 import ActionButton from '../../Components/Utils/ActionButton';
+import ValueCard from '../../Components/Utils/ValueCard';
 
 const ShoppingCart = ({ products }) => {
   const dispatch = useDispatch();
@@ -64,18 +65,11 @@ const ShoppingCart = ({ products }) => {
       </Card.Body>
 
       {!isNoProducts && (
+        // TODO Create 'add cart to favorites' button
         <Card.Footer style={{ width: '100%' }}>
           <Row className='d-flex align-items-center'>
             <Col sm={2}>
-              <Card
-                bg='success'
-                style={{ height: '100%', width: '100%' }}
-                className='shadow border border-2 border-dark text-center'
-              >
-                <h1 className='display-5'>
-                  <b>{totalPrice.toLocaleString()}$</b>
-                </h1>
-              </Card>
+              <ValueCard text={`${totalPrice.toLocaleString()}$`} />
             </Col>
 
             <Col sm={10} className='d-flex justify-content-end'>

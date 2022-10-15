@@ -19,7 +19,7 @@ import InputField from '../../Components/Form/InputField';
 import api from '../../Api/Api';
 
 const getUserByEmailAndPassword = async (email, password) => {
-  const user = await api.users.getUserByEmailAndPassword(email, password);
+  const user = await api.users.loginUser(email, password);
 
   return user;
 };
