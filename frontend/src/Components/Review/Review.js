@@ -6,7 +6,10 @@ const Review = ({ review }) => {
   const avgRating = 3;
 
   return (
-    <Card className='p-0 shadow mb-4 me-2 border border-secondary'>
+    <Card
+      bg='secondary'
+      className='p-0 shadow mb-4 me-2 border border-2 border-info'
+    >
       <Card.Header
         dir='rtl'
         className='d-flex align-items-center justify-content-between'

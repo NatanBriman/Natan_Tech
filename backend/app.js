@@ -25,6 +25,7 @@ app.use(express.static(join(__dirname, 'public')));
 
 // Import the mongoose module
 import pkg from 'mongoose';
+import ordersController from './Controllers/OrdersController.js';
 const { connect, connection } = pkg;
 // Set up default mongoose connection
 const DB_NAME = 'Natan_Tech';
@@ -41,6 +42,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use('/users', usersController);
 app.use('/products', productsController);
+app.use('/orders', ordersController);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

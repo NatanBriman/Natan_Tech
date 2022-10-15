@@ -1,19 +1,34 @@
 import { useContext } from 'react';
 import QuantityContext from '../../../Pages/QuantityContext';
-import Row from 'react-bootstrap/Row';
+import { Col, Row } from 'react-bootstrap';
 import { AddToCartButton, FavoriteButton, QuantityButtons } from './';
+import ValueCard from '../../Utils/ValueCard';
 
-const ProductButtons = ({ product, isPurchaseButton }) => {
+const ProductButtons = ({
+  product,
+  isPurchaseButton,
+  isDisplayOnly = false,
+}) => {
   const [currentQuantity, setCurrentQuantity] = useContext(QuantityContext);
+
+  const formattedProductTotalPrice = (
+    product.quantity * product.price
+  ).toLocaleString();
 
   return (
     <Row className='d-flex justify-content-center text-center align-items-center'>
-      <QuantityButtons
-        product={product}
-        currentQuantity={currentQuantity}
-        setCurrentQuantity={setCurrentQuantity}
-        isChangeCart={!isPurchaseButton}
-      />
+      {!isDisplayOnly ? (
+        <QuantityButtons
+          product={product}
+          currentQuantity={currentQuantity}
+          setCurrentQuantity={setCurrentQuantity}
+          isChangeCart={!isPurchaseButton}
+        />
+      ) : (
+        <Col>
+          <ValueCard text={`${formattedProductTotalPrice}$`} />
+        </Col>
+      )}
 
       {isPurchaseButton && (
         <Row className='mt-2'>

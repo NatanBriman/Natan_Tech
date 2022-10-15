@@ -10,10 +10,10 @@ const ProductDisplayCard = ({
   isPurchaseButton = false,
   initialQuantity,
 }) => {
-  const [isShowModal, setIsShowProductInfo] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   const [currentQuantity, setCurrentQuantity] = useState(initialQuantity);
 
-  const toggleModal = () => setIsShowProductInfo(!isShowModal);
+  const toggleModal = () => setIsShowModal((isShow) => !isShow);
 
   const isLeftLittleInStock = item.unitsInStock <= LITTLE_IN_STOCK;
 
@@ -21,17 +21,9 @@ const ProductDisplayCard = ({
     <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
       <Card
         bg='secondary'
-        className='clickable m-2 text-center p-0 border border-2 border-primary'
+        className='clickable shadow m-2 text-center p-0 border border-2 border-primary'
         style={{ width: '18%' }}
       >
-        {isShowModal && (
-          <ProductInfoModal
-            closeAction={toggleModal}
-            product={item}
-            isPurchaseButton={isPurchaseButton}
-          />
-        )}
-
         <Card.Header onClick={toggleModal}>
           <Ratio>
             <Card.Img src={item.image} alt='Product Image' />
@@ -64,6 +56,14 @@ const ProductDisplayCard = ({
           <ProductButtons product={item} isPurchaseButton={isPurchaseButton} />
         </Card.Footer>
       </Card>
+
+      {isShowModal && (
+        <ProductInfoModal
+          closeAction={toggleModal}
+          product={item}
+          isPurchaseButton={isPurchaseButton}
+        />
+      )}
     </QuantityProvider>
   );
 };

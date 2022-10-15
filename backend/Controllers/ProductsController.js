@@ -17,7 +17,7 @@ productsController.post('/name', async (req, res, next) => {
   }
 });
 
-productsController.post('/', async (req, res, next) => {
+productsController.post('/add', async (req, res, next) => {
   const { product } = req.body;
 
   try {

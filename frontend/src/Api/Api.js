@@ -10,8 +10,11 @@ const api = {
 
       return data;
     },
-    async getUserByEmailAndPassword(email, password) {
-      const { data } = await axiosInstance.post('/users', { email, password });
+    async loginUser(email, password) {
+      const { data } = await axiosInstance.post('/users/login', {
+        email,
+        password,
+      });
 
       return data;
     },
@@ -24,6 +27,22 @@ const api = {
     },
     async getProductsByCategories() {
       const { data } = await axiosInstance.get('/products/categories');
+
+      return data;
+    },
+  },
+  orders: {
+    async addOrder(products, userId) {
+      const { data } = await axiosInstance.post('/orders/add', {
+        order: { products, user: userId },
+      });
+
+      return data;
+    },
+    async getOrdersByUser(userId) {
+      const { data } = await axiosInstance.post('/orders/user', {
+        userId,
+      });
 
       return data;
     },

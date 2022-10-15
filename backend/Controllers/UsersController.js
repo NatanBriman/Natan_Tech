@@ -4,7 +4,7 @@ import usersService from '../Services/UsersService.js';
 
 const usersController = express();
 
-usersController.post('/', async (req, res, next) => {
+usersController.post('/login', async (req, res, next) => {
   const { email, password } = req.body;
 
   try {

@@ -12,3 +12,11 @@
   transform: scale(1.1);
   box-shadow: 0 0 5px #888888;
 }
+
+.modal-dialog .modal-content {
+  background-color: #6c757d;
+}
+
+.modal-content .modal-header {
+  border-bottom: #6c757d;
+}

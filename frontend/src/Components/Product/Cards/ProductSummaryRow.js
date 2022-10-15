@@ -1,94 +1,82 @@
 import { useState } from 'react';
 import { Card, Row, Ratio, Image, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
 import { QuantityProvider } from '../../../Pages/QuantityContext';
-import { cartActions } from '../../../Redux/Features/CartSlice';
-import DeleteButton from '../../Delete/DeleteButton';
+import ValueCard from '../../Utils/ValueCard';
+import { FavoriteButton } from '../Buttons';
 import ProductButtons from '../Buttons/ProductButtons';
+import ProductInfoModal from '../Modal/ProductInfoModal';
 
-const ProductSummaryRow = ({ product }) => {
-  const dispatch = useDispatch();
+const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
   const [currentQuantity, setCurrentQuantity] = useState(product.quantity);
+  const [isShowModal, setIsShowModal] = useState(false);
 
-  const deleteProduct = () => {
-    const { removeProduct } = cartActions;
+  const toggleModal = () => setIsShowModal((isShow) => !isShow);
 
-    dispatch(removeProduct(product._id));
-  };
-
-  const currentPrice = (currentQuantity * product.price).toLocaleString();
+  const currentPrice = currentQuantity * product.price;
 
   return (
     <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
-      <Row className='mb-3'>
-        <Col sm={11}>
-          <Card
-            bg='secondary'
-            className='shadow border border-2 border-primary'
+      <Card
+        bg='secondary'
+        className='clickable shadow border border-2 border-primary'
+      >
+        <Row>
+          <Col sm={2} onClick={toggleModal}>
+            <Ratio style={{ height: '8em', width: '8em' }} className='shadow'>
+              <Image rounded src={product.image} alt='Product Image' />
+            </Ratio>
+          </Col>
+
+          <Col sm={6} className='px-0' onClick={toggleModal}>
+            <Card.Body className='p-1'>
+              <Card.Title as='h1'>
+                <b>{product.name}</b>
+              </Card.Title>
+
+              <Card.Subtitle>
+                <h4>{product.manufacturer.name}</h4>
+              </Card.Subtitle>
+
+              <h6>{product.price}$</h6>
+            </Card.Body>
+          </Col>
+
+          <Col
+            sm={4}
+            className='d-flex justify-content-around align-items-center'
           >
             <Row>
-              <Col sm={2}>
-                <Ratio
-                  style={{ height: '8em', width: '8em' }}
-                  className='shadow border-right border-dark'
-                >
-                  <Image rounded src={product.image} alt='Product Image' />
-                </Ratio>
+              {!isDisplayOnly && (
+                <Col>
+                  <ProductButtons
+                    className='p-0'
+                    product={product}
+                    isPurchaseButton={false}
+                  />
+                </Col>
+              )}
+
+              <Col onClick={toggleModal}>
+                <ValueCard text={`${currentPrice.toLocaleString()}$`} />
               </Col>
 
-              <Col sm={6} className='px-0'>
-                <Card.Body className='p-1'>
-                  <Card.Title as='h1'>
-                    <b>{product.name}</b>
-                  </Card.Title>
-
-                  <Card.Subtitle>
-                    <h4>{product.manufacturer.name}</h4>
-                  </Card.Subtitle>
-
-                  <h6>{product.price}$</h6>
-                </Card.Body>
-              </Col>
-
-              <Col
-                sm={4}
-                className='d-flex justify-content-center align-items-center'
-              >
-                <Row>
-                  <Col>
-                    <ProductButtons
-                      className='p-0'
-                      product={product}
-                      isPurchaseButton={false}
-                    />
-                  </Col>
-
-                  <Col className='d-flex justify-content-center align-items-center'>
-                    <Card
-                      bg='success'
-                      className='m-0 p-0 shadow border border-2 border-dark d-flex justify-content-center align-items-center'
-                      style={{ height: '100%', width: '100%' }}
-                    >
-                      <h1 className='display-5'>{currentPrice}$</h1>
-                    </Card>
-                  </Col>
-                </Row>
-              </Col>
+              {isDisplayOnly && (
+                <Col onClick={toggleModal}>
+                  <FavoriteButton product={product} />
+                </Col>
+              )}
             </Row>
-          </Card>
-        </Col>
+          </Col>
+        </Row>
+      </Card>
 
-        <Col
-          sm={1}
-          className='p-0 d-flex align-items-center justify-content-center'
-        >
-          <DeleteButton
-            withModal
-            onDelete={deleteProduct}
-            text='?להוריד מהעגלה'
-          />
-        </Col>
-      </Row>
+      {isShowModal && (
+        <ProductInfoModal
+          closeAction={toggleModal}
+          product={product}
+          isDisplayOnly={isDisplayOnly}
+        />
+      )}
     </QuantityProvider>
   );
 };
