@@ -6,8 +6,8 @@ const usersRepository = {
   findAll() {
     return User.find({}).populate(populateProperties);
   },
-  findByEmailAndPassword(email, password) {
-    return User.findOne({ email, password }).populate(populateProperties);
+  findByCredentials(credentials) {
+    return User.findOne(credentials).populate(populateProperties);
   },
   save(user) {
     return user.save();

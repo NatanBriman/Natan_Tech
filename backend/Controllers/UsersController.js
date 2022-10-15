@@ -5,13 +5,13 @@ import usersService from '../Services/UsersService.js';
 const usersController = express();
 
 usersController.post('/login', async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    if (_.isEmpty(email) || _.isEmpty(password))
-      throw new Error('?מה יש לך לחפש פה');
-
-    const user = await usersService.getUserByEmailAndPassword(email, password);
+    const user = await usersService.getUserByCredentials({
+      username,
+      password,
+    });
 
     if (user !== null) res.status(200).send(user);
     else throw new Error('😕 אימייל או סיסמה לא נכונים');

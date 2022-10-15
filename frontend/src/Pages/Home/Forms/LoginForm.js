@@ -1,23 +1,23 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import isEmail from 'validator/lib/isEmail';
 import { userActions } from '../../../Redux/Features/UserSlice';
 import {
   isPasswordValid,
   isThereEmptyField,
   handleGettingUser,
+  isUsernameValid,
 } from '../../../Helpers/Helpers';
 import {
-  EMAIL_INPUT_PROPS,
   PASSWORD_INPUT_PROPS,
   STORE_ROUTE,
+  USERNAME_INPUT_PROPS,
 } from '../../../Helpers/Constants';
 import api from '../../../Api/Api';
 import InputForm from '../../../Components/Form/InputForm';
 
-const getUserByEmailAndPassword = async (email, password) => {
-  const user = await api.users.loginUser(email, password);
+const loginUser = async (username, password) => {
+  const user = await api.users.loginUser(username, password);
 
   return user;
 };
@@ -26,7 +26,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const passwordRef = useRef();
-  const emailRef = useRef();
+  const usernameRef = useRef();
   const [error, setError] = useState('');
 
   const handleError = (error) => setError(error);
@@ -41,25 +41,25 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const currentEmail = emailRef.current.value;
+    const currentUsername = usernameRef.current.value;
     const currentPassword = passwordRef.current.value;
 
-    if (isThereEmptyField(currentEmail, currentPassword))
+    if (isThereEmptyField(currentUsername, currentPassword))
       return setError('כל השדות חייבים להיות מלאים');
 
     const getUserByCurrentValues = () =>
-      getUserByEmailAndPassword(currentEmail, currentPassword);
+      loginUser(currentUsername, currentPassword);
 
     handleGettingUser(getUserByCurrentValues, handleUser, handleError);
   };
 
   const inputFields = [
     {
-      inputValue: emailRef,
-      invalidFeedback: 'מייל לא תקין',
-      label: 'אימייל',
-      inputProps: { ...EMAIL_INPUT_PROPS, autoFocus: true },
-      validation: isEmail,
+      inputValue: usernameRef,
+      invalidFeedback: 'שם המשתמש חייב להיות בין 4-12 אותיות',
+      label: 'שם משתמש',
+      inputProps: { ...USERNAME_INPUT_PROPS, autoFocus: true },
+      validation: isUsernameValid,
     },
     {
       inputValue: passwordRef,

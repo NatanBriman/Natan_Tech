@@ -9,11 +9,11 @@ import LoginForm from './Forms/LoginForm';
 import RegisterForm from './Forms/RegisterForm';
 
 const LoginPage = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const toggleRegister = () => setIsLogin((isLogin) => !isLogin);
   // TODO Add forgot password functionality
-  // TODO Add register user functionality
+
   return (
     <Container
       fluid
