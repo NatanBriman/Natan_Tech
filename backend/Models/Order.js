@@ -28,12 +28,6 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  confirmationCode: {
-    type: String,
-    minLength: [1, 'confirmationCode must be at least 1'],
-    required: true,
-    unique: true,
-  },
 });
 
 const Order = model('Order', orderSchema);

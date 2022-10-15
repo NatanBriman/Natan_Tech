@@ -1,7 +1,6 @@
 import express from 'express';
-import _ from 'lodash';
 import ordersService from '../Services/OrdersService.js';
-import { v4 as uuidv4 } from 'uuid';
+import _ from 'lodash';
 
 const ordersController = express();
 
@@ -22,11 +21,9 @@ ordersController.post('/add', async (req, res, next) => {
   const { order } = req.body;
 
   try {
-    const confirmationCode = uuidv4();
+    await ordersService.addOrder(order);
 
-    await ordersService.addOrder({ ...order, confirmationCode });
-
-    res.status(200).send(confirmationCode);
+    res.status(200).send('😄 ההזמנה בוצעה בהצלחה');
   } catch (error) {
     res
       .status(404)

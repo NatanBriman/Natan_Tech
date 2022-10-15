@@ -11,6 +11,7 @@ export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות ה�
 export const LOGIN_PAGE_BACKGROUND_COLOR = '#992be3';
 export const WEBSITE_BACKGROUND_COLOR = '#b2bdd1';
 export const SIDEBAR_BACKGROUND_COLOR = '#375791';
+export const BARCODE_LINK = 'https://r.mtdv.me/watch?v=Natans-Tech-Song';
 
 export const EMAIL_INPUT_PROPS = {
   autoFocus: true,

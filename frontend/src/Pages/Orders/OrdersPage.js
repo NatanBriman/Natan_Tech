@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Container } from 'react-bootstrap';
-import api from '../../Api/Api';
+import { Container, Row } from 'react-bootstrap';
 import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
-import { handleGetOrdersByUser } from '../../Helpers/Helpers';
-import { isEmpty } from 'lodash';
+import api from '../../Api/Api';
+import OrdersList from './OrdersList';
 
 const getOrdersByUser = async (userId) => {
   const orders = await api.orders.getOrdersByUser(userId);
@@ -15,13 +14,16 @@ const getOrdersByUser = async (userId) => {
 const OrdersPage = () => {
   const { _id } = useSelector((state) => state.user.user);
   const [orders, setOrders] = useState([]);
-  const [error, setError] = useState('');
+
+  const initializeOrders = async () => {
+    const orders = await getOrdersByUser(_id);
+
+    setOrders(orders);
+  };
 
   useEffect(() => {
-    handleGetOrdersByUser(() => getOrdersByUser(_id), setOrders, setError);
+    initializeOrders();
   }, []);
-
-  const isNoOrders = isEmpty(orders);
 
   return (
     <Container
@@ -33,11 +35,11 @@ const OrdersPage = () => {
         backgroundColor: WEBSITE_BACKGROUND_COLOR,
       }}
     >
-      {isNoOrders ? (
-        <h1>{error}</h1>
-      ) : (
-        orders.map((order) => <h1 key={order._id}>{order.confirmationCode}</h1>)
-      )}
+      <Container className='my-2' fluid style={{ height: '100%' }}>
+        <Row>
+          <OrdersList orders={orders} />
+        </Row>
+      </Container>
     </Container>
   );
 };

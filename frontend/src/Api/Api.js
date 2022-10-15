@@ -10,8 +10,11 @@ const api = {
 
       return data;
     },
-    async getUserByEmailAndPassword(email, password) {
-      const { data } = await axiosInstance.post('/users', { email, password });
+    async loginUser(email, password) {
+      const { data } = await axiosInstance.post('/users/login', {
+        email,
+        password,
+      });
 
       return data;
     },
