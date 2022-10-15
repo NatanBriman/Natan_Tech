@@ -7,13 +7,13 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    unique: [true, 'username already taken'],
+    unique: true,
     index: true,
   },
   email: {
     type: String,
     required: true,
-    unique: [true, 'email already exists'],
+    unique: true,
     validate: [isEmail, 'Invalid email'],
     index: true,
   },
@@ -24,7 +24,7 @@ const userSchema = new Schema({
     maxLength: [12, 'password must be at most 12 characters'],
   },
   image: {
-    type: String,
+    type: Buffer,
     default: DEFAULT_USER_IMAGE_URL,
   },
   favoriteProducts: {

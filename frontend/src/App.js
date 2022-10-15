@@ -1,17 +1,17 @@
 import { useLocation } from 'react-router-dom';
-import { LOGIN_ROUTE } from './Helpers/Constants';
+import { HOME_ROUTE } from './Helpers/Constants';
 import SideBar from './Components/SideBar/SideBar';
 import RouterView from './Router/Router';
 
 const App = () => {
   const currentRoute = useLocation().pathname;
-  const isLogin = currentRoute === LOGIN_ROUTE;
+  const isHomePage = currentRoute === HOME_ROUTE;
 
   return (
-    <div className='d-flex' style={isLogin ? { height: '100%' } : {}}>
+    <div className='d-flex' style={isHomePage ? { height: '100%' } : {}}>
       <RouterView />
 
-      {!isLogin && (
+      {!isHomePage && (
         <div dir='rtl'>
           <SideBar />
         </div>

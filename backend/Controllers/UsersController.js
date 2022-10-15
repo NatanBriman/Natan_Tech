@@ -24,11 +24,11 @@ usersController.post('/register', async (req, res, next) => {
   const { user } = req.body;
 
   try {
-    await usersService.addUser(user);
+    const newUser = await usersService.addUser(user);
 
-    res.status(200).send('ההרשמה התבצעה בהצלחה');
+    res.status(200).send(newUser);
   } catch (error) {
-    res.status(404).send(error.message);
+    res.status(404).send('אחד מהשדות כבר תפוס');
   }
 });
 
