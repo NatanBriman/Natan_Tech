@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { BiHide, BiShow } from 'react-icons/bi';
-import { isEmpty } from '../../Helpers/Helpers';
+import { isEmpty } from 'lodash';
 
 const InputField = ({
   inputValue,
@@ -33,7 +33,7 @@ const InputField = ({
   return (
     <Form.Group className='mb-3'>
       <Form.Label>
-        <strong>{label}</strong>
+        <b>{label}</b>
       </Form.Label>
 
       <InputGroup hasValidation>
@@ -46,15 +46,15 @@ const InputField = ({
         />
 
         <Button
-          className='d-flex align-items-center'
-          variant='outline-secondary'
+          className='d-flex align-items-center border border-2 border-dark'
+          variant='outline-dark'
           onClick={toggleIsShow}
         >
           {showIcon}
         </Button>
 
-        <Form.Control.Feedback type='invalid'>
-          {invalidFeedback}
+        <Form.Control.Feedback type='invalid' className='mt-2'>
+          <h5>{invalidFeedback}</h5>
         </Form.Control.Feedback>
       </InputGroup>
     </Form.Group>
