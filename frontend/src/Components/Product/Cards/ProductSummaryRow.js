@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Card, Row, Ratio, Image, Col } from 'react-bootstrap';
 import { QuantityProvider } from '../../../Pages/QuantityContext';
 import ValueCard from '../../Utils/ValueCard';
+import { FavoriteButton } from '../Buttons';
 import ProductButtons from '../Buttons/ProductButtons';
 
-const ProductSummaryRow = ({ product }) => {
+const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
   const [currentQuantity, setCurrentQuantity] = useState(product.quantity);
 
   const currentPrice = currentQuantity * product.price;
@@ -38,20 +39,28 @@ const ProductSummaryRow = ({ product }) => {
 
           <Col
             sm={4}
-            className='d-flex justify-content-center align-items-center'
+            className='d-flex justify-content-around align-items-center'
           >
             <Row>
-              <Col>
-                <ProductButtons
-                  className='p-0'
-                  product={product}
-                  isPurchaseButton={false}
-                />
-              </Col>
+              {!isDisplayOnly && (
+                <Col>
+                  <ProductButtons
+                    className='p-0'
+                    product={product}
+                    isPurchaseButton={false}
+                  />
+                </Col>
+              )}
 
               <Col>
                 <ValueCard text={`${currentPrice.toLocaleString()}$`} />
               </Col>
+
+              {isDisplayOnly && (
+                <Col>
+                  <FavoriteButton product={product} />
+                </Col>
+              )}
             </Row>
           </Col>
         </Row>
