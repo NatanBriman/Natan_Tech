@@ -46,15 +46,15 @@ const InputField = ({
         />
 
         <Button
-          className='d-flex align-items-center'
-          variant='outline-secondary'
+          className='d-flex align-items-center border border-2 border-dark'
+          variant='outline-dark'
           onClick={toggleIsShow}
         >
           {showIcon}
         </Button>
 
-        <Form.Control.Feedback type='invalid'>
-          {invalidFeedback}
+        <Form.Control.Feedback type='invalid' className='mt-2'>
+          <h5>{invalidFeedback}</h5>
         </Form.Control.Feedback>
       </InputGroup>
     </Form.Group>

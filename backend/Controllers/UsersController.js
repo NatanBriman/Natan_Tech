@@ -5,18 +5,30 @@ import usersService from '../Services/UsersService.js';
 const usersController = express();
 
 usersController.post('/login', async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    if (_.isEmpty(email) || _.isEmpty(password))
-      throw new Error('?מה יש לך לחפש פה');
-
-    const user = await usersService.getUserByEmailAndPassword(email, password);
+    const user = await usersService.getUserByCredentials({
+      username,
+      password,
+    });
 
     if (user !== null) res.status(200).send(user);
     else throw new Error('😕 אימייל או סיסמה לא נכונים');
   } catch (error) {
     res.status(404).send(error.message);
+  }
+});
+
+usersController.post('/register', async (req, res, next) => {
+  const { user } = req.body;
+
+  try {
+    const newUser = await usersService.addUser(user);
+
+    res.status(200).send(newUser);
+  } catch (error) {
+    res.status(404).send('אחד מהשדות כבר תפוס');
   }
 });
 

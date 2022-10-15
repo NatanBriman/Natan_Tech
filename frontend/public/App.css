@@ -20,3 +20,7 @@
 .modal-content .modal-header {
   border-bottom: #6c757d;
 }
+
+#root .btn {
+  color: black;
+}

@@ -5,8 +5,8 @@ const usersService = {
   getAllUsers() {
     return usersRepository.findAll();
   },
-  getUserByEmailAndPassword(email, password) {
-    return usersRepository.findByEmailAndPassword(email, password);
+  getUserByCredentials(credentials) {
+    return usersRepository.findByCredentials(credentials);
   },
   addUser(user) {
     const newUser = new User(user);

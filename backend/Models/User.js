@@ -1,20 +1,42 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, mongoose } from 'mongoose';
+import Product, { productSchema } from './Product.js';
+import { DEFAULT_USER_IMAGE_URL } from '../Helpers/Constants.js';
 import isEmail from 'validator/lib/isEmail.js';
 
 const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    index: true,
+  },
   email: {
     type: String,
     required: true,
-    unique: [true, 'Email already exists'],
-    validate: [isEmail, 'Invalid Email'],
+    unique: true,
+    validate: [isEmail, 'Invalid email'],
     index: true,
   },
   password: {
     type: String,
     required: true,
-    minLength: [6, 'Password must be at least 6 characters'],
-    maxLength: [12, 'Password must be at most 12 characters'],
+    minLength: [6, 'password must be at least 6 characters'],
+    maxLength: [12, 'password must be at most 12 characters'],
   },
+  image: {
+    type: Buffer,
+    default: DEFAULT_USER_IMAGE_URL,
+  },
+  favoriteProducts: {
+    type: mongoose.Types.ObjectId,
+    ref: Product,
+  },
+  isManager: {
+    type: Boolean,
+    default: false,
+  },
+  currentCart: [productSchema],
+  recentWatchedProducts: [productSchema],
 });
 
 const User = model('User', userSchema);
