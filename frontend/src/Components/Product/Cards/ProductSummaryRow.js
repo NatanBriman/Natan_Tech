@@ -17,10 +17,7 @@ const ProductSummaryRow = ({ product }) => {
       >
         <Row>
           <Col sm={2}>
-            <Ratio
-              style={{ height: '8em', width: '8em' }}
-              className='shadow border-right border-dark'
-            >
+            <Ratio style={{ height: '8em', width: '8em' }} className='shadow'>
               <Image rounded src={product.image} alt='Product Image' />
             </Ratio>
           </Col>

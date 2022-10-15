@@ -1,7 +1,7 @@
-import { Card, Container, Row, Col } from 'react-bootstrap';
-import Barcode from 'react-barcode';
+import { Card, Container, Col, Row } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
 import ValueCard from '../../Components/Utils/ValueCard';
+import OrderCard from './OrderCard';
 
 const OrdersList = ({ orders }) => {
   const isNoOrders = isEmpty(orders);
@@ -34,8 +34,8 @@ const OrdersList = ({ orders }) => {
 
         <Container fluid>
           {orders.map((order) => (
-            <Row className='mb-2' key={order._id}>
-              <Barcode width={1} displayValue={true} value={order._id} />
+            <Row className='mb-3' key={order._id}>
+              <OrderCard order={order} />
             </Row>
           ))}
         </Container>

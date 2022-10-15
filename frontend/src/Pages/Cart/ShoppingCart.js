@@ -65,6 +65,7 @@ const ShoppingCart = ({ products }) => {
       </Card.Body>
 
       {!isNoProducts && (
+        // TODO Create 'add cart to favorites' button
         <Card.Footer style={{ width: '100%' }}>
           <Row className='d-flex align-items-center'>
             <Col sm={2}>
