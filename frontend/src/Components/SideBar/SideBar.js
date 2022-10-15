@@ -12,8 +12,8 @@ const SideBar = () => {
       defaultCollapsed
       onMouseEnter={() => collapseSidebar()}
       onMouseLeave={() => collapseSidebar()}
-      width='220px'
-      collapsedWidth='50px'
+      width='230px'
+      collapsedWidth='52px'
       backgroundColor={SIDEBAR_BACKGROUND_COLOR}
       className='shadow border-0 rounded'
       style={{ height: '100vh', position: 'fixed' }}
