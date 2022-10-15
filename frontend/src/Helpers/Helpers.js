@@ -29,20 +29,6 @@ export const handleGettingUser = async (
   }
 };
 
-export const handleGetOrdersByUser = async (
-  getOrdersByUser,
-  handleSuccess,
-  handleError
-) => {
-  try {
-    const orders = await getOrdersByUser();
-
-    handleSuccess(orders);
-  } catch (error) {
-    handleError(error);
-  }
-};
-
 export const getDateString = (date) => date.toLocaleDateString();
 
 export const getProductDetails = (product) => [

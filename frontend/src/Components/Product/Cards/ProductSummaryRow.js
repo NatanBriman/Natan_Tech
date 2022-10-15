@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Card, Row, Ratio, Image, Col } from 'react-bootstrap';
 import { QuantityProvider } from '../../../Pages/QuantityContext';
+import ValueCard from '../../Utils/ValueCard';
 import ProductButtons from '../Buttons/ProductButtons';
 
 const ProductSummaryRow = ({ product }) => {
@@ -51,16 +52,8 @@ const ProductSummaryRow = ({ product }) => {
                 />
               </Col>
 
-              <Col className='d-flex justify-content-center align-items-center'>
-                <Card
-                  bg='success'
-                  className='shadow border border-2 border-dark d-flex justify-content-center align-items-center'
-                  style={{ height: '100%', width: '100%' }}
-                >
-                  <h1 className='display-5'>
-                    {currentPrice.toLocaleString()}$
-                  </h1>
-                </Card>
+              <Col>
+                <ValueCard text={`${currentPrice.toLocaleString()}$`} />
               </Col>
             </Row>
           </Col>
