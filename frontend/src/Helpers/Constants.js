@@ -10,8 +10,9 @@ export const WEBSITE_TITLE = 'נתן טכנולוגיות';
 export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות הטכנולוגיה';
 export const HOME_PAGE_BACKGROUND_COLOR = '#992be3';
 export const WEBSITE_BACKGROUND_COLOR = '#b2bdd1';
-export const SIDEBAR_BACKGROUND_COLOR = '#375791';
+export const NAVBAR_BACKGROUND_COLOR = '#375791';
 export const BARCODE_LINK = 'https://r.mtdv.me/watch?v=Natans-Tech-Song';
+export const PROFILE_IMAGES_PATH = 'Assets/Profile Images';
 
 export const USERNAME_INPUT_PROPS = {
   required: true,

@@ -18,6 +18,7 @@ import {
 } from '../../../Helpers/Constants';
 import api from '../../../Api/Api';
 import InputForm from '../../../Components/Form/InputForm';
+import { isEmpty } from 'lodash';
 
 const registerUser = async (username, email, password, image) => {
   const user = await api.users.registerUser({
@@ -36,13 +37,11 @@ const RegisterForm = () => {
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const imageRef = useRef();
   const [error, setError] = useState('');
-
+  const [image, setImage] = useState('');
   const handleError = (error) => setError(error);
 
   const handleUser = (user) => {
-    console.log(user);
     const { setUser } = userActions;
 
     dispatch(setUser(user));
@@ -55,19 +54,14 @@ const RegisterForm = () => {
     const currentUsername = usernameRef.current.value;
     const currentEmail = emailRef.current.value;
     const currentPassword = passwordRef.current.value;
-    const currentImage = imageRef.current.value;
 
-    const currentValues = [
-      currentUsername,
-      currentEmail,
-      currentPassword,
-      currentImage,
-    ];
+    const currentValues = [currentUsername, currentEmail, currentPassword];
 
     if (isThereEmptyField(...currentValues))
       return setError('כל השדות חייבים להיות מלאים');
 
-    const registerUserByCurrentValues = () => registerUser(...currentValues);
+    const registerUserByCurrentValues = () =>
+      registerUser(...currentValues, !isEmpty(image) ? image : undefined);
 
     handleGettingUser(registerUserByCurrentValues, handleUser, handleError);
   };
@@ -95,7 +89,7 @@ const RegisterForm = () => {
       validation: isPasswordValid,
     },
     {
-      inputValue: imageRef,
+      inputValue: setImage,
       invalidFeedback: 'הקובץ אינו תקין',
       label: 'תמונת פרופיל',
       inputProps: IMAGE_INPUT_PROPS,

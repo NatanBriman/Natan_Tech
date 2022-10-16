@@ -28,14 +28,14 @@ const OrdersPage = () => {
   return (
     <Container
       fluid
-      className='me-5 d-flex justify-content-center align-items-center'
+      className='me-5 d-flex'
       style={{
         minHeight: '100vh',
         width: '100%',
         backgroundColor: WEBSITE_BACKGROUND_COLOR,
       }}
     >
-      <Container className='my-2' fluid style={{ height: '100%' }}>
+      <Container className='mb-2 mt-5' fluid style={{ height: '100%' }}>
         <Row>
           <OrdersList orders={orders} />
         </Row>

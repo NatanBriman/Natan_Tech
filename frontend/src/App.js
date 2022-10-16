@@ -1,22 +1,35 @@
 import { useLocation } from 'react-router-dom';
 import { HOME_ROUTE } from './Helpers/Constants';
-import SideBar from './Components/SideBar/SideBar';
+import NavBar from './Components/NavBar/NavBar';
 import RouterView from './Router/Router';
+import SideBar from './Components/SideBar/SideBar';
 
 const App = () => {
   const currentRoute = useLocation().pathname;
   const isHomePage = currentRoute === HOME_ROUTE;
 
   return (
-    <div className='d-flex' style={isHomePage ? { height: '100%' } : {}}>
-      <RouterView />
+    <>
+      {!isHomePage && <NavBar />}
 
-      {!isHomePage && (
-        <div dir='rtl'>
-          <SideBar />
+      <div
+        className={`d-flex p-0 ${!isHomePage ? 'mt-5' : ''}`}
+        style={isHomePage ? { height: '100%' } : {}}
+      >
+        <div
+          style={{ width: '100%' }}
+          className={!isHomePage ? 'me-5 pe-1' : ''}
+        >
+          <RouterView />
         </div>
-      )}
-    </div>
+
+        {!isHomePage && (
+          <div dir='rtl' className='mt-4 pt-2'>
+            <SideBar />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

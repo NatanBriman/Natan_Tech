@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import { SIDEBAR_BACKGROUND_COLOR, ROUTES } from '../../Helpers/Constants';
+import { NAVBAR_BACKGROUND_COLOR, ROUTES } from '../../Helpers/Constants';
 
 const SideBar = () => {
   const { collapseSidebar } = useProSidebar();
@@ -14,8 +14,8 @@ const SideBar = () => {
       onMouseLeave={() => collapseSidebar()}
       width='230px'
       collapsedWidth='52px'
-      backgroundColor={SIDEBAR_BACKGROUND_COLOR}
-      className='shadow border-0 rounded'
+      backgroundColor={NAVBAR_BACKGROUND_COLOR}
+      className='shadow border-0'
       style={{ height: '100vh', position: 'fixed' }}
     >
       <Menu className='text-center'>
@@ -24,7 +24,7 @@ const SideBar = () => {
             <MenuItem
               style={{ paddingRight: 0 }}
               icon={route.icon}
-              className='mb-3 shadow rounded'
+              className='mb-3 shadow-lg rounded'
               as={'div'}
               active={currentRoute === route.path}
             >

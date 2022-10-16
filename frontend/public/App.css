@@ -1,11 +1,11 @@
 .clickable {
-  box-shadow: 0 0 3px #888888;
+  box-shadow: 0 0 3px black;
   cursor: pointer;
 }
 
 .clickable:hover {
   transform: scale(1.01);
-  box-shadow: 0 0 5px #888888;
+  box-shadow: 0 0 7px black;
 }
 
 .menu-anchor:hover {

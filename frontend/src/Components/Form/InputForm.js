@@ -1,7 +1,7 @@
 import { Button, Form } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
 import InputField from './InputField';
-import ImageUpload from '../../Pages/Home/Forms/ImageUpload';
+import ImageUpload from './ImageUpload';
 
 const InputForm = ({
   handleSubmit,
