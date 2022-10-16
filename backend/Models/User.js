@@ -27,10 +27,12 @@ const userSchema = new Schema({
     type: String,
     default: DEFAULT_USER_IMAGE_URL,
   },
-  favoriteProducts: {
-    type: mongoose.Types.ObjectId,
-    ref: Product,
-  },
+  favoriteProducts: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: Product,
+    },
+  ],
   isManager: {
     type: Boolean,
     default: false,
