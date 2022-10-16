@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form, Image, InputGroup, Ratio } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
-import { PROFILE_IMAGES_PATH } from '../../../Helpers/Constants';
+import { PROFILE_IMAGES_PATH } from '../../Helpers/Constants';
 
 const ImageUpload = ({ inputValue, label, inputProps, invalidFeedback }) => {
   const [selectedImage, setSelectedImage] = useState();
