@@ -46,13 +46,25 @@ usersController.post('/all', async (req, res, next) => {
   }
 });
 
-usersController.get('/', async (req, res, next) => {
+usersController.get('/all', async (req, res, next) => {
   try {
     const users = await usersService.getAllUsers();
 
     res.send(users);
   } catch (error) {
     res.status(404).send();
+  }
+});
+
+usersController.post('/favorite/add', async (req, res, next) => {
+  const { userId, productId } = req.body;
+
+  try {
+    await usersService.addProductToFavorites(userId, productId);
+
+    res.status(200).send('הוספת המוצר התבצעה בהצלחה');
+  } catch (error) {
+    res.status(404).send('קרתה בעיה בהוספת המוצר');
   }
 });
 

@@ -12,6 +12,13 @@ const usersRepository = {
   save(user) {
     return user.save();
   },
+  addFavoriteProduct(userId, productId) {
+    return User.findByIdAndUpdate(userId, {
+      $push: {
+        favoriteProducts: productId,
+      },
+    });
+  },
 };
 
 export default usersRepository;

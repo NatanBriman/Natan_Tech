@@ -13,6 +13,9 @@ const usersService = {
 
     return usersRepository.save(newUser);
   },
+  addProductToFavorites(userId, productId) {
+    return usersRepository.addFavoriteProduct(userId, productId);
+  },
 };
 
 export default usersService;
