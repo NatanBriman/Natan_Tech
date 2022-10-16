@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { BsCartCheck, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
+import { cartActions } from '../../Redux/Features/CartSlice';
 import api from '../../Api/Api';
 import DecisionModal from '../../Components/Utils/DecisionModal';
 import ActionButton from '../../Components/Utils/ActionButton';
@@ -19,6 +20,7 @@ const addOrder = async (products, userId) => {
 };
 
 const CartPage = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
   const { _id } = useSelector((state) => state.user.user);
   const [isShowPurchaseModal, setIsShowPurchaseModal] = useState(false);
@@ -28,15 +30,25 @@ const CartPage = () => {
   const handlePurchase = () => {
     addOrder(products, _id);
 
+    deleteAllProducts();
     toggleModal();
   };
+
+  const deleteProduct = (productId) => {
+    const { removeProduct } = cartActions;
+
+    dispatch(removeProduct(productId));
+  };
+
+  const deleteAllProducts = () =>
+    products.map((product) => deleteProduct(product._id));
 
   const isNoProducts = products.length === 0;
 
   return (
     <Container
       fluid
-      className='me-5 d-flex justify-content-center align-items-center'
+      className='me-5 d-flex justify-content-center'
       style={{
         minHeight: '100vh',
         width: '100%',
@@ -45,7 +57,11 @@ const CartPage = () => {
     >
       <Container className='my-2' fluid style={{ height: '100%' }}>
         <Row>
-          <ShoppingCart products={products} />
+          <ShoppingCart
+            products={products}
+            deleteProduct={deleteProduct}
+            deleteAllProducts={deleteAllProducts}
+          />
         </Row>
 
         {!isNoProducts && (

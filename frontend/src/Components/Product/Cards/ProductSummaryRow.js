@@ -28,7 +28,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
           </Col>
 
           <Col sm={6} className='px-0' onClick={toggleModal}>
-            <Card.Body className='p-1'>
+            <Card.Body className='p-1 text-start'>
               <Card.Title as='h1'>
                 <b>{product.name}</b>
               </Card.Title>

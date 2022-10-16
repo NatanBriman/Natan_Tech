@@ -25,6 +25,14 @@ const api = {
 
       return data;
     },
+    async toggleFavoriteProduct(userId, productId) {
+      const { data } = await axiosInstance.post('/users/favorite/change', {
+        userId,
+        productId,
+      });
+
+      return data;
+    },
   },
   products: {
     async getAllProducts() {
