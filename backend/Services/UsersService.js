@@ -1,3 +1,4 @@
+import { mongoose } from 'mongoose';
 import User from '../Models/User.js';
 import usersRepository from '../Repositories/UsersRepository.js';
 
@@ -13,7 +14,23 @@ const usersService = {
 
     return usersRepository.save(newUser);
   },
-  addProductToFavorites(userId, productId) {
+  async toggleProductInFavorites(userId, productId) {
+    const user = await usersRepository.findById(userId);
+    const favoriteProducts = user.favoriteProducts;
+    const productIdAsObjectId = mongoose.Types.ObjectId(productId);
+
+    const isProductId = (favoriteProductId) =>
+      favoriteProductId.equals(productIdAsObjectId);
+    const favoriteProductId = favoriteProducts.find(isProductId);
+
+    if (favoriteProductId) {
+      user.favoriteProducts = favoriteProducts.filter(
+        (favoriteProduct) => favoriteProduct !== favoriteProductId
+      );
+
+      return user.save();
+    }
+
     return usersRepository.addFavoriteProduct(userId, productId);
   },
 };

@@ -1,10 +1,11 @@
 import { IoStorefrontSharp } from 'react-icons/io5';
-import { BsCartFill } from 'react-icons/bs';
+import { BsCartFill, BsStarFill } from 'react-icons/bs';
 import { VscHistory } from 'react-icons/vsc';
 import ProtectedRoute from '../Router/ProtectedRoute';
 import StorePage from '../Pages/Store/StorePage';
 import CartPage from '../Pages/Cart/CartPage';
 import OrdersPage from '../Pages/Orders/OrdersPage';
+import FavoriteProductsPage from '../Pages/Favorite/FavoriteProductsPage';
 
 export const WEBSITE_TITLE = 'נתן טכנולוגיות';
 export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות הטכנולוגיה';
@@ -42,6 +43,7 @@ export const STORE_ROUTE = '/store';
 export const PROFILE_ROUTE = '/profile';
 export const ORDERS_ROUTE = '/orders';
 export const CART_ROUTE = '/cart';
+export const FAVORITES_ROUTE = '/favorites';
 export const REVIEWS_ROUTE = '/reviews';
 export const MANAGER_ROUTE = '/manager';
 
@@ -80,5 +82,15 @@ export const ROUTES = [
     ),
     text: 'ההזמנות שלי',
     icon: <VscHistory style={{ height: '100%', width: '100%' }} />,
+  },
+  {
+    path: FAVORITES_ROUTE,
+    element: (
+      // <ProtectedRoute>
+      <FavoriteProductsPage />
+      // </ProtectedRoute>
+    ),
+    text: 'מועדפים',
+    icon: <BsStarFill style={{ height: '100%', width: '100%' }} />,
   },
 ];

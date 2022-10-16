@@ -1,8 +1,11 @@
 import User from '../Models/User.js';
 
-const populateProperties = `favoriteProducts.manufacturer favoriteProducts.category currentCart.manufacturer favoriteProducts.category recentWatchedProducts.manufacturer recentWatchedProducts.category`;
+const populateProperties = `favoriteProducts currentCart.manufacturer favoriteProducts.category recentWatchedProducts.manufacturer recentWatchedProducts.category`;
 
 const usersRepository = {
+  findById(userId) {
+    return User.findById(userId);
+  },
   findAll() {
     return User.find({}).populate(populateProperties);
   },

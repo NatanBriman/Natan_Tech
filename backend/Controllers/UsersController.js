@@ -56,15 +56,16 @@ usersController.get('/all', async (req, res, next) => {
   }
 });
 
-usersController.post('/favorite/add', async (req, res, next) => {
+usersController.post('/favorite/change', async (req, res, next) => {
   const { userId, productId } = req.body;
 
   try {
-    await usersService.addProductToFavorites(userId, productId);
+    await usersService.toggleProductInFavorites(userId, productId);
 
-    res.status(200).send('הוספת המוצר התבצעה בהצלחה');
+    res.status(200).send('שינוי המוצר התבצע בהצלחה');
   } catch (error) {
-    res.status(404).send('קרתה בעיה בהוספת המוצר');
+    console.log(error.message);
+    res.status(404).send('קרתה בעיה בשינוי המוצר');
   }
 });
 

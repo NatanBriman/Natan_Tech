@@ -7,7 +7,7 @@ const ReviewsList = ({ reviews }) => {
     {
       user: {
         username: 'נתן ברימן',
-        image: 'Assets/Profile.jpg',
+        image: 'Assets/Profile Images/5bibIzmmdrA.jpg',
       },
       product: {
         name: 'Iphone',
@@ -29,7 +29,7 @@ const ReviewsList = ({ reviews }) => {
     {
       user: {
         username: 'נתן ברימן',
-        image: 'Assets/Profile.jpg',
+        image: 'Assets/Profile Images/5bibIzmmdrA.jpg',
       },
       product: {
         name: 'Iphone',
@@ -51,7 +51,7 @@ const ReviewsList = ({ reviews }) => {
     {
       user: {
         username: 'נתן ברימן',
-        image: 'Assets/Profile.jpg',
+        image: 'Assets/Profile Images/5bibIzmmdrA.jpg',
       },
       product: {
         name: 'Iphone',
