@@ -24,7 +24,7 @@ const App = () => {
         </div>
 
         {!isHomePage && (
-          <div dir='rtl' className='mt-4'>
+          <div dir='rtl' className='mt-4 pt-2'>
             <SideBar />
           </div>
         )}

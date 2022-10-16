@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Form, Image, InputGroup, Ratio } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
+import { PROFILE_IMAGES_PATH } from '../../../Helpers/Constants';
 
 const ImageUpload = ({ inputValue, label, inputProps, invalidFeedback }) => {
   const [selectedImage, setSelectedImage] = useState();
   const [preview, setPreview] = useState();
 
   useEffect(() => {
-    if (!selectedImage) return setPreview(undefined);
+    if (!selectedImage) return setPreview('');
 
-    const objectUrl = URL.createObjectURL(selectedImage);
-    setPreview(objectUrl);
+    const imagePath = `${PROFILE_IMAGES_PATH}/${selectedImage.name}`;
 
-    return () => URL.revokeObjectURL(objectUrl);
+    setPreview(imagePath);
+    inputValue(imagePath);
   }, [selectedImage]);
 
   const handleFileSelect = (event) => {
@@ -30,23 +31,18 @@ const ImageUpload = ({ inputValue, label, inputProps, invalidFeedback }) => {
       </Form.Label>
 
       <InputGroup hasValidation>
-        <Form.Control
-          {...inputProps}
-          type='file'
-          onChange={handleFileSelect}
-          ref={inputValue}
-        />
+        <Form.Control {...inputProps} type='file' onChange={handleFileSelect} />
 
         <Form.Control.Feedback type='invalid' className='mt-2'>
           <h5>{invalidFeedback}</h5>
         </Form.Control.Feedback>
       </InputGroup>
 
-      {selectedImage && (
+      {preview && (
         <div className='d-flex justify-content-center mt-3'>
           <Ratio style={{ height: '5rem', width: '5rem' }}>
             <Image
-              className='shadow border border-2 border-info'
+              className='shadow border border-2 border-dark'
               roundedCircle
               src={preview}
               alt='Selected Image'

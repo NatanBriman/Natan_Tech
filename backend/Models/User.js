@@ -24,7 +24,7 @@ const userSchema = new Schema({
     maxLength: [12, 'password must be at most 12 characters'],
   },
   image: {
-    type: Buffer,
+    type: String,
     default: DEFAULT_USER_IMAGE_URL,
   },
   favoriteProducts: {
