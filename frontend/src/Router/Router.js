@@ -1,11 +1,11 @@
 import { Navigate, useRoutes } from 'react-router-dom';
-import { LOGIN_ROUTE, ROUTES } from '../Helpers/Constants';
-import LoginPage from '../Pages/Login/LoginPage';
+import { HOME_ROUTE, ROUTES } from '../Helpers/Constants';
+import HomePage from '../Pages/Home/HomePage';
 
 const SPECIAL_ROUTES = [
-  { path: LOGIN_ROUTE, element: <LoginPage /> },
-  { path: '/', element: <Navigate to={LOGIN_ROUTE} /> },
-  { path: '*', element: <Navigate to={LOGIN_ROUTE} /> },
+  { path: HOME_ROUTE, element: <HomePage /> },
+  { path: '/', element: <Navigate to={HOME_ROUTE} /> },
+  { path: '*', element: <Navigate to={HOME_ROUTE} /> },
 ];
 
 const RouterView = () => {

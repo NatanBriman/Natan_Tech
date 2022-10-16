@@ -28,7 +28,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
           </Col>
 
           <Col sm={6} className='px-0' onClick={toggleModal}>
-            <Card.Body className='p-1'>
+            <Card.Body className='p-1 text-start'>
               <Card.Title as='h1'>
                 <b>{product.name}</b>
               </Card.Title>
@@ -45,23 +45,22 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
             sm={4}
             className='d-flex justify-content-around align-items-center'
           >
-            <Row>
+            <Row
+              className='me-1 d-flex justify-content-between'
+              style={{ width: '100%' }}
+            >
               {!isDisplayOnly && (
                 <Col>
-                  <ProductButtons
-                    className='p-0'
-                    product={product}
-                    isPurchaseButton={false}
-                  />
+                  <ProductButtons product={product} isPurchaseButton={false} />
                 </Col>
               )}
 
-              <Col onClick={toggleModal}>
+              <Col sm={5} onClick={toggleModal}>
                 <ValueCard text={`${currentPrice.toLocaleString()}$`} />
               </Col>
 
               {isDisplayOnly && (
-                <Col onClick={toggleModal}>
+                <Col sm={4}>
                   <FavoriteButton product={product} />
                 </Col>
               )}

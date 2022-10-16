@@ -9,9 +9,16 @@ export const isPasswordValid = (password) => {
   return isBetween(password.length, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH);
 };
 
+export const isUsernameValid = (username) => {
+  const MIN_USERNAME_LENGTH = 4;
+  const MAX_USERNAME_LENGTH = 12;
+
+  return isBetween(username.length, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH);
+};
+
 export const isThereEmptyField = (...fields) => {
   const emptyFields = fields.filter((field) => isEmpty(field));
-
+  // TODO RamdaJs
   return !isEmpty(emptyFields);
 };
 

@@ -47,7 +47,7 @@ const StorePage = () => {
   return (
     <Container
       fluid
-      className='me-3'
+      className='me-3 mt-3'
       style={{ height: '100%', backgroundColor: WEBSITE_BACKGROUND_COLOR }}
     >
       {sections.map((section) => (

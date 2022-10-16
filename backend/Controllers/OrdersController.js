@@ -10,8 +10,7 @@ ordersController.post('/user', async (req, res, next) => {
   try {
     const orders = await ordersService.getOrdersByUserId(userId);
 
-    if (!_.isEmpty(orders)) res.status(200).send(orders);
-    else throw new Error('😕 עוד לא הזמנת כלום');
+    res.status(200).send(orders);
   } catch (error) {
     res.status(404).send(error.message);
   }
