@@ -26,7 +26,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isShowLogoutModal, setIsShowLogoutModal] = useState(false);
-  const { image } = useSelector((state) => state.user.user);
+  const { image, username } = useSelector((state) => state.user.user);
 
   const toggleLogoutModal = () => setIsShowLogoutModal((isShow) => !isShow);
 
@@ -59,7 +59,7 @@ const NavBar = () => {
               </Button>
             </Col>
 
-            <Col>
+            <Col className='d-flex'>
               <Ratio style={{ height: '4rem', width: '4rem' }}>
                 <Image
                   className='clickable rounded shadow-lg border border-dark border-2'
@@ -68,6 +68,10 @@ const NavBar = () => {
                   src={image}
                 />
               </Ratio>
+
+              <h3 className='display-6 ms-2'>
+                <b style={{ textDecoration: 'underline' }}>{username}</b>
+              </h3>
             </Col>
           </Row>
 
