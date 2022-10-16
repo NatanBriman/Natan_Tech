@@ -58,7 +58,6 @@ const cartSlice = createSlice({
   name: 'CartSlice',
   initialState: {
     products: [...EXAMPLE],
-    confirmationCode: '',
   },
   reducers: {
     addProduct: (state, action) => {

@@ -9,6 +9,7 @@ const ProductDisplayCard = ({
   item,
   isPurchaseButton = false,
   initialQuantity,
+  isDisplayOnly = false,
 }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [currentQuantity, setCurrentQuantity] = useState(initialQuantity);
@@ -53,7 +54,11 @@ const ProductDisplayCard = ({
         </Card.Body>
 
         <Card.Footer>
-          <ProductButtons product={item} isPurchaseButton={isPurchaseButton} />
+          <ProductButtons
+            isDisplayOnly={isDisplayOnly}
+            product={item}
+            isPurchaseButton={isPurchaseButton}
+          />
         </Card.Footer>
       </Card>
 
@@ -62,6 +67,7 @@ const ProductDisplayCard = ({
           closeAction={toggleModal}
           product={item}
           isPurchaseButton={isPurchaseButton}
+          isDisplayOnly={isDisplayOnly}
         />
       )}
     </QuantityProvider>

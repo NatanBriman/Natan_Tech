@@ -46,13 +46,26 @@ usersController.post('/all', async (req, res, next) => {
   }
 });
 
-usersController.get('/', async (req, res, next) => {
+usersController.get('/all', async (req, res, next) => {
   try {
     const users = await usersService.getAllUsers();
 
     res.send(users);
   } catch (error) {
     res.status(404).send();
+  }
+});
+
+usersController.post('/favorite/change', async (req, res, next) => {
+  const { userId, productId } = req.body;
+
+  try {
+    await usersService.toggleProductInFavorites(userId, productId);
+
+    res.status(200).send('שינוי המוצר התבצע בהצלחה');
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).send('קרתה בעיה בשינוי המוצר');
   }
 });
 
