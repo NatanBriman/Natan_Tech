@@ -47,7 +47,7 @@ const InputField = ({
 
         <Button
           className='d-flex align-items-center border border-2 border-dark'
-          variant='outline-dark'
+          variant='outline-secondary'
           onClick={toggleIsShow}
         >
           {showIcon}

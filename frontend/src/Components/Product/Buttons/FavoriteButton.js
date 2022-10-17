@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { BsStarFill, BsStar } from 'react-icons/bs';
 import { userActions } from '../../../Redux/Features/UserSlice';
+import { showAlert } from '../../../Helpers/Helpers';
 import api from '../../../Api/Api';
 
 const toggleProductInFavorites = async (userId, productId) => {
   try {
     await api.users.toggleFavoriteProduct(userId, productId);
   } catch (error) {
-    // TODO Show Swal Alert on the side of the screen
+    showAlert('error', '!אופס, קרתה לנו בעיה');
   }
 };
 
@@ -26,8 +27,13 @@ const FavoriteButton = ({ product }) => {
 
     toggleProductInFavorites(_id, product._id);
 
-    if (isFavorite) dispatch(removeFavoriteProduct(product));
-    else dispatch(addFavoriteProduct(product));
+    if (isFavorite) {
+      dispatch(removeFavoriteProduct(product));
+      showAlert('warning', 'המוצר הוסר מהמועדפים');
+    } else {
+      dispatch(addFavoriteProduct(product));
+      showAlert('success', 'המוצר נוסף למועדפים');
+    }
 
     setIsFavorite((isFavorite) => !isFavorite);
   };
@@ -40,6 +46,7 @@ const FavoriteButton = ({ product }) => {
       onClick={handleFavorite}
     >
       <div className='me-1'>מועדפים</div>
+
       {isFavorite ? <BsStarFill /> : <BsStar />}
     </Button>
   );

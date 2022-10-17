@@ -5,6 +5,7 @@ import { ProSidebarProvider } from 'react-pro-sidebar';
 import App from './App';
 import store from './Redux/Store';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

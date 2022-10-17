@@ -22,7 +22,7 @@ const ProductDisplayCard = ({
     <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
       <Card
         bg='secondary'
-        className='clickable shadow m-2 text-center p-0 border border-2 border-primary'
+        className='clickable shadow m-2 text-center p-0 border border-2 border-info'
         style={{ width: '18%' }}
       >
         <Card.Header onClick={toggleModal}>

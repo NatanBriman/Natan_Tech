@@ -1,4 +1,5 @@
 import { groupBy, get, isEmpty } from 'lodash';
+import { toast } from 'react-toastify';
 
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
@@ -79,3 +80,5 @@ export const createSection = (name, items, productProperty) => {
     section: formatItemsByProperty(items, productProperty),
   };
 };
+
+export const showAlert = (type, message) => toast(message, { type });

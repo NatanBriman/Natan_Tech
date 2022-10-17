@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Col } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { cartActions } from '../../../Redux/Features/CartSlice';
+import { showAlert } from '../../../Helpers/Helpers';
 
 const QuantityButtons = ({
   product,
@@ -20,6 +21,7 @@ const QuantityButtons = ({
       const { changeQuantity } = cartActions;
 
       dispatch(changeQuantity({ ...product, quantity: changedQuantity }));
+      showAlert('success', 'הכמות עודכנה בהצלחה');
     }
   };
 
