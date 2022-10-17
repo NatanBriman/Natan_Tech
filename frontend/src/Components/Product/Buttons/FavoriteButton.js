@@ -1,10 +1,9 @@
-import { isEmpty } from 'lodash';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { BsStarFill, BsStar } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
-import api from '../../../Api/Api';
 import { userActions } from '../../../Redux/Features/UserSlice';
+import api from '../../../Api/Api';
 
 const toggleProductInFavorites = async (userId, productId) => {
   try {
@@ -19,7 +18,7 @@ const FavoriteButton = ({ product }) => {
   const { _id, favoriteProducts } = useSelector((state) => state.user.user);
 
   const isProductId = (favoriteProduct) => favoriteProduct._id === product._id;
-  const isInFavoriteProducts = !isEmpty(favoriteProducts.find(isProductId));
+  const isInFavoriteProducts = favoriteProducts.find(isProductId);
   const [isFavorite, setIsFavorite] = useState(isInFavoriteProducts);
 
   const handleFavorite = () => {
@@ -35,11 +34,12 @@ const FavoriteButton = ({ product }) => {
 
   return (
     <Button
-      style={{ width: '100%', height: '100%' }}
-      className='shadow border border-dark text-center d-flex justify-content-center align-items-center'
-      variant='warning'
+      style={{ width: '100%', height: '100%', color: 'black' }}
+      className='shadow border border-2 border-warning text-center d-flex justify-content-center align-items-center'
+      variant='outline-warning'
       onClick={handleFavorite}
     >
+      <div className='me-1'>מועדפים</div>
       {isFavorite ? <BsStarFill /> : <BsStar />}
     </Button>
   );

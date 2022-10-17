@@ -35,7 +35,7 @@ const ProductInfoModal = ({
       <Container className='my-2'>
         <Row className='mx-1 d-flex justify-content-between'>
           <Col sm={8}>
-            <Row style={{ height: '37em' }}>
+            <Row style={{ height: '38em' }}>
               <ReviewsList />
             </Row>
           </Col>

@@ -60,7 +60,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
               </Col>
 
               {isDisplayOnly && (
-                <Col sm={4}>
+                <Col sm={5}>
                   <FavoriteButton product={product} />
                 </Col>
               )}

@@ -36,8 +36,8 @@ const QuantityButtons = ({
           style={{ width: '100%', color: 'black' }}
           disabled={isMinQuantity}
           onClick={decreaseQuantity}
-          variant='danger'
-          className='shadow border border-dark d-flex justify-content-center text-center align-items-center'
+          variant='outline-danger'
+          className='shadow border border-2 border-danger d-flex justify-content-center text-center align-items-center'
         >
           <AiOutlineMinus />
         </Button>
@@ -54,8 +54,8 @@ const QuantityButtons = ({
           style={{ width: '100%', color: 'black' }}
           disabled={isMaxQuantity}
           onClick={increaseQuantity}
-          variant='primary'
-          className='shadow border border-dark d-flex justify-content-center text-center align-items-center'
+          variant='outline-primary'
+          className='shadow border border-2 border-primary d-flex justify-content-center text-center align-items-center'
         >
           <AiOutlinePlus />
         </Button>
