@@ -64,8 +64,19 @@ usersController.post('/favorite/change', async (req, res, next) => {
 
     res.status(200).send('שינוי המוצר התבצע בהצלחה');
   } catch (error) {
-    console.log(error.message);
     res.status(404).send('קרתה בעיה בשינוי המוצר');
+  }
+});
+
+usersController.post('/update/manager', async (req, res, next) => {
+  const { userId } = req.body;
+
+  try {
+    await usersService.addManagerRoleToUser(userId);
+
+    res.status(200).send('המשתמש כעת מנהל');
+  } catch (error) {
+    res.status(404).send('קרתה בעיה בשינוי המשתמש למנהל');
   }
 });
 
