@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
-import { HOME_ROUTE } from '../Helpers/Constants';
-import { showAlert } from '../Helpers/Helpers';
+import { HOME_ROUTE } from '../../Helpers/Constants';
+import { showAlert } from '../../Helpers/Helpers';
 
-const ProtectedRoute = ({ children }) => {
+const UserProtectedRoute = ({ children }) => {
   const user = useSelector((state) => state.user.user);
 
   if (isEmpty(user)) {
@@ -16,4 +16,4 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-export default ProtectedRoute;
+export default UserProtectedRoute;
