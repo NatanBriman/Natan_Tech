@@ -27,7 +27,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
             </Ratio>
           </Col>
 
-          <Col sm={6} className='px-0' onClick={toggleModal}>
+          <Col sm={4} className='px-0' onClick={toggleModal}>
             <Card.Body className='p-1 text-start'>
               <Card.Title as='h1'>
                 <b>{product.name}</b>
@@ -41,15 +41,16 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
             </Card.Body>
           </Col>
 
-          <Col
-            sm={4}
-            className='d-flex justify-content-around align-items-center'
-          >
+          <Col sm={6} className='d-flex align-items-center'>
             <Row
               className='me-1 d-flex justify-content-between'
               style={{ width: '100%' }}
             >
-              {!isDisplayOnly && (
+              {isDisplayOnly ? (
+                <Col sm={2}>
+                  <ValueBox text={product.quantity} color='info' />
+                </Col>
+              ) : (
                 <Col>
                   <ProductButtons product={product} isPurchaseButton={false} />
                 </Col>
