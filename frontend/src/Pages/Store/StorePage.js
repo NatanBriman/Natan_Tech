@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import api from '../../Api/Api';
 import { isEmpty } from 'lodash';
 import { createSection } from '../../Helpers/Helpers';
-import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
+import api from '../../Api/Api';
 import Section from './Section';
 
 const getAllProducts = async () => {
@@ -45,11 +44,7 @@ const StorePage = () => {
   }, [products]);
 
   return (
-    <Container
-      fluid
-      className='me-3 mt-3'
-      style={{ height: '100%', backgroundColor: WEBSITE_BACKGROUND_COLOR }}
-    >
+    <Container fluid className='mt-3'>
       {sections.map((section) => (
         <Section key={section.name} section={section} />
       ))}

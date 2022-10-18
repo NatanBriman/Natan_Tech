@@ -1,16 +1,19 @@
 import User from '../Models/User.js';
 
-const populateProperties = `favoriteProducts currentCart.manufacturer favoriteProducts.category recentWatchedProducts.manufacturer recentWatchedProducts.category`;
+const pathsToPopulate = {
+  path: 'favoriteProducts currentCart recentWatchedProducts',
+  populate: 'manufacturer category',
+};
 
 const usersRepository = {
   findById(userId) {
     return User.findById(userId);
   },
   findAll() {
-    return User.find({}).populate(populateProperties);
+    return User.find({}).populate(pathsToPopulate);
   },
   findByCredentials(credentials) {
-    return User.findOne(credentials).populate(populateProperties);
+    return User.findOne(credentials).populate(pathsToPopulate);
   },
   save(user) {
     return user.save();

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, Row, Ratio, Image, Col } from 'react-bootstrap';
 import { QuantityProvider } from '../../../Pages/QuantityContext';
-import ValueCard from '../../Utils/ValueCard';
+import ValueBox from '../../Utils/Information/ValueBox';
 import { FavoriteButton } from '../Buttons';
 import ProductButtons from '../Buttons/ProductButtons';
 import ProductInfoModal from '../Modal/ProductInfoModal';
@@ -18,7 +18,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
     <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
       <Card
         bg='secondary'
-        className='clickable shadow border border-2 border-primary'
+        className='clickable shadow border border-2 border-info'
       >
         <Row>
           <Col sm={2} onClick={toggleModal}>
@@ -56,11 +56,11 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
               )}
 
               <Col sm={5} onClick={toggleModal}>
-                <ValueCard text={`${currentPrice.toLocaleString()}$`} />
+                <ValueBox text={`${currentPrice.toLocaleString()}$`} />
               </Col>
 
               {isDisplayOnly && (
-                <Col sm={4}>
+                <Col sm={5}>
                   <FavoriteButton product={product} />
                 </Col>
               )}

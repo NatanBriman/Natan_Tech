@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 
-const ValueCard = ({ text, color = 'success' }) => {
+const ValueBox = ({ text, color = 'success' }) => {
   return (
     <Card
       bg={color}
@@ -14,4 +14,4 @@ const ValueCard = ({ text, color = 'success' }) => {
   );
 };
 
-export default ValueCard;
+export default ValueBox;

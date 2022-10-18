@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
-import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import api from '../../Api/Api';
-import ItemsContainer from '../../Components/Utils/ItemsContainer';
+import ItemsContainer from '../../Components/Utils/Information/ItemsContainer';
 import OrderCard from './OrderCard';
 
 const getOrdersByUser = async (userId) => {
@@ -27,29 +26,19 @@ const OrdersPage = () => {
   }, []);
 
   return (
-    <Container
-      fluid
-      className='me-5 d-flex'
-      style={{
-        minHeight: '100vh',
-        width: '100%',
-        backgroundColor: WEBSITE_BACKGROUND_COLOR,
-      }}
-    >
-      <Container className='mb-2' fluid style={{ height: '100%' }}>
-        <Row>
-          <ItemsContainer
-            items={orders}
-            title='ההזמנות שלי'
-            emptyText='😕 עוד לא הזמנת כלום'
-            component={(order) => (
-              <Row className='mb-3'>
-                <OrderCard order={order} />
-              </Row>
-            )}
-          />
-        </Row>
-      </Container>
+    <Container className='mb-2' fluid style={{ height: '100%' }}>
+      <Row>
+        <ItemsContainer
+          items={orders}
+          title='ההזמנות שלי'
+          emptyText='😕 עוד לא הזמנת כלום'
+          component={(order) => (
+            <Row className='mb-3'>
+              <OrderCard order={order} />
+            </Row>
+          )}
+        />
+      </Row>
     </Container>
   );
 };

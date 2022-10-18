@@ -1,85 +1,71 @@
 import { useState } from 'react';
-import { Button, Card, Col, Container, Row, Ratio } from 'react-bootstrap';
-import {
-  HOME_PAGE_BACKGROUND_COLOR,
-  WEBSITE_TITLE,
-  WEBSITE_SUBTITLE,
-} from '../../Helpers/Constants';
+import { Card, Col, Container, Row, Ratio } from 'react-bootstrap';
+import ActionButton from '../../Components/Utils/Buttons/ActionButton';
+import { WEBSITE_TITLE, WEBSITE_SUBTITLE } from '../../Helpers/Constants';
 import LoginForm from './Forms/LoginForm';
 import RegisterForm from './Forms/RegisterForm';
 
-const LoginPage = () => {
+const HomePage = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const toggleRegister = () => setIsLogin((isLogin) => !isLogin);
   // TODO Add forgot password functionality
 
   return (
-    <Container
-      fluid
-      style={{ height: '100%', background: HOME_PAGE_BACKGROUND_COLOR }}
+    <Row
       className='d-flex justify-content-center align-items-center'
+      style={{ width: '100%' }}
     >
-      <Row
-        className='d-flex justify-content-center align-items-center'
-        style={{ width: '100%' }}
-      >
-        <Col sm={4}>
-          <Card
-            style={{ maxHeight: '100vh' }}
-            bg='light'
-            className='p-0 shadow text-center border border-2 border-info'
-          >
-            <Card.Header>
-              <Card.Title as='h1'>
-                <b>{isLogin ? 'התחברות' : 'הרשמה'}</b>
-              </Card.Title>
-            </Card.Header>
-
-            <Card.Body>{isLogin ? <LoginForm /> : <RegisterForm />}</Card.Body>
-
-            <Card.Footer className='d-flex justify-content-between'>
-              <Button
-                className='shadow border border-2 border-dark'
-                variant='danger'
-              >
-                ?שכחתי סיסמה
-              </Button>
-
-              <Button
-                onClick={toggleRegister}
-                className='shadow border border-2 border-dark'
-                variant='primary'
-              >
-                ?לא נרשמתי
-              </Button>
-            </Card.Footer>
-          </Card>
-        </Col>
-
-        <Col
-          sm={8}
-          className='d-flex justify-content-center align-items-center'
+      <Col sm={4}>
+        <Card
+          bg='light'
+          className='shadow text-center border border-2 border-warning'
         >
-          <Container>
-            <Row className='text-center mb-5'>
-              <h1 className='display-1 mb-3'>
-                <b>{WEBSITE_TITLE}</b>
-              </h1>
+          <Card.Header>
+            <Card.Title as='h1'>
+              <b>{isLogin ? 'התחברות' : 'הרשמה'}</b>
+            </Card.Title>
+          </Card.Header>
 
-              <h3 className='display-5'>{WEBSITE_SUBTITLE}</h3>
-            </Row>
+          <Card.Body>{isLogin ? <LoginForm /> : <RegisterForm />}</Card.Body>
 
-            <Row className='d-flex justify-content-center'>
-              <Ratio style={{ height: '15rem', width: '20rem' }}>
-                <img src='Assets/Tech Icon.png' alt='Tech Icon' />
-              </Ratio>
+          <Card.Footer>
+            <Row className='justify-content-between'>
+              <Col sm={5} className='d-flex justify-content-start'>
+                <ActionButton text='שכחתי סיסמה' color='danger' small />
+              </Col>
+
+              <Col sm={5} className='d-flex justify-content-end'>
+                <ActionButton
+                  onClick={toggleRegister}
+                  text={isLogin ? 'לא נרשמתי' : 'נרשמתי כבר'}
+                  small
+                />
+              </Col>
             </Row>
-          </Container>
-        </Col>
-      </Row>
-    </Container>
+          </Card.Footer>
+        </Card>
+      </Col>
+
+      <Col sm={8} className='d-flex justify-content-center align-items-center'>
+        <Container>
+          <Row className='text-center mb-5'>
+            <h1 className='display-1 mb-3'>
+              <b>{WEBSITE_TITLE}</b>
+            </h1>
+
+            <h1 className='display-5'>{WEBSITE_SUBTITLE}</h1>
+          </Row>
+
+          <Row className='d-flex justify-content-center'>
+            <Ratio style={{ height: '18rem', width: '24rem' }}>
+              <img src='Assets/Tech Icon.png' alt='Tech Icon' />
+            </Ratio>
+          </Row>
+        </Container>
+      </Col>
+    </Row>
   );
 };
 
-export default LoginPage;
+export default HomePage;

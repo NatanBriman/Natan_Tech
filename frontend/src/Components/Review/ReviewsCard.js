@@ -81,10 +81,8 @@ const ReviewsList = ({ reviews }) => {
       bg='secondary'
     >
       <Card.Header className='text-center'>
-        <Card.Title>
-          <h1>
-            <b>ביקורות</b>
-          </h1>
+        <Card.Title as='h1'>
+          <b>ביקורות</b>
         </Card.Title>
       </Card.Header>
 

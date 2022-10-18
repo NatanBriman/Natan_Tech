@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import QuantityContext from '../../../Pages/QuantityContext';
 import { Col, Row } from 'react-bootstrap';
 import { AddToCartButton, FavoriteButton, QuantityButtons } from './';
-import ValueCard from '../../Utils/ValueCard';
+import ValueBox from '../../Utils/Information/ValueBox';
 
 const ProductButtons = ({
   product,
@@ -26,7 +26,7 @@ const ProductButtons = ({
         />
       ) : (
         <Col>
-          <ValueCard text={`${formattedProductTotalPrice}$`} />
+          <ValueBox text={`${formattedProductTotalPrice}$`} />
         </Col>
       )}
 

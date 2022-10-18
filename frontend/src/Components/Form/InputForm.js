@@ -1,7 +1,8 @@
-import { Button, Form } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
 import InputField from './InputField';
 import ImageUpload from './ImageUpload';
+import ActionButton from '../Utils/Buttons/ActionButton';
 
 const InputForm = ({
   handleSubmit,
@@ -30,13 +31,16 @@ const InputForm = ({
         </Form.Group>
       )}
 
-      <Button
-        className='shadow border-2 border-dark border'
-        variant='success'
-        type='submit'
-      >
-        {submitButtonText}
-      </Button>
+      <Row>
+        <Col className='d-flex justify-content-center'>
+          <ActionButton
+            text={submitButtonText}
+            color='success'
+            type='submit'
+            small
+          />
+        </Col>
+      </Row>
 
       <Form.Group className='mt-3 text-center'>
         <Form.Text>

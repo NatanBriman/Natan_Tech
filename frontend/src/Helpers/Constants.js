@@ -1,7 +1,6 @@
 import { IoStorefrontSharp } from 'react-icons/io5';
 import { BsCartFill, BsStarFill } from 'react-icons/bs';
 import { VscHistory } from 'react-icons/vsc';
-import ProtectedRoute from '../Router/ProtectedRoute';
 import StorePage from '../Pages/Store/StorePage';
 import CartPage from '../Pages/Cart/CartPage';
 import OrdersPage from '../Pages/Orders/OrdersPage';
@@ -48,48 +47,30 @@ export const REVIEWS_ROUTE = '/reviews';
 export const MANAGER_ROUTE = '/manager';
 
 export const LITTLE_IN_STOCK = 5;
-
 export const MAX_RATING = 5;
 
-// TODO: Protect routes
 export const ROUTES = [
   {
     path: STORE_ROUTE,
-    element: (
-      // <ProtectedRoute>
-      <StorePage />
-      // </ProtectedRoute>
-    ),
+    element: <StorePage />,
     text: 'חנות',
     icon: <IoStorefrontSharp style={{ height: '100%', width: '100%' }} />,
   },
   {
     path: CART_ROUTE,
-    element: (
-      // <ProtectedRoute>
-      <CartPage />
-      // </ProtectedRoute>
-    ),
+    element: <CartPage />,
     text: 'עגלת הקניות',
     icon: <BsCartFill style={{ height: '100%', width: '100%' }} />,
   },
   {
     path: ORDERS_ROUTE,
-    element: (
-      // <ProtectedRoute>
-      <OrdersPage />
-      // </ProtectedRoute>
-    ),
+    element: <OrdersPage />,
     text: 'ההזמנות שלי',
     icon: <VscHistory style={{ height: '100%', width: '100%' }} />,
   },
   {
     path: FAVORITES_ROUTE,
-    element: (
-      // <ProtectedRoute>
-      <FavoriteProductsPage />
-      // </ProtectedRoute>
-    ),
+    element: <FavoriteProductsPage />,
     text: 'מועדפים',
     icon: <BsStarFill style={{ height: '100%', width: '100%' }} />,
   },

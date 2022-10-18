@@ -15,10 +15,10 @@ const SideBar = () => {
       width='230px'
       collapsedWidth='52px'
       backgroundColor={NAVBAR_BACKGROUND_COLOR}
-      className='shadow border-0'
+      className='shadow border-0 mt-2'
       style={{ height: '100vh', position: 'fixed' }}
     >
-      <Menu className='text-center'>
+      <Menu className='text-center mt-3'>
         {ROUTES.map((route) => (
           <Link key={route.path} className='nav-link rounded' to={route.path}>
             <MenuItem
