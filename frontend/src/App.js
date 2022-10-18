@@ -15,33 +15,44 @@ const App = () => {
   const currentRoute = useLocation().pathname;
   const isHomePage = currentRoute === HOME_ROUTE;
 
-  return isHomePage ? (
-    <div
-      className='d-flex'
-      style={{ backgroundColor: NAVBAR_BACKGROUND_COLOR, height: '100%' }}
-    >
-      <Container fluid className='d-flex justify-content-center'>
-        <HomePage />
-      </Container>
-    </div>
-  ) : (
+  return (
     <>
-      <NavBar />
-
-      <div className='d-flex p-0 mt-5'>
+      {isHomePage ? (
         <div
-          style={{ width: '100%', backgroundColor: WEBSITE_BACKGROUND_COLOR }}
-          className='me-5 pe-1'
+          className='d-flex'
+          style={{ backgroundColor: NAVBAR_BACKGROUND_COLOR, height: '100%' }}
         >
-          <Container fluid className='d-flex' style={{ minHeight: '100vh' }}>
-            <RouterView />
+          <Container fluid className='d-flex justify-content-center'>
+            <HomePage />
           </Container>
         </div>
+      ) : (
+        <>
+          <NavBar />
 
-        <div dir='rtl' className='mt-4'>
-          <SideBar />
-        </div>
-      </div>
+          <div className='d-flex p-0 mt-5'>
+            <div
+              style={{
+                width: '100%',
+                backgroundColor: WEBSITE_BACKGROUND_COLOR,
+              }}
+              className='me-5 pe-1'
+            >
+              <Container
+                fluid
+                className='d-flex'
+                style={{ minHeight: '100vh' }}
+              >
+                <RouterView />
+              </Container>
+            </div>
+
+            <div dir='rtl' className='mt-4'>
+              <SideBar />
+            </div>
+          </div>
+        </>
+      )}
 
       <ToastContainer
         autoClose={1500}

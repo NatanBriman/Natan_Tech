@@ -19,7 +19,7 @@ const ShoppingCart = ({ products, deleteProduct, deleteAllProducts }) => {
         className='p-0 d-flex align-items-center justify-content-center'
       >
         <DecisionButton
-          action={() => deleteProduct(product._id)}
+          action={() => deleteProduct(product)}
           modalText='?להוריד מהעגלה'
           icon={<BsTrash />}
         />

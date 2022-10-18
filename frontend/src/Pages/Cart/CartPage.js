@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { BsCartCheck, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { showAlert } from '../../Helpers/Helpers';
-import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
 import { cartActions } from '../../Redux/Features/CartSlice';
 import api from '../../Api/Api';
 import DecisionModal from '../../Components/Utils/DecisionModal';
@@ -15,8 +14,7 @@ const addOrder = async (products, userId) => {
   try {
     await api.orders.addOrder(products, userId);
   } catch (error) {
-    // TODO Make swal alert that something went wrong
-    alert(error);
+    showAlert('error', 'משהו השתבש בביצוע ההזמנה');
   }
 };
 
@@ -36,14 +34,13 @@ const CartPage = () => {
     showAlert('success', 'ההזמנה התבצעה בהצלחה');
   };
 
-  const deleteProduct = (productId) => {
+  const deleteProduct = (product) => {
     const { removeProduct } = cartActions;
 
-    dispatch(removeProduct(productId));
+    dispatch(removeProduct(product));
   };
 
-  const deleteAllProducts = () =>
-    products.map((product) => deleteProduct(product._id));
+  const deleteAllProducts = () => products.map(deleteProduct);
 
   const isNoProducts = products.length === 0;
 

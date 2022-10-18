@@ -1,5 +1,6 @@
 import { groupBy, get, isEmpty } from 'lodash';
 import { toast } from 'react-toastify';
+import ProtectedRoute from '../Router/ProtectedRoute';
 
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
@@ -82,3 +83,11 @@ export const createSection = (name, items, productProperty) => {
 };
 
 export const showAlert = (type, message) => toast(message, { type });
+
+export const protectRoutes = (routes) =>
+  routes.map((route) => {
+    return {
+      ...route,
+      element: <ProtectedRoute>{route.element}</ProtectedRoute>,
+    };
+  });
