@@ -3,7 +3,7 @@ import { DEFAULT_PRODUCT_IMAGE_URL } from '../Helpers/Constants.js';
 import Manufacturer from './Manufacturer.js';
 import Category from './Category.js';
 
-const productSchema = new Schema({
+export const productSchema = new Schema({
   name: {
     type: String,
     required: [true, 'name is a required field'],
@@ -24,7 +24,7 @@ const productSchema = new Schema({
   },
   addDate: {
     type: Date,
-    default: Date.now(),
+    default: new Date(),
   },
   price: {
     type: Number,
@@ -51,5 +51,3 @@ const productSchema = new Schema({
 const Product = model('Product', productSchema);
 
 export default Product;
-
-export { productSchema };
