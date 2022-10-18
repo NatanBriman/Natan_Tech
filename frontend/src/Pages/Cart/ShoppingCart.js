@@ -50,8 +50,8 @@ const ShoppingCart = ({ products, deleteProduct, deleteAllProducts }) => {
               />
             </Col>
 
-            <Col sm={2}>
-              <ValueBox text={`${totalPrice.toLocaleString()}$`} />
+            <Col sm={5}>
+              <ValueBox text={`${totalPrice.toLocaleString()}$ :סה"כ לתשלום`} />
             </Col>
           </Row>
         </Card.Footer>
