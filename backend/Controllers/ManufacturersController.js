@@ -1,5 +1,5 @@
 import express from 'express';
-import manufacturersService from '../Services/ManufacturersService';
+import manufacturersService from '../Services/ManufacturersService.js';
 
 const manufacturersController = express();
 

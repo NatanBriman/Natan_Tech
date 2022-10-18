@@ -1,5 +1,5 @@
 import Manufacturer from '../Models/Manufacturer.js';
-import manufacturersRepository from '../Repositories/ManufacturersRepository';
+import manufacturersRepository from '../Repositories/ManufacturersRepository.js';
 
 const ManufacturersService = {
   getAllManufacturers() {

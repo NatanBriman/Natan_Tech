@@ -19,6 +19,21 @@ export const isUsernameValid = (username) => {
   return isBetween(username.length, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH);
 };
 
+export const isNameValid = (name) => {
+  const NAME_LENGTH = 4;
+  const MAX_USERNAME_LENGTH = 12;
+
+  return isBetween(name.length, NAME_LENGTH, MAX_USERNAME_LENGTH);
+};
+
+export const isDateValid = (date) => {
+  const now = new Date();
+
+  return new Date(date) < now;
+};
+
+export const isNumberPositive = (number) => number > 0;
+
 export const isThereEmptyField = (...fields) => {
   const emptyFields = fields.filter((field) => isEmpty(field));
   // TODO RamdaJs

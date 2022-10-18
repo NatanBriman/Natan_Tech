@@ -9,6 +9,8 @@ import { fileURLToPath } from 'url';
 
 import usersController from './Controllers/UsersController.js';
 import productsController from './Controllers/ProductsController.js';
+import categoriesController from './Controllers/CategoriesController.js';
+import manufacturersController from './Controllers/ManufacturersController.js';
 
 const app = express();
 
@@ -43,6 +45,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use('/users', usersController);
 app.use('/products', productsController);
 app.use('/orders', ordersController);
+app.use('/categories', categoriesController);
+app.use('/manufacturers', manufacturersController);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

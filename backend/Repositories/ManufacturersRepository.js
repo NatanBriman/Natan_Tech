@@ -1,4 +1,4 @@
-import Manufacturer from '../Models/Manufacturer';
+import Manufacturer from '../Models/Manufacturer.js';
 
 const manufacturersRepository = {
   findAll() {

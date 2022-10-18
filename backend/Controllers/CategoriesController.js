@@ -1,5 +1,5 @@
 import express from 'express';
-import categoriesService from '../Services/CategoriesService';
+import categoriesService from '../Services/CategoriesService.js';
 
 const categoriesController = express();
 
