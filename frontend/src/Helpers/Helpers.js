@@ -1,6 +1,7 @@
 import { groupBy, get, isEmpty } from 'lodash';
 import { toast } from 'react-toastify';
-import ProtectedRoute from '../Router/ProtectedRoute';
+import ManagerProtectedRoute from '../Router/ProtectedRoutes/ManagerProtectedRoute';
+import UserProtectedRoute from '../Router/ProtectedRoutes/UserProtectedRoute';
 
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
@@ -88,6 +89,14 @@ export const protectRoutes = (routes) =>
   routes.map((route) => {
     return {
       ...route,
-      element: <ProtectedRoute>{route.element}</ProtectedRoute>,
+      element: route.isManager ? (
+        <UserProtectedRoute>
+          <ManagerProtectedRoute>{route.element}</ManagerProtectedRoute>
+        </UserProtectedRoute>
+      ) : route.public ? (
+        route.element
+      ) : (
+        <UserProtectedRoute>{route.element}</UserProtectedRoute>
+      ),
     };
   });
