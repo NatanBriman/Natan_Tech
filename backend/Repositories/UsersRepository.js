@@ -25,6 +25,9 @@ const usersRepository = {
       },
     });
   },
+  addManager(userId) {
+    return User.findByIdAndUpdate(userId, { isManager: true });
+  },
 };
 
 export default usersRepository;
