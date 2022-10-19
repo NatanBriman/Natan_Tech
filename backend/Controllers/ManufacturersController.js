@@ -13,4 +13,16 @@ manufacturersController.get('/all', async (req, res, next) => {
   }
 });
 
+manufacturersController.post('/add', async (req, res, next) => {
+  try {
+    const { manufacturer } = req.body;
+
+    await manufacturersService.addManufacturer(manufacturer);
+
+    res.status(200).send('היצרן נוסף בהצלחה');
+  } catch (error) {
+    res.status(404).send();
+  }
+});
+
 export default manufacturersController;

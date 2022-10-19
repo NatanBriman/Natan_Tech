@@ -62,6 +62,32 @@ export const PRODUCT_UNITS_INPUT_PROPS = {
   placeholder: '250',
 };
 
+export const PRODUCT_CATEGORY_INPUT_PROPS = {
+  required: true,
+  type: 'autocomplete',
+  emptyLabel: 'אין קטגוריות כאלה',
+  paginationText: '?עוד קטגוריות',
+};
+
+export const PRODUCT_MANUFACTURER_INPUT_PROPS = {
+  required: true,
+  type: 'autocomplete',
+  emptyLabel: 'אין יצרנים כאלה',
+  paginationText: '?עוד יצרנים',
+};
+
+export const CATEGORY_INPUT_PROPS = {
+  required: true,
+  type: 'text',
+  placeholder: 'טלוויזיות חכמות',
+};
+
+export const MANUFACTURER_INPUT_PROPS = {
+  required: true,
+  type: 'text',
+  placeholder: 'נתן',
+};
+
 export const HOME_ROUTE = '/home';
 export const STORE_ROUTE = '/store';
 export const PROFILE_ROUTE = '/profile';

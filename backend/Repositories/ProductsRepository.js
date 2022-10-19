@@ -2,16 +2,16 @@ import Product from '../Models/Product.js';
 
 const productsRepository = {
   findAll() {
-    return Product.find({}).populate('manufacturer category');
+    return Product.find({});
   },
   findByName(name) {
-    return Product.find({ name }).populate('manufacturer category');
+    return Product.find({ name });
   },
   save(product) {
     return product.save();
   },
   findByCategory(category) {
-    return Product.find({ category }).populate('manufacturer category');
+    return Product.find({ category });
   },
 };
 

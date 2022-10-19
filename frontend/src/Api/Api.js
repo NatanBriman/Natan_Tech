@@ -73,10 +73,24 @@ const api = {
 
       return data;
     },
+    async addCategory(category) {
+      const { data } = await axiosInstance.post('/categories/add', {
+        category,
+      });
+
+      return data;
+    },
   },
   manufacturers: {
     async getAllManufacturers() {
       const { data } = await axiosInstance.get('/manufacturers/all');
+
+      return data;
+    },
+    async addManufacturer(manufacturer) {
+      const { data } = await axiosInstance.post('/manufacturers/add', {
+        manufacturer,
+      });
 
       return data;
     },
