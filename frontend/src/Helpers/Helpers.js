@@ -1,6 +1,7 @@
 import { groupBy, get, isEmpty } from 'lodash';
 import { toast } from 'react-toastify';
-import ProtectedRoute from '../Router/ProtectedRoute';
+import ManagerProtectedRoute from '../Router/ProtectedRoutes/ManagerProtectedRoute';
+import UserProtectedRoute from '../Router/ProtectedRoutes/UserProtectedRoute';
 
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
@@ -17,6 +18,21 @@ export const isUsernameValid = (username) => {
 
   return isBetween(username.length, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH);
 };
+
+export const isNameValid = (name) => {
+  const NAME_LENGTH = 4;
+  const MAX_USERNAME_LENGTH = 12;
+
+  return isBetween(name.length, NAME_LENGTH, MAX_USERNAME_LENGTH);
+};
+
+export const isDateValid = (date) => {
+  const now = new Date();
+
+  return new Date(date) < now;
+};
+
+export const isNumberPositive = (number) => number > 0;
 
 export const isThereEmptyField = (...fields) => {
   const emptyFields = fields.filter((field) => isEmpty(field));
@@ -88,6 +104,14 @@ export const protectRoutes = (routes) =>
   routes.map((route) => {
     return {
       ...route,
-      element: <ProtectedRoute>{route.element}</ProtectedRoute>,
+      element: route.isManager ? (
+        <UserProtectedRoute>
+          <ManagerProtectedRoute>{route.element}</ManagerProtectedRoute>
+        </UserProtectedRoute>
+      ) : route.public ? (
+        route.element
+      ) : (
+        <UserProtectedRoute>{route.element}</UserProtectedRoute>
+      ),
     };
   });

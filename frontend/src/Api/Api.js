@@ -45,6 +45,11 @@ const api = {
 
       return data;
     },
+    async addProduct(product) {
+      const { data } = await axiosInstance.post('/products/add', { product });
+
+      return data;
+    },
   },
   orders: {
     async addOrder(products, userId) {
@@ -57,6 +62,34 @@ const api = {
     async getOrdersByUser(userId) {
       const { data } = await axiosInstance.post('/orders/user', {
         userId,
+      });
+
+      return data;
+    },
+  },
+  categories: {
+    async getAllCategories() {
+      const { data } = await axiosInstance.get('/categories/all');
+
+      return data;
+    },
+    async addCategory(category) {
+      const { data } = await axiosInstance.post('/categories/add', {
+        category,
+      });
+
+      return data;
+    },
+  },
+  manufacturers: {
+    async getAllManufacturers() {
+      const { data } = await axiosInstance.get('/manufacturers/all');
+
+      return data;
+    },
+    async addManufacturer(manufacturer) {
+      const { data } = await axiosInstance.post('/manufacturers/add', {
+        manufacturer,
       });
 
       return data;
