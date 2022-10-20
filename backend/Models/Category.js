@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const categorySchema = new Schema({
+export const categorySchema = new Schema({
   name: {
     type: String,
     required: [true, 'name is a required field'],

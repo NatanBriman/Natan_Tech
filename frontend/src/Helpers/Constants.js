@@ -39,6 +39,55 @@ export const PASSWORD_INPUT_PROPS = {
   placeholder: 'Example1234',
 };
 
+export const PRODUCT_NAME_INPUT_PROPS = {
+  required: true,
+  type: 'text',
+  placeholder: 'New Product 2',
+};
+
+export const PRODUCT_PRODUCTION_DATE_INPUT_PROPS = {
+  required: true,
+  type: 'date',
+};
+
+export const PRODUCT_PRICE_INPUT_PROPS = {
+  required: true,
+  type: 'number',
+  placeholder: '100',
+};
+
+export const PRODUCT_UNITS_INPUT_PROPS = {
+  required: true,
+  type: 'number',
+  placeholder: '250',
+};
+
+export const PRODUCT_CATEGORY_INPUT_PROPS = {
+  required: true,
+  type: 'autocomplete',
+  emptyLabel: 'אין קטגוריות כאלה',
+  paginationText: '?עוד קטגוריות',
+};
+
+export const PRODUCT_MANUFACTURER_INPUT_PROPS = {
+  required: true,
+  type: 'autocomplete',
+  emptyLabel: 'אין יצרנים כאלה',
+  paginationText: '?עוד יצרנים',
+};
+
+export const CATEGORY_INPUT_PROPS = {
+  required: true,
+  type: 'text',
+  placeholder: 'טלוויזיות חכמות',
+};
+
+export const MANUFACTURER_INPUT_PROPS = {
+  required: true,
+  type: 'text',
+  placeholder: 'נתן',
+};
+
 export const HOME_ROUTE = '/home';
 export const STORE_ROUTE = '/store';
 export const PROFILE_ROUTE = '/profile';

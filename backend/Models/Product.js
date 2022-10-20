@@ -1,19 +1,15 @@
-import { Schema, model, mongoose } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { DEFAULT_PRODUCT_IMAGE_URL } from '../Helpers/Constants.js';
-import Manufacturer from './Manufacturer.js';
-import Category from './Category.js';
+import { manufacturerSchema } from './Manufacturer.js';
+import { categorySchema } from './Category.js';
 
-const productSchema = new Schema({
+export const productSchema = new Schema({
   name: {
     type: String,
     required: [true, 'name is a required field'],
     index: true,
   },
-  manufacturer: {
-    type: mongoose.Types.ObjectId,
-    ref: Manufacturer,
-    required: [true, 'manufacturer is a required field'],
-  },
+  manufacturer: manufacturerSchema,
   image: {
     type: String,
     default: DEFAULT_PRODUCT_IMAGE_URL,
@@ -24,18 +20,14 @@ const productSchema = new Schema({
   },
   addDate: {
     type: Date,
-    default: Date.now(),
+    default: new Date(),
   },
   price: {
     type: Number,
     required: [true, 'price is a required field'],
     min: [0, 'price must be at least 0'],
   },
-  category: {
-    type: mongoose.Types.ObjectId,
-    ref: Category,
-    required: [true, 'category is a required field'],
-  },
+  category: categorySchema,
   unitsInStock: {
     type: Number,
     required: [true, 'unitsInStock is a required field'],
@@ -51,5 +43,3 @@ const productSchema = new Schema({
 const Product = model('Product', productSchema);
 
 export default Product;
-
-export { productSchema };
