@@ -95,6 +95,22 @@ const api = {
       return data;
     },
   },
+  reviews: {
+    async addReview(review) {
+      const { data } = await axiosInstance.post('/reviews/add', {
+        review,
+      });
+
+      return data;
+    },
+    async getReviewsByProductId(productId) {
+      const { data } = await axiosInstance.post('/reviews/product', {
+        productId,
+      });
+
+      return data;
+    },
+  },
 };
 
 export default api;

@@ -1,3 +1,4 @@
+import { mongoose } from 'mongoose';
 import Review from '../Models/Review.js';
 import reviewsRepository from '../Repositories/ReviewsRepository.js';
 
