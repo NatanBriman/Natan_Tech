@@ -24,7 +24,10 @@ const ActionButton = ({
           <h1 className={`${textClass} ${text ? 'ms-2' : ''}`}>{icon}</h1>
         </>
       ) : (
-        <>{text}</>
+        <>
+          <h4>{text}</h4>
+          {icon && <h4 className='ms-2'>{icon}</h4>}
+        </>
       )}
     </Button>
   );

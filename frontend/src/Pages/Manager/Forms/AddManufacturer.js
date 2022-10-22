@@ -1,13 +1,9 @@
 import { useRef, useState } from 'react';
-import {
-  MANAGER_ROUTE,
-  MANUFACTURER_INPUT_PROPS,
-} from '../../../Helpers/Constants';
+import { MANUFACTURER_INPUT_PROPS } from '../../../Helpers/Constants';
 import { isNameValid, showAlert } from '../../../Helpers/Helpers';
 import { isEmpty } from 'lodash';
 import api from '../../../Api/Api';
 import InputForm from '../../../Components/Form/InputForm';
-import { useNavigate } from 'react-router-dom';
 
 const addManufacturer = async (manufacturer) => {
   try {

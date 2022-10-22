@@ -1,9 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Modal, Col, Row, Card } from 'react-bootstrap';
+import api from '../../../Api/Api';
 import { getProductDetails } from '../../../Helpers/Helpers';
 import Rating from '../../Review/Rating';
 import ReviewsList from '../../Review/ReviewsCard';
 import ProductDetailsCard from '../Cards/ProductDetailsCard';
+
+const getProductReviews = async (productId) => {
+  const reviews = await api.reviews.getReviewsByProductId(productId);
+
+  return reviews;
+};
+
+const calcAvgRating = (reviews) =>
+  Math.round(
+    reviews
+      .map((review) => review.rating)
+      .reduce((sum, rating) => sum + rating, 0) / reviews.length
+  );
 
 const ProductInfoModal = ({
   closeAction,
@@ -12,6 +26,7 @@ const ProductInfoModal = ({
   isDisplayOnly = false,
 }) => {
   const [isShow, setIsShow] = useState(true);
+  const [reviews, setReviews] = useState([]);
 
   const handleClose = () => {
     setIsShow(false);
@@ -19,7 +34,17 @@ const ProductInfoModal = ({
     closeAction();
   };
 
-  const avgRating = 3; // TODO: Get from store
+  const initializeReviews = async () => {
+    const reviews = await getProductReviews(product._id);
+
+    setReviews(reviews);
+  };
+
+  useEffect(() => {
+    initializeReviews();
+  }, []);
+
+  const avgRating = calcAvgRating(reviews);
   const productDetails = getProductDetails(product);
 
   return (
@@ -36,7 +61,7 @@ const ProductInfoModal = ({
         <Row className='mx-1 d-flex justify-content-between'>
           <Col sm={8}>
             <Row style={{ height: '38em' }}>
-              <ReviewsList />
+              <ReviewsList product={product} reviews={reviews} />
             </Row>
           </Col>
 

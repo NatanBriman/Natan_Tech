@@ -21,9 +21,9 @@ export const isUsernameValid = (username) => {
 
 export const isNameValid = (name) => {
   const NAME_LENGTH = 4;
-  const MAX_USERNAME_LENGTH = 12;
+  const MAX_NAME_LENGTH = 12;
 
-  return isBetween(name.length, NAME_LENGTH, MAX_USERNAME_LENGTH);
+  return isBetween(name.length, NAME_LENGTH, MAX_NAME_LENGTH);
 };
 
 export const isDateValid = (date) => {
@@ -38,6 +38,13 @@ export const isThereEmptyField = (...fields) => {
   const emptyFields = fields.filter((field) => isEmpty(field));
   // TODO RamdaJs
   return !isEmpty(emptyFields);
+};
+
+export const isRatingValid = (rating) => {
+  const MIN_RATING = 0;
+  const MAX_RATING = 5;
+
+  return isBetween(rating, MIN_RATING, MAX_RATING);
 };
 
 export const handleGettingUser = async (
