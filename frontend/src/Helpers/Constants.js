@@ -108,6 +108,13 @@ export const REVIEW_CONTENT_INPUT_PROPS = {
   withHide: false,
 };
 
+export const REVIEWֹ_RATING_INPUT_PROPS = {
+  required: true,
+  type: 'number',
+  placeholder: '3',
+  withHide: false,
+};
+
 export const HOME_ROUTE = '/home';
 export const STORE_ROUTE = '/store';
 export const PROFILE_ROUTE = '/profile';

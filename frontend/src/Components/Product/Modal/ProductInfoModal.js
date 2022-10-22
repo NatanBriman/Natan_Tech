@@ -12,6 +12,13 @@ const getProductReviews = async (productId) => {
   return reviews;
 };
 
+const calcAvgRating = (reviews) =>
+  Math.round(
+    reviews
+      .map((review) => review.rating)
+      .reduce((sum, rating) => sum + rating, 0) / reviews.length
+  );
+
 const ProductInfoModal = ({
   closeAction,
   product,
@@ -37,11 +44,7 @@ const ProductInfoModal = ({
     initializeReviews();
   }, []);
 
-  const avgRating = Math.round(
-    reviews
-      .map((review) => review.rating)
-      .reduce((sum, rating) => sum + rating, 0) / reviews.length
-  );
+  const avgRating = calcAvgRating(reviews);
   const productDetails = getProductDetails(product);
 
   return (

@@ -1,10 +1,17 @@
 import { useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Container, Row, Card } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
 import { MdOutlineAddComment } from 'react-icons/md';
-import { showAlert } from '../../Helpers/Helpers';
-import { REVIEW_CONTENT_INPUT_PROPS } from '../../Helpers/Constants';
+import {
+  isRatingValid,
+  isThereEmptyField,
+  showAlert,
+} from '../../Helpers/Helpers';
+import {
+  REVIEW_CONTENT_INPUT_PROPS,
+  REVIEWֹ_RATING_INPUT_PROPS,
+} from '../../Helpers/Constants';
 import api from '../../Api/Api';
 import Review from './Review';
 import InputForm from '../Form/InputForm';
@@ -24,6 +31,7 @@ const ReviewsList = ({ product, reviews }) => {
   const user = useSelector((state) => state.user.user);
   const [isShowNewReview, setIsShowNewReview] = useState(false);
   const contentRef = useRef();
+  const ratingRef = useRef();
   const [error, setError] = useState('');
 
   const toggleModal = () => setIsShowNewReview((isShow) => !isShow);
@@ -36,24 +44,38 @@ const ReviewsList = ({ product, reviews }) => {
       validation: (content) => content.length > 1,
       key: 'content',
     },
+    {
+      inputValue: ratingRef,
+      invalidFeedback: 'הדירוג לא יכול להיות קטן מאפס או גדול מחמש',
+      label: 'דירוג',
+      inputProps: REVIEWֹ_RATING_INPUT_PROPS,
+      validation: isRatingValid,
+      key: 'rating',
+    },
   ];
 
   const newReview = {
     user,
     product,
-    rating: 3,
     date: new Date(),
+    rating: ratingRef.current?.value,
   };
-
   const isNoReviews = isEmpty(reviews);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const currentContent = contentRef.current.value;
+    const currentRating = ratingRef.current.value;
+    const nonEmptyValues = [currentContent, currentRating];
 
-    if (isEmpty(currentContent)) return setError('נא למלא את תוכן הביקורת');
+    if (isThereEmptyField(...nonEmptyValues))
+      return setError('נא למלא את כל השדות');
 
-    const review = { ...newReview, content: currentContent };
+    const review = {
+      ...newReview,
+      content: currentContent,
+      rating: currentRating,
+    };
 
     await addReview(review);
     toggleModal();
