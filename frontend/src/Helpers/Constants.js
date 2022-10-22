@@ -20,46 +20,54 @@ export const USERNAME_INPUT_PROPS = {
   required: true,
   type: 'text',
   placeholder: 'example_new',
+  withHide: true,
 };
 
 export const IMAGE_INPUT_PROPS = {
   type: 'image',
   placeholder: 'בחירת תמונת פרופיל',
+  withHide: false,
 };
 
 export const EMAIL_INPUT_PROPS = {
   required: true,
   type: 'email',
   placeholder: 'example@gmail.com',
+  withHide: true,
 };
 
 export const PASSWORD_INPUT_PROPS = {
   required: true,
   type: 'password',
   placeholder: 'Example1234',
+  withHide: true,
 };
 
 export const PRODUCT_NAME_INPUT_PROPS = {
   required: true,
   type: 'text',
   placeholder: 'New Product 2',
+  withHide: false,
 };
 
 export const PRODUCT_PRODUCTION_DATE_INPUT_PROPS = {
   required: true,
   type: 'date',
+  withHide: false,
 };
 
 export const PRODUCT_PRICE_INPUT_PROPS = {
   required: true,
   type: 'number',
   placeholder: '100',
+  withHide: false,
 };
 
 export const PRODUCT_UNITS_INPUT_PROPS = {
   required: true,
   type: 'number',
   placeholder: '250',
+  withHide: false,
 };
 
 export const PRODUCT_CATEGORY_INPUT_PROPS = {
@@ -67,6 +75,7 @@ export const PRODUCT_CATEGORY_INPUT_PROPS = {
   type: 'autocomplete',
   emptyLabel: 'אין קטגוריות כאלה',
   paginationText: '?עוד קטגוריות',
+  withHide: false,
 };
 
 export const PRODUCT_MANUFACTURER_INPUT_PROPS = {
@@ -74,18 +83,36 @@ export const PRODUCT_MANUFACTURER_INPUT_PROPS = {
   type: 'autocomplete',
   emptyLabel: 'אין יצרנים כאלה',
   paginationText: '?עוד יצרנים',
+  withHide: false,
 };
 
 export const CATEGORY_INPUT_PROPS = {
   required: true,
   type: 'text',
   placeholder: 'טלוויזיות חכמות',
+  withHide: false,
 };
 
 export const MANUFACTURER_INPUT_PROPS = {
   required: true,
   type: 'text',
   placeholder: 'נתן',
+  withHide: false,
+};
+
+export const REVIEW_CONTENT_INPUT_PROPS = {
+  required: true,
+  type: 'textarea',
+  placeholder: 'היה מעולה!!',
+  style: { backgroundColor: '#6c757d' },
+  withHide: false,
+};
+
+export const REVIEWֹ_RATING_INPUT_PROPS = {
+  required: true,
+  type: 'number',
+  placeholder: '3',
+  withHide: false,
 };
 
 export const HOME_ROUTE = '/home';

@@ -10,7 +10,9 @@ const InputField = ({
   invalidFeedback,
   validation,
 }) => {
-  const isPassword = inputProps.type === 'password';
+  const initialType = inputProps.type;
+  const isPassword = initialType === 'password';
+  const isTextArea = initialType === 'textarea';
   const [isValid, setIsValid] = useState(true);
   const [isShow, setIsShow] = useState(!isPassword);
 
@@ -39,19 +41,22 @@ const InputField = ({
       <InputGroup hasValidation>
         <Form.Control
           {...inputProps}
-          type={inputType}
+          type={initialType}
+          as={isTextArea ? initialType : 'input'}
           ref={inputValue}
           className={validationClass}
           onChange={handleChange}
         />
 
-        <Button
-          className='d-flex align-items-center border border-2 border-dark'
-          variant='outline-secondary'
-          onClick={toggleIsShow}
-        >
-          {showIcon}
-        </Button>
+        {inputProps.withHide && (
+          <Button
+            className='d-flex align-items-center border border-2 border-dark'
+            variant='outline-secondary'
+            onClick={toggleIsShow}
+          >
+            {showIcon}
+          </Button>
+        )}
 
         <Form.Control.Feedback type='invalid' className='mt-2'>
           <h5>{invalidFeedback}</h5>

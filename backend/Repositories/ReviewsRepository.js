@@ -5,10 +5,10 @@ const reviewsRepository = {
     return Review.find({});
   },
   findByProductId(productId) {
-    return Review.find({ product: { _id: productId } });
+    return Review.find({ 'product._id': productId });
   },
   findByUserId(userId) {
-    return Review.find({ user: { _id: userId } });
+    return Review.find({ 'user._id': userId });
   },
   save(review) {
     return review.save();

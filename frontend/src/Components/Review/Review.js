@@ -2,9 +2,7 @@ import { Card, Image, Ratio } from 'react-bootstrap';
 import { getDateString } from '../../Helpers/Helpers';
 import Rating from './Rating';
 
-const Review = ({ review }) => {
-  const avgRating = 3;
-
+const Review = ({ review, children }) => {
   return (
     <Card
       bg='secondary'
@@ -29,15 +27,19 @@ const Review = ({ review }) => {
           </Card.Title>
         </div>
 
-        <Card.Subtitle>{getDateString(review.date)}</Card.Subtitle>
+        <Card.Subtitle>{getDateString(new Date(review.date))}</Card.Subtitle>
       </Card.Header>
 
       <Card.Body dir='rtl'>
-        <article className='my-2'>{review.content}</article>
+        {!children ? (
+          <article className='my-2'>{review.content}</article>
+        ) : (
+          children
+        )}
       </Card.Body>
 
       <Card.Footer>
-        <Rating rating={avgRating} text='דירוג' />
+        <Rating rating={review.rating} text='דירוג' />
       </Card.Footer>
     </Card>
   );
