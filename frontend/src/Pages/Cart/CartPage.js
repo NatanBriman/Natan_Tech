@@ -3,19 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { BsCartCheck, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
-import { WEBSITE_BACKGROUND_COLOR } from '../../Helpers/Constants';
+import { showAlert } from '../../Helpers/Helpers';
 import { cartActions } from '../../Redux/Features/CartSlice';
 import api from '../../Api/Api';
 import DecisionModal from '../../Components/Utils/DecisionModal';
-import ActionButton from '../../Components/Utils/ActionButton';
+import ActionButton from '../../Components/Utils/Buttons/ActionButton';
 import ShoppingCart from './ShoppingCart';
 
 const addOrder = async (products, userId) => {
   try {
     await api.orders.addOrder(products, userId);
   } catch (error) {
-    // TODO Make swal alert that something went wrong
-    alert(error);
+    showAlert('error', 'משהו השתבש בביצוע ההזמנה');
   }
 };
 
@@ -32,29 +31,21 @@ const CartPage = () => {
 
     deleteAllProducts();
     toggleModal();
+    showAlert('success', 'ההזמנה התבצעה בהצלחה');
   };
 
-  const deleteProduct = (productId) => {
+  const deleteProduct = (product) => {
     const { removeProduct } = cartActions;
 
-    dispatch(removeProduct(productId));
+    dispatch(removeProduct(product));
   };
 
-  const deleteAllProducts = () =>
-    products.map((product) => deleteProduct(product._id));
+  const deleteAllProducts = () => products.map(deleteProduct);
 
   const isNoProducts = products.length === 0;
 
   return (
-    <Container
-      fluid
-      className='me-5 d-flex justify-content-center'
-      style={{
-        minHeight: '100vh',
-        width: '100%',
-        backgroundColor: WEBSITE_BACKGROUND_COLOR,
-      }}
-    >
+    <>
       <Container className='my-2' fluid style={{ height: '100%' }}>
         <Row>
           <ShoppingCart
@@ -68,6 +59,7 @@ const CartPage = () => {
           <Row>
             <Col className='d-flex justify-content-center align-items-center'>
               <ActionButton
+                color='success'
                 onClick={toggleModal}
                 text='מעבר לתשלום'
                 icon={<BsCartCheck />}
@@ -88,12 +80,17 @@ const CartPage = () => {
           onClick={handlePurchase}
           text='אישור תשלום'
           icon={<AiOutlineCheck />}
-          color='danger'
+          color='success'
         />
 
-        <ActionButton onClick={toggleModal} text='לא' icon={<BsArrowRight />} />
+        <ActionButton
+          color='danger'
+          onClick={toggleModal}
+          text='לא'
+          icon={<BsArrowRight />}
+        />
       </DecisionModal>
-    </Container>
+    </>
   );
 };
 

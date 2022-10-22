@@ -20,7 +20,7 @@ import {
 } from '../../Helpers/Constants';
 import { userActions } from '../../Redux/Features/UserSlice';
 import DecisionModal from '../Utils/DecisionModal';
-import ActionButton from '../Utils/ActionButton';
+import ActionButton from '../Utils/Buttons/ActionButton';
 
 const NavBar = () => {
   const dispatch = useDispatch();

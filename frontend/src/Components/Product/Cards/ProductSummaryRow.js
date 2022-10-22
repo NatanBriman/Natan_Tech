@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, Row, Ratio, Image, Col } from 'react-bootstrap';
 import { QuantityProvider } from '../../../Pages/QuantityContext';
-import ValueCard from '../../Utils/ValueCard';
+import ValueBox from '../../Utils/Information/ValueBox';
 import { FavoriteButton } from '../Buttons';
 import ProductButtons from '../Buttons/ProductButtons';
 import ProductInfoModal from '../Modal/ProductInfoModal';
@@ -18,7 +18,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
     <QuantityProvider value={[currentQuantity, setCurrentQuantity]}>
       <Card
         bg='secondary'
-        className='clickable shadow border border-2 border-primary'
+        className='clickable shadow border border-2 border-info'
       >
         <Row>
           <Col sm={2} onClick={toggleModal}>
@@ -27,7 +27,7 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
             </Ratio>
           </Col>
 
-          <Col sm={6} className='px-0' onClick={toggleModal}>
+          <Col sm={4} className='px-0' onClick={toggleModal}>
             <Card.Body className='p-1 text-start'>
               <Card.Title as='h1'>
                 <b>{product.name}</b>
@@ -41,26 +41,27 @@ const ProductSummaryRow = ({ product, isDisplayOnly = false }) => {
             </Card.Body>
           </Col>
 
-          <Col
-            sm={4}
-            className='d-flex justify-content-around align-items-center'
-          >
+          <Col sm={6} className='d-flex align-items-center'>
             <Row
               className='me-1 d-flex justify-content-between'
               style={{ width: '100%' }}
             >
-              {!isDisplayOnly && (
+              {isDisplayOnly ? (
+                <Col sm={2}>
+                  <ValueBox text={product.quantity} color='info' />
+                </Col>
+              ) : (
                 <Col>
                   <ProductButtons product={product} isPurchaseButton={false} />
                 </Col>
               )}
 
               <Col sm={5} onClick={toggleModal}>
-                <ValueCard text={`${currentPrice.toLocaleString()}$`} />
+                <ValueBox text={`${currentPrice.toLocaleString()}$`} />
               </Col>
 
               {isDisplayOnly && (
-                <Col sm={4}>
+                <Col sm={5}>
                   <FavoriteButton product={product} />
                 </Col>
               )}

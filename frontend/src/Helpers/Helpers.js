@@ -1,4 +1,7 @@
 import { groupBy, get, isEmpty } from 'lodash';
+import { toast } from 'react-toastify';
+import ManagerProtectedRoute from '../Router/ProtectedRoutes/ManagerProtectedRoute';
+import UserProtectedRoute from '../Router/ProtectedRoutes/UserProtectedRoute';
 
 export const isBetween = (value, min, max) => value >= min && value <= max;
 
@@ -16,10 +19,32 @@ export const isUsernameValid = (username) => {
   return isBetween(username.length, MIN_USERNAME_LENGTH, MAX_USERNAME_LENGTH);
 };
 
+export const isNameValid = (name) => {
+  const NAME_LENGTH = 4;
+  const MAX_NAME_LENGTH = 12;
+
+  return isBetween(name.length, NAME_LENGTH, MAX_NAME_LENGTH);
+};
+
+export const isDateValid = (date) => {
+  const now = new Date();
+
+  return new Date(date) < now;
+};
+
+export const isNumberPositive = (number) => number > 0;
+
 export const isThereEmptyField = (...fields) => {
   const emptyFields = fields.filter((field) => isEmpty(field));
   // TODO RamdaJs
   return !isEmpty(emptyFields);
+};
+
+export const isRatingValid = (rating) => {
+  const MIN_RATING = 0;
+  const MAX_RATING = 5;
+
+  return isBetween(rating, MIN_RATING, MAX_RATING);
 };
 
 export const handleGettingUser = async (
@@ -79,3 +104,21 @@ export const createSection = (name, items, productProperty) => {
     section: formatItemsByProperty(items, productProperty),
   };
 };
+
+export const showAlert = (type, message) => toast(message, { type });
+
+export const protectRoutes = (routes) =>
+  routes.map((route) => {
+    return {
+      ...route,
+      element: route.isManager ? (
+        <UserProtectedRoute>
+          <ManagerProtectedRoute>{route.element}</ManagerProtectedRoute>
+        </UserProtectedRoute>
+      ) : route.public ? (
+        route.element
+      ) : (
+        <UserProtectedRoute>{route.element}</UserProtectedRoute>
+      ),
+    };
+  });

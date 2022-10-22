@@ -3,7 +3,7 @@ import Product, { productSchema } from './Product.js';
 import { DEFAULT_USER_IMAGE_URL } from '../Helpers/Constants.js';
 import isEmail from 'validator/lib/isEmail.js';
 
-const userSchema = new Schema({
+export const userSchema = new Schema({
   username: {
     type: String,
     required: true,

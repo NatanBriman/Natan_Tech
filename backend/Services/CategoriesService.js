@@ -1,4 +1,4 @@
-import Category from '../Models/Category';
+import Category from '../Models/Category.js';
 import categoriesRepository from '../Repositories/CategoriesRepository.js';
 
 const categoriesService = {

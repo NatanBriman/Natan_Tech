@@ -1,6 +1,6 @@
 import { Card, Col, Container } from 'react-bootstrap';
 import ItemsList from './ItemsList';
-import ValueCard from './ValueCard';
+import ValueBox from './ValueBox';
 
 const ItemsContainer = ({
   items,
@@ -30,7 +30,7 @@ const ItemsContainer = ({
         >
           {!!itemsLength && isShowLength && (
             <Col sm={2}>
-              <ValueCard text={itemsLength} color='info' />
+              <ValueBox text={itemsLength} color='info' />
             </Col>
           )}
 

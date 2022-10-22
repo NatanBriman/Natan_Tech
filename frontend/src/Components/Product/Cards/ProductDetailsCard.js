@@ -1,5 +1,5 @@
 import { Card, Col, Container, Image, Ratio, Row } from 'react-bootstrap';
-import DetailRow from '../../Utils/DetailRow';
+import DetailRow from '../../Utils/Information/DetailRow';
 import ProductButtons from '../Buttons/ProductButtons';
 
 const ProductDetailsCard = ({
@@ -11,7 +11,7 @@ const ProductDetailsCard = ({
   return (
     <Card
       bg='secondary'
-      className='p-0 shadow mb-2 border border-2 border-primary'
+      className='p-0 shadow mb-2 border border-2 border-info'
     >
       <Card.Header>
         <Row>

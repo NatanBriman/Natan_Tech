@@ -25,6 +25,7 @@ productsController.post('/add', async (req, res, next) => {
 
     res.status(200).send(`Product ${product.name} saved successfully`);
   } catch (error) {
+    console.log(error.message);
     res
       .status(404)
       .send(`Something went wrong with saving the product ${product.name}`);

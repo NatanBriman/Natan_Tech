@@ -33,6 +33,9 @@ const usersService = {
 
     return usersRepository.addFavoriteProduct(userId, productId);
   },
+  addManagerRoleToUser(userId) {
+    return usersRepository.addManager(userId);
+  },
 };
 
 export default usersService;
