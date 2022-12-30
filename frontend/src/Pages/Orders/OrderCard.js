@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Card, Col, Collapse, Row } from 'react-bootstrap';
 import { AiOutlineDown } from 'react-icons/ai';
-import { getDateString } from '../../Helpers/Helpers';
-import { QR_CODE_LINK } from '../../Helpers/Constants';
 import QRCode from 'react-qr-code';
-import ValueBox from '../../Components/Utils/Information/ValueBox';
 import ProductSummaryRow from '../../Components/Product/Cards/ProductSummaryRow';
+import ValueBox from '../../Components/Utils/Information/ValueBox';
+import { QR_CODE_LINK } from '../../Helpers/Constants';
+import { getDateString } from '../../Helpers/Helpers';
 
 const OrderCard = ({ order }) => {
   const [isShowDetails, setIsShowDetails] = useState(false);
@@ -33,10 +33,7 @@ const OrderCard = ({ order }) => {
 
         <Col sm={3}>
           <Col>
-            <ValueBox
-              text={<bdi>{order.products.length} מוצרים</bdi>}
-              color='info'
-            />
+            <ValueBox text={<bdi>{order.products.length} מוצרים</bdi>} color='info' />
           </Col>
         </Col>
 
@@ -60,12 +57,7 @@ const OrderCard = ({ order }) => {
         </Col>
       </Row>
 
-      <Collapse
-        in={isShowDetails}
-        mountOnEnter
-        unmountOnExit
-        onClick={toggleShowDetails}
-      >
+      <Collapse in={isShowDetails} mountOnEnter unmountOnExit onClick={toggleShowDetails}>
         <Card.Body style={{ width: '100%' }}>
           {order.products.map((product) => (
             <Row className='mb-3' key={product._id}>
