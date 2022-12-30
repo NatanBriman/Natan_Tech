@@ -1,12 +1,12 @@
-import { IoStorefrontSharp } from 'react-icons/io5';
 import { BsCartFill, BsStarFill } from 'react-icons/bs';
 import { GrUserAdmin } from 'react-icons/gr';
+import { IoStorefrontSharp } from 'react-icons/io5';
 import { VscHistory } from 'react-icons/vsc';
-import StorePage from '../Pages/Store/StorePage';
 import CartPage from '../Pages/Cart/CartPage';
-import OrdersPage from '../Pages/Orders/OrdersPage';
 import FavoriteProductsPage from '../Pages/Favorite/FavoriteProductsPage';
 import ManagerPage from '../Pages/Manager/ManagerPage';
+import OrdersPage from '../Pages/Orders/OrdersPage';
+import StorePage from '../Pages/Store/StorePage';
 
 export const WEBSITE_TITLE = 'נתן טכנולוגיות';
 export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות הטכנולוגיה';
@@ -169,3 +169,12 @@ export const ROUTES = [
     public: false,
   },
 ];
+
+export const LOCAL_STORAGE_KEYS = {
+  users: 'USERS',
+  products: 'PRODUCTS',
+  orders: 'ORDERS',
+  manufacturers: 'MANUFACTURERS',
+  categories: 'CATEGORIES',
+  reviews: 'REVIEWS',
+};

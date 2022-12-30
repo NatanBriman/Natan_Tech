@@ -1,15 +1,10 @@
-import { useDispatch } from 'react-redux';
 import { Button, Col } from 'react-bootstrap';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-import { cartActions } from '../../../Redux/Features/CartSlice';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import { showAlert } from '../../../Helpers/Helpers';
+import { cartActions } from '../../../Redux/Features/CartSlice';
 
-const QuantityButtons = ({
-  product,
-  currentQuantity,
-  setCurrentQuantity,
-  isChangeCart,
-}) => {
+const QuantityButtons = ({ product, currentQuantity, setCurrentQuantity, isChangeCart }) => {
   const dispatch = useDispatch();
 
   const handleQuantityChange = (quantity) => {

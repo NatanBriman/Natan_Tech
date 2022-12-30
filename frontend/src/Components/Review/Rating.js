@@ -7,11 +7,7 @@ const Rating = ({ rating, text }) => {
     <Row className='d-flex justify-content-between align-items-center'>
       <Col>
         {[...Array(MAX_RATING)].map((star, index) => (
-          <BsStarFill
-            className='me-2'
-            key={index}
-            color={index < rating ? 'yellow' : 'black'}
-          />
+          <BsStarFill className='me-2' key={index} color={index < rating ? 'yellow' : 'black'} />
         ))}
       </Col>
 

@@ -1,47 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { Container } from 'react-bootstrap';
-import { isEmpty } from 'lodash';
-import { createSection } from '../../Helpers/Helpers';
 import api from '../../Api/Api';
+import { LOCAL_STORAGE_KEYS } from '../../Helpers/Constants';
+import { createSection } from '../../Helpers/Helpers';
+import useLocalStorageFromAPI from '../../Hooks/useLocalStorageFromAPI';
 import Section from './Section';
 
-const getAllProducts = async () => {
-  const products = await api.products.getAllProducts();
-
-  return products;
-};
-
 const StorePage = () => {
-  const [products, setProducts] = useState([]);
-  const [sections, setSections] = useState([]);
+  const [p, ..._] = useLocalStorageFromAPI(
+    [],
+    api.products.getAllProducts,
+    LOCAL_STORAGE_KEYS.products
+  );
 
-  const initializeProducts = async () => {
-    const products = await getAllProducts();
+  const sections = useMemo(() => {
+    const categorySection = createSection('קטגוריות', p, 'category.name');
+    const manufacturerSection = createSection('יצרנים', p, 'manufacturer.name');
 
-    setProducts(products);
-  };
-
-  useEffect(() => {
-    initializeProducts();
-  }, []);
-
-  useEffect(() => {
-    if (!isEmpty(products)) {
-      const categorySection = createSection(
-        'קטגוריות',
-        products,
-        'category.name'
-      );
-
-      const manufacturerSection = createSection(
-        'יצרנים',
-        products,
-        'manufacturer.name'
-      );
-
-      setSections((prev) => [...prev, categorySection, manufacturerSection]);
-    }
-  }, [products]);
+    return [categorySection, manufacturerSection];
+  }, [p]);
 
   return (
     <Container fluid className='mt-3'>

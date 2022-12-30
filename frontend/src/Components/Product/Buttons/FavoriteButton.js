@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import { BsStarFill, BsStar } from 'react-icons/bs';
-import { userActions } from '../../../Redux/Features/UserSlice';
-import { showAlert } from '../../../Helpers/Helpers';
+import { BsStar, BsStarFill } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../Api/Api';
+import { showAlert } from '../../../Helpers/Helpers';
+import { userActions } from '../../../Redux/Features/UserSlice';
 
 const toggleProductInFavorites = async (userId, productId) => {
   try {

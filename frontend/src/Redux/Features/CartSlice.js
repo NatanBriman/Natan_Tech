@@ -4,9 +4,7 @@ import { showAlert } from '../../Helpers/Helpers';
 const byId =
   (productToFind, equal = true) =>
   (product) =>
-    equal
-      ? product._id === productToFind._id
-      : product._id !== productToFind._id;
+    equal ? product._id === productToFind._id : product._id !== productToFind._id;
 
 const findProductInCart = (cart, productToFind) => {
   const productInCart = cart.find(byId(productToFind));
@@ -14,8 +12,7 @@ const findProductInCart = (cart, productToFind) => {
   return productInCart;
 };
 
-const isQuantityChangePossible = (product, quantity) =>
-  quantity <= product.unitsInStock;
+const isQuantityChangePossible = (product, quantity) => quantity <= product.unitsInStock;
 
 const cartSlice = createSlice({
   name: 'CartSlice',
@@ -30,10 +27,7 @@ const cartSlice = createSlice({
 
       if (!productInCart) state.products.push(productToAdd);
       else if (
-        isQuantityChangePossible(
-          productInCart,
-          productInCart.quantity + productToAdd.quantity
-        )
+        isQuantityChangePossible(productInCart, productInCart.quantity + productToAdd.quantity)
       )
         productInCart.quantity += productToAdd.quantity;
       else showAlert('warning', 'לא ניתן להוסיף עוד מהמוצר');
@@ -41,9 +35,7 @@ const cartSlice = createSlice({
     removeProduct: (state, action) => {
       const productToRemove = action.payload;
 
-      const updatedProducts = state.products.filter(
-        byId(productToRemove, false)
-      );
+      const updatedProducts = state.products.filter(byId(productToRemove, false));
 
       state.products = updatedProducts;
     },

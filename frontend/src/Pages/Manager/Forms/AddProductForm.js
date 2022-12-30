@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import api from '../../../Api/Api';
+import InputForm from '../../../Components/Form/InputForm';
 import {
   IMAGE_INPUT_PROPS,
   PRODUCT_CATEGORY_INPUT_PROPS,
@@ -15,8 +17,6 @@ import {
   isThereEmptyField,
   showAlert,
 } from '../../../Helpers/Helpers';
-import api from '../../../Api/Api';
-import InputForm from '../../../Components/Form/InputForm';
 
 const getAllCategories = async () => {
   try {
@@ -113,8 +113,7 @@ const AddProductForm = () => {
       currentUnits,
     ];
 
-    if (isThereEmptyField(...nonEmptyValues))
-      return setError('כל השדות חייבים להיות מלאים');
+    if (isThereEmptyField(...nonEmptyValues)) return setError('כל השדות חייבים להיות מלאים');
 
     const product = createProduct(...nonEmptyValues, image ? image : undefined);
 
