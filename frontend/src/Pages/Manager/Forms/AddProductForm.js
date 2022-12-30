@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import api from '../../../Api/Api';
 import InputForm from '../../../Components/Form/InputForm';
 import {
   IMAGE_INPUT_PROPS,
+  LOCAL_STORAGE_KEYS,
   PRODUCT_CATEGORY_INPUT_PROPS,
   PRODUCT_MANUFACTURER_INPUT_PROPS,
   PRODUCT_NAME_INPUT_PROPS,
@@ -17,26 +18,7 @@ import {
   isThereEmptyField,
   showAlert,
 } from '../../../Helpers/Helpers';
-
-const getAllCategories = async () => {
-  try {
-    const categories = await api.categories.getAllCategories();
-
-    return categories;
-  } catch (error) {
-    showAlert('error', 'קרתה שגיאה בקבלת הקטגוריות');
-  }
-};
-
-const getAllManufacturers = async () => {
-  try {
-    const manufacturers = await api.manufacturers.getAllManufacturers();
-
-    return manufacturers;
-  } catch (error) {
-    showAlert('error', 'קרתה שגיאה בקבלת היצרנים');
-  }
-};
+import useLocalStorageFromAPI from '../../../Hooks/useLocalStorageFromAPI';
 
 const addProduct = async (product) => {
   try {
@@ -76,25 +58,16 @@ const AddProductForm = () => {
   const [image, setImage] = useState('');
 
   const [error, setError] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [manufacturers, setManufacturers] = useState([]);
-
-  const initializeCategories = async () => {
-    const categories = await getAllCategories();
-
-    setCategories(categories);
-  };
-
-  const initializeManufacturers = async () => {
-    const manufacturers = await getAllManufacturers();
-
-    setManufacturers(manufacturers);
-  };
-
-  useEffect(() => {
-    initializeCategories();
-    initializeManufacturers();
-  }, []);
+  const [categories, ..._] = useLocalStorageFromAPI(
+    [],
+    api.categories.getAllCategories,
+    LOCAL_STORAGE_KEYS.categories
+  );
+  const [manufacturers, ..._1] = useLocalStorageFromAPI(
+    [],
+    api.manufacturers.getAllManufacturers,
+    LOCAL_STORAGE_KEYS.manufacturers
+  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();

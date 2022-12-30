@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Card, Col, Container, Modal, Row } from 'react-bootstrap';
 import api from '../../../Api/Api';
 import { getProductDetails } from '../../../Helpers/Helpers';
@@ -42,8 +42,8 @@ const ProductInfoModal = ({
     initializeReviews();
   }, []);
 
-  const avgRating = calcAvgRating(reviews);
-  const productDetails = getProductDetails(product);
+  const avgRating = useMemo(() => calcAvgRating(reviews), [reviews]);
+  const productDetails = useMemo(() => getProductDetails(product), [product]);
 
   return (
     <Modal onHide={handleClose} backdrop='static' size='xl' centered show={isShow}>

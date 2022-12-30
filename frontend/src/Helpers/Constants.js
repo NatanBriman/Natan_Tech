@@ -118,11 +118,9 @@ export const LITTLE_IN_STOCK = 5;
 export const MAX_RATING = 5;
 
 export const LOCAL_STORAGE_KEYS = {
-  users: 'USERS',
   connectedUser: 'CONNECTED_USER',
   products: 'PRODUCTS',
   orders: 'ORDERS',
   manufacturers: 'MANUFACTURERS',
   categories: 'CATEGORIES',
-  reviews: 'REVIEWS',
 };

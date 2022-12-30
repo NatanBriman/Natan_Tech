@@ -1,16 +1,16 @@
 import { useMemo } from 'react';
 import useDataFromAPI from './useDataFromAPI';
 
-const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key) => {
+const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key, parameters) => {
   const valueInLocalStorage = localStorage.getItem(key);
   const initialValueFromLocalStorage = valueInLocalStorage
     ? JSON.parse(valueInLocalStorage)
     : initialValue;
 
-  const initializeValueInLocalStorage = async () => {
+  const initializeValueInLocalStorage = async (parameters) => {
     if (valueInLocalStorage) return initialValueFromLocalStorage;
 
-    const data = await requestDataFromAPI();
+    const data = await requestDataFromAPI(parameters);
     localStorage.setItem(key, JSON.stringify(data));
 
     return data;
@@ -18,7 +18,8 @@ const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key) => {
 
   const [data, setData, isLoading] = useDataFromAPI(
     initialValueFromLocalStorage,
-    initializeValueInLocalStorage
+    initializeValueInLocalStorage,
+    parameters
   );
 
   useMemo(() => {

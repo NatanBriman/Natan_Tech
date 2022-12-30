@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 
-const initializeDataFromAPI = async (requestDataFromAPI, callback) => {
-  const data = await requestDataFromAPI();
+const initializeDataFromAPI = async (requestDataFromAPI, callback, parameters) => {
+  const data = await requestDataFromAPI(parameters);
 
   callback(data);
 };
 
-const useDataFromAPI = (initialValue, requestDataFromAPI) => {
+const useDataFromAPI = (initialValue, requestDataFromAPI, parameters) => {
   const [data, setData] = useState(initialValue);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +16,7 @@ const useDataFromAPI = (initialValue, requestDataFromAPI) => {
     setIsLoading(false);
   };
 
-  useMemo(() => initializeDataFromAPI(requestDataFromAPI, handleReceivingData), []);
+  useMemo(() => initializeDataFromAPI(requestDataFromAPI, handleReceivingData, parameters), []);
 
   return [data, setData, isLoading];
 };
