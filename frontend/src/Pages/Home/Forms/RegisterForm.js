@@ -1,14 +1,10 @@
+import { isEmpty } from 'lodash';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
-import { userActions } from '../../../Redux/Features/UserSlice';
-import {
-  isPasswordValid,
-  isThereEmptyField,
-  handleGettingUser,
-  isUsernameValid,
-} from '../../../Helpers/Helpers';
+import api from '../../../Api/Api';
+import InputForm from '../../../Components/Form/InputForm';
 import {
   EMAIL_INPUT_PROPS,
   IMAGE_INPUT_PROPS,
@@ -16,9 +12,13 @@ import {
   STORE_ROUTE,
   USERNAME_INPUT_PROPS,
 } from '../../../Helpers/Constants';
-import api from '../../../Api/Api';
-import InputForm from '../../../Components/Form/InputForm';
-import { isEmpty } from 'lodash';
+import {
+  handleGettingUser,
+  isPasswordValid,
+  isThereEmptyField,
+  isUsernameValid,
+} from '../../../Helpers/Helpers';
+import { userActions } from '../../../Redux/Features/User/UserSlice';
 
 const registerUser = async (username, email, password, image) => {
   const user = await api.users.registerUser({
@@ -57,8 +57,7 @@ const RegisterForm = () => {
 
     const currentValues = [currentUsername, currentEmail, currentPassword];
 
-    if (isThereEmptyField(...currentValues))
-      return setError('כל השדות חייבים להיות מלאים');
+    if (isThereEmptyField(...currentValues)) return setError('כל השדות חייבים להיות מלאים');
 
     const registerUserByCurrentValues = () =>
       registerUser(...currentValues, !isEmpty(image) ? image : undefined);

@@ -1,20 +1,20 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userActions } from '../../../Redux/Features/UserSlice';
-import {
-  isPasswordValid,
-  isThereEmptyField,
-  handleGettingUser,
-  isUsernameValid,
-} from '../../../Helpers/Helpers';
+import api from '../../../Api/Api';
+import InputForm from '../../../Components/Form/InputForm';
 import {
   PASSWORD_INPUT_PROPS,
   STORE_ROUTE,
   USERNAME_INPUT_PROPS,
 } from '../../../Helpers/Constants';
-import api from '../../../Api/Api';
-import InputForm from '../../../Components/Form/InputForm';
+import {
+  handleGettingUser,
+  isPasswordValid,
+  isThereEmptyField,
+  isUsernameValid,
+} from '../../../Helpers/Helpers';
+import { userActions } from '../../../Redux/Features/User/UserSlice';
 
 const loginUser = async (username, password) => {
   const user = await api.users.loginUser(username, password);
@@ -47,8 +47,7 @@ const LoginForm = () => {
     if (isThereEmptyField(currentUsername, currentPassword))
       return setError('כל השדות חייבים להיות מלאים');
 
-    const getUserByCurrentValues = () =>
-      loginUser(currentUsername, currentPassword);
+    const getUserByCurrentValues = () => loginUser(currentUsername, currentPassword);
 
     handleGettingUser(getUserByCurrentValues, handleUser, handleError);
   };

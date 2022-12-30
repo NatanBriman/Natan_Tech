@@ -1,26 +1,18 @@
 import { useState } from 'react';
+import { Button, Col, Container, Image, Navbar, Ratio, Row } from 'react-bootstrap';
+import { BsArrowRight } from 'react-icons/bs';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  Button,
-  Col,
-  Container,
-  Image,
-  Navbar,
-  Ratio,
-  Row,
-} from 'react-bootstrap';
-import { RiLogoutBoxLine } from 'react-icons/ri';
-import { BsArrowRight } from 'react-icons/bs';
 import {
   HOME_ROUTE,
   NAVBAR_BACKGROUND_COLOR,
   STORE_ROUTE,
   WEBSITE_TITLE,
 } from '../../Helpers/Constants';
-import { userActions } from '../../Redux/Features/UserSlice';
-import DecisionModal from '../Utils/DecisionModal';
+import { userActions } from '../../Redux/Features/User/UserSlice';
 import ActionButton from '../Utils/Buttons/ActionButton';
+import DecisionModal from '../Utils/DecisionModal';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -81,10 +73,7 @@ const NavBar = () => {
           >
             <h3 className='display-6 me-3'>{WEBSITE_TITLE}</h3>
 
-            <Ratio
-              style={{ height: '3rem', width: '4rem' }}
-              className='rounded'
-            >
+            <Ratio style={{ height: '3rem', width: '4rem' }} className='rounded'>
               <img alt='Tech Icon' src='Assets/Tech Icon.png' />
             </Ratio>
           </Link>
@@ -103,11 +92,7 @@ const NavBar = () => {
           color='danger'
         />
 
-        <ActionButton
-          onClick={toggleLogoutModal}
-          text='לא'
-          icon={<BsArrowRight />}
-        />
+        <ActionButton onClick={toggleLogoutModal} text='לא' icon={<BsArrowRight />} />
       </DecisionModal>
     </>
   );

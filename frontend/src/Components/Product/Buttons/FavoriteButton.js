@@ -4,7 +4,7 @@ import { BsStar, BsStarFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../Api/Api';
 import { showAlert } from '../../../Helpers/Helpers';
-import { userActions } from '../../../Redux/Features/UserSlice';
+import { userActions } from '../../../Redux/Features/User/UserSlice';
 
 const toggleProductInFavorites = async (userId, productId) => {
   try {
