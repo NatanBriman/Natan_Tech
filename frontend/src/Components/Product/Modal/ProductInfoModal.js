@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Container, Modal, Col, Row, Card } from 'react-bootstrap';
+import { useEffect, useMemo, useState } from 'react';
+import { Card, Col, Container, Modal, Row } from 'react-bootstrap';
 import api from '../../../Api/Api';
 import { getProductDetails } from '../../../Helpers/Helpers';
 import Rating from '../../Review/Rating';
@@ -14,9 +14,7 @@ const getProductReviews = async (productId) => {
 
 const calcAvgRating = (reviews) =>
   Math.round(
-    reviews
-      .map((review) => review.rating)
-      .reduce((sum, rating) => sum + rating, 0) / reviews.length
+    reviews.map((review) => review.rating).reduce((sum, rating) => sum + rating, 0) / reviews.length
   );
 
 const ProductInfoModal = ({
@@ -44,17 +42,11 @@ const ProductInfoModal = ({
     initializeReviews();
   }, []);
 
-  const avgRating = calcAvgRating(reviews);
-  const productDetails = getProductDetails(product);
+  const avgRating = useMemo(() => calcAvgRating(reviews), [reviews]);
+  const productDetails = useMemo(() => getProductDetails(product), [product]);
 
   return (
-    <Modal
-      onHide={handleClose}
-      backdrop='static'
-      size='xl'
-      centered
-      show={isShow}
-    >
+    <Modal onHide={handleClose} backdrop='static' size='xl' centered show={isShow}>
       <Modal.Header closeButton />
 
       <Container className='my-2'>

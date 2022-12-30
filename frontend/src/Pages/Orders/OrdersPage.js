@@ -1,29 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import api from '../../Api/Api';
 import ItemsContainer from '../../Components/Utils/Information/ItemsContainer';
+import { LOCAL_STORAGE_KEYS } from '../../Helpers/Constants';
+import useLocalStorageFromAPI from '../../Hooks/useLocalStorageFromAPI';
+import { userSelector } from '../../Redux/Features/User/UserSlice';
 import OrderCard from './OrderCard';
 
-const getOrdersByUser = async (userId) => {
-  const orders = await api.orders.getOrdersByUser(userId);
-
-  return orders;
-};
-
 const OrdersPage = () => {
-  const { _id } = useSelector((state) => state.user.user);
-  const [orders, setOrders] = useState([]);
-
-  const initializeOrders = async () => {
-    const orders = await getOrdersByUser(_id);
-
-    setOrders(orders);
-  };
-
-  useEffect(() => {
-    initializeOrders();
-  }, []);
+  const { _id } = useSelector(userSelector);
+  const [orders, ..._] = useLocalStorageFromAPI(
+    [],
+    api.orders.getOrdersByUser,
+    LOCAL_STORAGE_KEYS.orders,
+    _id
+  );
 
   return (
     <Container className='mb-2' fluid style={{ height: '100%' }}>

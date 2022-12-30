@@ -4,14 +4,8 @@ import Rating from './Rating';
 
 const Review = ({ review, children }) => {
   return (
-    <Card
-      bg='secondary'
-      className='p-0 shadow mb-4 me-2 border border-2 border-info'
-    >
-      <Card.Header
-        dir='rtl'
-        className='d-flex align-items-center justify-content-between'
-      >
+    <Card bg='secondary' className='p-0 shadow mb-4 me-2 border border-2 border-info'>
+      <Card.Header dir='rtl' className='d-flex align-items-center justify-content-between'>
         <div className='d-flex align-items-center justify-content-start'>
           <Ratio style={{ height: '4em', width: '4em' }}>
             <Image
@@ -31,11 +25,7 @@ const Review = ({ review, children }) => {
       </Card.Header>
 
       <Card.Body dir='rtl'>
-        {!children ? (
-          <article className='my-2'>{review.content}</article>
-        ) : (
-          children
-        )}
+        {!children ? <article className='my-2'>{review.content}</article> : children}
       </Card.Body>
 
       <Card.Footer>

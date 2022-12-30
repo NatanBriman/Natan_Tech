@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { QuantityProvider } from '../../../Pages/QuantityContext';
 import { Card, Image, Ratio } from 'react-bootstrap';
 import { LITTLE_IN_STOCK } from '../../../Helpers/Constants';
-import ProductInfoModal from '../Modal/ProductInfoModal';
+import { QuantityProvider } from '../../../Pages/QuantityContext';
 import ProductButtons from '../Buttons/ProductButtons';
+import ProductInfoModal from '../Modal/ProductInfoModal';
 
 const ProductDisplayCard = ({
   item,
@@ -33,11 +33,7 @@ const ProductDisplayCard = ({
           {isLeftLittleInStock && (
             <Card.ImgOverlay className='p-0' style={{ height: '50%' }}>
               <Ratio>
-                <Image
-                  rounded
-                  src='Assets/Limited Stock.png'
-                  alt='Limited Stock'
-                />
+                <Image rounded src='Assets/Limited Stock.png' alt='Limited Stock' />
               </Ratio>
             </Card.ImgOverlay>
           )}

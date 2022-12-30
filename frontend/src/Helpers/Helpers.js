@@ -1,4 +1,4 @@
-import { groupBy, get, isEmpty } from 'lodash';
+import { get, groupBy, isEmpty } from 'lodash';
 import { toast } from 'react-toastify';
 import ManagerProtectedRoute from '../Router/ProtectedRoutes/ManagerProtectedRoute';
 import UserProtectedRoute from '../Router/ProtectedRoutes/UserProtectedRoute';
@@ -47,11 +47,7 @@ export const isRatingValid = (rating) => {
   return isBetween(rating, MIN_RATING, MAX_RATING);
 };
 
-export const handleGettingUser = async (
-  getUser,
-  handleSuccess,
-  handleError
-) => {
+export const handleGettingUser = async (getUser, handleSuccess, handleError) => {
   try {
     const user = await getUser();
 
@@ -122,3 +118,9 @@ export const protectRoutes = (routes) =>
       ),
     };
   });
+
+export const filterByNotId = (array, id, idPath = 'id') =>
+  array.filter((item) => item[idPath] !== id);
+export const filterById = (array, id, idPath = 'id') => array.filter((item) => item[idPath] === id);
+export const findById = (array, id) => array.find((item) => item.id === id);
+export const getExtendedArray = (array, item) => [...array, item];

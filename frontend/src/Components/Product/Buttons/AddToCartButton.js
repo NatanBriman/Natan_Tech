@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { BsFillCartPlusFill } from 'react-icons/bs';
-import { cartActions } from '../../../Redux/Features/CartSlice';
+import { useDispatch } from 'react-redux';
 import { showAlert } from '../../../Helpers/Helpers';
+import { cartActions } from '../../../Redux/Features/CartSlice';
 
 const AddToCartButton = ({ product, currentQuantity }) => {
   const dispatch = useDispatch();

@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Container, Row, Col } from 'react-bootstrap';
-import { BsCartCheck, BsArrowRight } from 'react-icons/bs';
+import { Col, Container, Row } from 'react-bootstrap';
 import { AiOutlineCheck } from 'react-icons/ai';
+import { BsArrowRight, BsCartCheck } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import api from '../../Api/Api';
+import ActionButton from '../../Components/Utils/Buttons/ActionButton';
+import DecisionModal from '../../Components/Utils/DecisionModal';
 import { showAlert } from '../../Helpers/Helpers';
 import { cartActions } from '../../Redux/Features/CartSlice';
-import api from '../../Api/Api';
-import DecisionModal from '../../Components/Utils/DecisionModal';
-import ActionButton from '../../Components/Utils/Buttons/ActionButton';
 import ShoppingCart from './ShoppingCart';
 
 const addOrder = async (products, userId) => {
@@ -71,11 +71,7 @@ const CartPage = () => {
         )}
       </Container>
 
-      <DecisionModal
-        isShow={isShowPurchaseModal}
-        closeAction={toggleModal}
-        text='תשלום'
-      >
+      <DecisionModal isShow={isShowPurchaseModal} closeAction={toggleModal} text='תשלום'>
         <ActionButton
           onClick={handlePurchase}
           text='אישור תשלום'
@@ -83,12 +79,7 @@ const CartPage = () => {
           color='success'
         />
 
-        <ActionButton
-          color='danger'
-          onClick={toggleModal}
-          text='לא'
-          icon={<BsArrowRight />}
-        />
+        <ActionButton color='danger' onClick={toggleModal} text='לא' icon={<BsArrowRight />} />
       </DecisionModal>
     </>
   );

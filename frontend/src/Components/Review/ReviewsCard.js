@@ -1,21 +1,14 @@
-import { useSelector } from 'react-redux';
-import { useRef, useState } from 'react';
-import { Container, Row, Card } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
+import { useRef, useState } from 'react';
+import { Card, Container, Row } from 'react-bootstrap';
 import { MdOutlineAddComment } from 'react-icons/md';
-import {
-  isRatingValid,
-  isThereEmptyField,
-  showAlert,
-} from '../../Helpers/Helpers';
-import {
-  REVIEW_CONTENT_INPUT_PROPS,
-  REVIEWֹ_RATING_INPUT_PROPS,
-} from '../../Helpers/Constants';
+import { useSelector } from 'react-redux';
 import api from '../../Api/Api';
-import Review from './Review';
+import { REVIEW_CONTENT_INPUT_PROPS, REVIEWֹ_RATING_INPUT_PROPS } from '../../Helpers/Constants';
+import { isRatingValid, isThereEmptyField, showAlert } from '../../Helpers/Helpers';
 import InputForm from '../Form/InputForm';
 import ActionButton from '../Utils/Buttons/ActionButton';
+import Review from './Review';
 
 const addReview = async (review) => {
   try {
@@ -68,8 +61,7 @@ const ReviewsList = ({ product, reviews }) => {
     const currentRating = ratingRef.current.value;
     const nonEmptyValues = [currentContent, currentRating];
 
-    if (isThereEmptyField(...nonEmptyValues))
-      return setError('נא למלא את כל השדות');
+    if (isThereEmptyField(...nonEmptyValues)) return setError('נא למלא את כל השדות');
 
     const review = {
       ...newReview,
@@ -121,9 +113,7 @@ const ReviewsList = ({ product, reviews }) => {
           )}
 
           {isNoReviews ? (
-            <h1 className='mt-5 text-center'>
-              😥 אין ביקורות על המוצר הזה כרגע
-            </h1>
+            <h1 className='mt-5 text-center'>😥 אין ביקורות על המוצר הזה כרגע</h1>
           ) : (
             <>
               {reviews.map((review) => (

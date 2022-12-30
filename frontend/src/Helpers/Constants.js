@@ -1,13 +1,3 @@
-import { IoStorefrontSharp } from 'react-icons/io5';
-import { BsCartFill, BsStarFill } from 'react-icons/bs';
-import { GrUserAdmin } from 'react-icons/gr';
-import { VscHistory } from 'react-icons/vsc';
-import StorePage from '../Pages/Store/StorePage';
-import CartPage from '../Pages/Cart/CartPage';
-import OrdersPage from '../Pages/Orders/OrdersPage';
-import FavoriteProductsPage from '../Pages/Favorite/FavoriteProductsPage';
-import ManagerPage from '../Pages/Manager/ManagerPage';
-
 export const WEBSITE_TITLE = 'נתן טכנולוגיות';
 export const WEBSITE_SUBTITLE = 'המקום היחיד לכל פתרונות הטכנולוגיה';
 export const HOME_PAGE_BACKGROUND_COLOR = '#992be3';
@@ -127,45 +117,10 @@ export const MANAGER_ROUTE = '/manager';
 export const LITTLE_IN_STOCK = 5;
 export const MAX_RATING = 5;
 
-export const ROUTES = [
-  {
-    path: STORE_ROUTE,
-    element: <StorePage />,
-    text: 'חנות',
-    icon: <IoStorefrontSharp style={{ height: '100%', width: '100%' }} />,
-    isManger: false,
-    public: false,
-  },
-  {
-    path: CART_ROUTE,
-    element: <CartPage />,
-    text: 'עגלת הקניות',
-    icon: <BsCartFill style={{ height: '100%', width: '100%' }} />,
-    isManger: false,
-    public: false,
-  },
-  {
-    path: ORDERS_ROUTE,
-    element: <OrdersPage />,
-    text: 'ההזמנות שלי',
-    icon: <VscHistory style={{ height: '100%', width: '100%' }} />,
-    isManger: false,
-    public: false,
-  },
-  {
-    path: FAVORITES_ROUTE,
-    element: <FavoriteProductsPage />,
-    text: 'מועדפים',
-    icon: <BsStarFill style={{ height: '100%', width: '100%' }} />,
-    isManger: false,
-    public: false,
-  },
-  {
-    path: MANAGER_ROUTE,
-    element: <ManagerPage />,
-    text: 'מנהל',
-    icon: <GrUserAdmin style={{ height: '100%', width: '100%' }} />,
-    isManger: true,
-    public: false,
-  },
-];
+export const LOCAL_STORAGE_KEYS = {
+  connectedUser: 'CONNECTED_USER',
+  products: 'PRODUCTS',
+  orders: 'ORDERS',
+  manufacturers: 'MANUFACTURERS',
+  categories: 'CATEGORIES',
+};

@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
-import { MANUFACTURER_INPUT_PROPS } from '../../../Helpers/Constants';
-import { isNameValid, showAlert } from '../../../Helpers/Helpers';
 import { isEmpty } from 'lodash';
+import { useRef, useState } from 'react';
 import api from '../../../Api/Api';
 import InputForm from '../../../Components/Form/InputForm';
+import { MANUFACTURER_INPUT_PROPS } from '../../../Helpers/Constants';
+import { isNameValid, showAlert } from '../../../Helpers/Helpers';
 
 const addManufacturer = async (manufacturer) => {
   try {

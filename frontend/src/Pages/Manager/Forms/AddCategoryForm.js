@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
-import { CATEGORY_INPUT_PROPS } from '../../../Helpers/Constants';
-import { isNameValid, showAlert } from '../../../Helpers/Helpers';
 import { isEmpty } from 'lodash';
+import { useRef, useState } from 'react';
 import api from '../../../Api/Api';
 import InputForm from '../../../Components/Form/InputForm';
+import { CATEGORY_INPUT_PROPS } from '../../../Helpers/Constants';
+import { isNameValid, showAlert } from '../../../Helpers/Helpers';
 
 const addCategory = async (category) => {
   try {

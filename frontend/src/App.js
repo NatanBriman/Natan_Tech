@@ -1,19 +1,15 @@
-import { useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import {
-  HOME_ROUTE,
-  WEBSITE_BACKGROUND_COLOR,
-  NAVBAR_BACKGROUND_COLOR,
-} from './Helpers/Constants';
-import HomePage from './Pages/Home/HomePage';
-import NavBar from './Components/NavBar/NavBar';
-import RouterView from './Router/Router';
-import SideBar from './Components/SideBar/SideBar';
+import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import NavBar from './Components/NavBar/NavBar';
+import SideBar from './Components/SideBar/SideBar';
+import { HOME_ROUTE, NAVBAR_BACKGROUND_COLOR, WEBSITE_BACKGROUND_COLOR } from './Helpers/Constants';
+import HomePage from './Pages/Home/HomePage';
+import RouterView from './Router/Router';
 
 const App = () => {
-  const currentRoute = useLocation().pathname;
-  const isHomePage = currentRoute === HOME_ROUTE;
+  const { pathname } = useLocation();
+  const isHomePage = pathname === HOME_ROUTE;
 
   return (
     <>
@@ -38,11 +34,7 @@ const App = () => {
               }}
               className='me-5 pe-1'
             >
-              <Container
-                fluid
-                className='d-flex'
-                style={{ minHeight: '100vh' }}
-              >
+              <Container fluid className='d-flex' style={{ minHeight: '100vh' }}>
                 <RouterView />
               </Container>
             </div>
